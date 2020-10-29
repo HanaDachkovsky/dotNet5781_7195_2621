@@ -39,6 +39,11 @@ namespace dotNet5781_01_7195_2621
             return false;
 
         }
+        public string GetStringVehNum()
+        {
+            string stringNum = new string();
+
+        }
 
         public string VehicleNum { get => vehicleNum;}
         public double AvailableKm { get => availableKm; set => availableKm = value; }
