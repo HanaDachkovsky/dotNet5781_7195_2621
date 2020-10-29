@@ -88,6 +88,8 @@ namespace dotNet5781_01_7195_2621
                     break;
                 case 4:
 
+                    break;
+
                 default:
                     break;
             }
