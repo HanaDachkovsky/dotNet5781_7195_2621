@@ -11,7 +11,7 @@ namespace dotNet5781_01_7195_2621
     {
         static void Main(string[] args)
         {
-            List<Bus>ourBuses;
+            List<Bus>ourBuses=new List<Bus>();
             int choice;
             Console.WriteLine("Enter your choice:");
             Console.WriteLine("1: add a bus");
@@ -25,7 +25,32 @@ namespace dotNet5781_01_7195_2621
                 case 1:
                     break;
                 case 2:
-                    
+                    Console.WriteLine("Enter the vehicle license number");
+                    string vehNum;
+                    vehNum = Console.ReadLine();
+                    Random rand = new Random(DateTime.Now.Millisecond);
+                    int num = rand.Next();
+                    for(int i=0;i<ourBuses.Count;i++)
+                    {
+                        TimeSpan timeFromLastCare = new TimeSpan();
+                        timeFromLastCare = DateTime.Now - ourBuses[i].LastCare;
+                        if (ourBuses[i].VehicleNum==vehNum)/
+                        {
+                            if(ourBuses[i].AvailableKm>=num&&ourBuses[i].LastKm<20000&& timeFromLastCare.TotalDays<365)
+                            {
+                                ourBuses[i].LastKm += num;
+                                ourBuses[i].Kilometrage += num;
+                                ourBuses[i].AvailableKm -= num;
+                            }
+                            else
+                            {
+                                cw
+                            }
+                        }
+                        
+                    }
+
+                    break;
                 default:
                     break;
             }
