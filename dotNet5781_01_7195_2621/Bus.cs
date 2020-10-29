@@ -18,6 +18,27 @@ namespace dotNet5781_01_7195_2621
         {
 
         }
+        public bool CheckBus(string vehNum,int num)
+        {
+            TimeSpan timeFromLastCare = new TimeSpan();
+            timeFromLastCare = DateTime.Now - LastCare;
+            if (VehicleNum == vehNum)
+            {
+                if (AvailableKm >= num && LastKm < 20000 && timeFromLastCare.TotalDays < 365)
+                {
+                    LastKm += num;
+                    Kilometrage += num;
+                    AvailableKm -= num;
+                    Console.WriteLine("the drive succeeded");
+                    return true;
+                }
+                //if the bus exit but not suitable to drive
+                Console.WriteLine("the bus is not suitable to drive");
+                return true;//return true because we found the bus and print messege
+            }
+            return false;
+
+        }
 
         public string VehicleNum { get => vehicleNum;}
         public double AvailableKm { get => availableKm; set => availableKm = value; }
