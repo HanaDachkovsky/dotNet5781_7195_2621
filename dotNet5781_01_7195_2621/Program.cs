@@ -76,7 +76,7 @@ namespace dotNet5781_01_7195_2621
                     }
                     if(choice==1)
                     {
-                        ourBuses[j].LastKm = 0;
+                        ourBuses[j].KmsLastCare = ourBuses[j].Kilometrage;
                         ourBuses[j].LastCare = DateTime.Now;
                         Console.WriteLine("The care succeeded");
                     }

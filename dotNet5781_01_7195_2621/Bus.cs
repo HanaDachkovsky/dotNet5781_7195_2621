@@ -24,10 +24,10 @@ namespace dotNet5781_01_7195_2621
             timeFromLastCare = DateTime.Now - LastCare;
             if (VehicleNum == vehNum)
             {
-                if (AvailableKm >= num && LastKm < 20000 && timeFromLastCare.TotalDays < 365)
+                if (AvailableKm >= num && Kilometrage-KmsLastCare < 20000 && timeFromLastCare.TotalDays < 365)
                 {
-                    LastKm += num;
                     Kilometrage += num;
+                    KmsLastCare = Kilometrage;
                     AvailableKm -= num;
                     Console.WriteLine("the drive succeeded");
                     return true;
