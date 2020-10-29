@@ -34,7 +34,7 @@ namespace dotNet5781_01_7195_2621
                     {
                         TimeSpan timeFromLastCare = new TimeSpan();
                         timeFromLastCare = DateTime.Now - ourBuses[i].LastCare;
-                        if (ourBuses[i].VehicleNum==vehNum)/
+                        if (ourBuses[i].VehicleNum==vehNum)
                         {
                             if(ourBuses[i].AvailableKm>=num&&ourBuses[i].LastKm<20000&& timeFromLastCare.TotalDays<365)
                             {
