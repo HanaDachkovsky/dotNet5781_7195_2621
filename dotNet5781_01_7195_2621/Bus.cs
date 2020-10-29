@@ -29,7 +29,7 @@ namespace dotNet5781_01_7195_2621
                     LastKm += num;
                     Kilometrage += num;
                     AvailableKm -= num;
-                    Console.WriteLine("the drive sucsess");
+                    Console.WriteLine("the drive succeeded");
                     return true;
                 }
                 //if the bus exit but not suitable to drive

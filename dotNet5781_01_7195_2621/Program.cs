@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Services;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,17 +71,19 @@ namespace dotNet5781_01_7195_2621
                     bool succ2 = int.TryParse(Console.ReadLine(), out choice2);
                     while (succ2==false || (choice2!=1 && choice!=2) )//if the string is not a number or the number is diffrent of 1 or 2
                     {
-                        Console.WriteLine("enter again 1 for care or 2 for  refueling");
+                        Console.WriteLine("enter again 1 for care or 2 for refueling");
                         succ2 = int.TryParse(Console.ReadLine(), out choice2);
                     }
                     if(choice==1)
                     {
                         ourBuses[j].LastKm = 0;
                         ourBuses[j].LastCare = DateTime.Now;
+                        Console.WriteLine("The care succeeded");
                     }
                     if (choice == 2)
                     {
                         ourBuses[j].AvailableKm = 1200;
+                        Console.WriteLine("The refueling succeeded");
                     }
                     break;
                 case 4:
