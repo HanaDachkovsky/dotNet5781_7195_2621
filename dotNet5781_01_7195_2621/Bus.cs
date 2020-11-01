@@ -14,9 +14,14 @@ namespace dotNet5781_01_7195_2621
         private double kmsLastCare;//kilometrage of the last care
         private double kilometrage;//the total kms
         private double availableKm;//the kms we can travel until the oil ends
-        public Bus()
+        public Bus(string _vehicleNum, DateTime _startDate, DateTime _lastCare, double _kmsLastCare, double _kilometrage, double _availableKm )
         {
-
+            vehicleNum = _vehicleNum;
+            startDate = _startDate;
+            lastCare = _lastCare;
+            kmsLastCare = _kmsLastCare;
+            kilometrage = _kilometrage;
+            availableKm = _availableKm;
         }
         public bool CheckBus(string vehNum,int num)
         {
@@ -41,8 +46,16 @@ namespace dotNet5781_01_7195_2621
         }
         public string GetStringVehNum()
         {
-            string stringNum = new string();
-
+            string returnNum;
+            if (StartDate.Year < 2018)
+            {
+                returnNum = VehicleNum.Insert(2, "-");
+                returnNum = returnNum.Insert(6, "-");
+                return returnNum;
+            }
+            returnNum = VehicleNum.Insert(3, "-");
+            returnNum = returnNum.Insert(6, "-");
+            return returnNum;
         }
 
         public string VehicleNum { get => vehicleNum;}
@@ -50,5 +63,10 @@ namespace dotNet5781_01_7195_2621
         public double KmsLastCare { get => kmsLastCare; set => kmsLastCare = value; }
         public DateTime LastCare { get => lastCare; set => lastCare = value; }
         public double Kilometrage { get => kilometrage; set => kilometrage = value; }
+        public DateTime StartDate { get => startDate; }
+    }
+
+    internal class sring
+    {
     }
 }
