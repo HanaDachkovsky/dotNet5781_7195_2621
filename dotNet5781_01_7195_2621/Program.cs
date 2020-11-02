@@ -14,10 +14,10 @@ namespace dotNet5781_01_7195_2621
         static void Main(string[] args)
         {
             int choice;
+            List<Bus> ourBuses = new List<Bus>();//a list of buses
             do
             {
-                List<Bus> ourBuses = new List<Bus>();
-                Console.WriteLine("Enter your choice:");
+                Console.WriteLine("Enter your choice:");//the m
                 Console.WriteLine("1: add a bus");
                 Console.WriteLine("2: choose a bus to drive");
                 Console.WriteLine("3: to care or to refueling");
@@ -35,20 +35,25 @@ namespace dotNet5781_01_7195_2621
                         bool succRead = true;
                         string _numeVeh;
                         int _dayCtor, _monthCtor = 0, _yearCtor = 0;
-                        string _day, _month, _year;
+                        //string _day, _month, _year;
+
+                        Console.WriteLine("Enter the vehicle license number");
+                        _numeVeh = Console.ReadLine();
+                        while (_numeVeh.Length > 8 || _numeVeh.Length < 7)
+                        {
+                            Console.WriteLine("Enter again");
+                            _numeVeh = Console.ReadLine();
+                        }
                         do
                         {
-                            Console.WriteLine("Enter the vehicle license number");
-                            _numeVeh = Console.ReadLine();
-                            if (_numeVeh.Length > 8 || _numeVeh.Length < 7)
-                                succRead = false;
+                            succRead = true;
                             foreach (Bus Item in ourBuses)
                             {
-                                if (succRead = true && Item.VehicleNum == _numeVeh)
+                                if (succRead == true && Item.VehicleNum == _numeVeh)
                                 {
                                     Console.WriteLine("the bus is found, enter again");
+                                    _numeVeh = Console.ReadLine();
                                     succRead = false;
-                                    break;
                                 }
                             }
                         } while (succRead == false);
@@ -57,81 +62,85 @@ namespace dotNet5781_01_7195_2621
                         if (ifNew == "1")
                         {
                             ourBuses.Add(new Bus(_numeVeh, DateTime.Now, DateTime.Now, 0, 0, 0));
+                            Console.WriteLine("added");
                             break;
                         }
-                        do
-                        {
-                            succRead = true;
-                            Console.WriteLine("Enter the activity start date");
-                            Console.Write("Day: ");
-                            _day = Console.ReadLine();
-                            succRead = int.TryParse(_day, out _dayCtor);
-                            Console.Write("Month: ");
-                            _month = Console.ReadLine();
-                            if (succRead == true)
-                                succRead = int.TryParse(_day, out _monthCtor);
-                            Console.Write("Year: ");
-                            _year = Console.ReadLine();
-                            if (succRead == true)
-                                succRead = int.TryParse(_day, out _yearCtor);
 
-                        } while (succRead == false);
+
+                        
+                        Console.WriteLine("Enter the activity start date");
+                        Console.Write("Day: ");
+                        while (int.TryParse(Console.ReadLine(), out _dayCtor) == false|| _dayCtor<0|| _dayCtor>31)
+                        {
+                            Console.WriteLine("Enter again");
+                        }
+                        Console.Write("Month: ");
+                        while (int.TryParse(Console.ReadLine(), out _monthCtor) == false|| _monthCtor<0|| _monthCtor>12)
+                        {
+                            Console.WriteLine("Enter again");
+                        }
+                        Console.Write("Year: ");
+                        while (int.TryParse(Console.ReadLine(), out _yearCtor) == false)
+                        {
+                            Console.WriteLine("Enter again");
+                        }
+
 
                         DateTime _startDate = new DateTime(_yearCtor, _monthCtor, _dayCtor);
 
-                        do//2
+                        //
+                        Console.WriteLine("Enter the last care date");
+                        Console.Write("Day: ");
+                        while (int.TryParse(Console.ReadLine(), out _dayCtor) == false)
                         {
-                            succRead = true;
-                            Console.WriteLine("Enter the last care date");
-                            Console.Write("Day: ");
-                            _day = Console.ReadLine();
-                            succRead = int.TryParse(_day, out _dayCtor);
-                            Console.Write("Month: ");
-                            _month = Console.ReadLine();
-                            if (succRead == true)
-                                succRead = int.TryParse(_day, out _monthCtor);
-                            Console.Write("Year: ");
-                            _year = Console.ReadLine();
-                            if (succRead == true)
-                                succRead = int.TryParse(_day, out _yearCtor);
-
-                        } while (succRead == false);
+                            Console.WriteLine("Enter again");
+                        }
+                        Console.Write("Month: ");
+                        while (int.TryParse(Console.ReadLine(), out _monthCtor) == false)
+                        {
+                            Console.WriteLine("Enter again");
+                        }
+                        Console.Write("Year: ");
+                        while (int.TryParse(Console.ReadLine(), out _yearCtor) == false)
+                        {
+                            Console.WriteLine("Enter again");
+                        }
                         DateTime _lastCare = new DateTime(_yearCtor, _monthCtor, _dayCtor);
                         //now read km from care
                         int _kmsLastCare;
-                        do
+                        Console.WriteLine("Enter the kilometrage of the last care");
+                        while (int.TryParse(Console.ReadLine(), out _kmsLastCare) == false)
                         {
-                            succRead = true;
-                            succRead = int.TryParse(Console.ReadLine(), out _kmsLastCare);
+                            Console.WriteLine("Enter again");
+                        }
 
-                        } while (succRead == false);
+
                         //now read kilometrage
                         int _kilometrage;
-                        do
+                        Console.WriteLine("Enter the total kilometrage");
+                        while (int.TryParse(Console.ReadLine(), out _kilometrage) == false)
                         {
-                            succRead = true;
-                            succRead = int.TryParse(Console.ReadLine(), out _kilometrage);
-
-                        } while (succRead == false);
+                            Console.WriteLine("Enter again");
+                        }
 
                         Console.WriteLine("Enter how many kms driven from the last refueling");
                         int _ref;
-                        do
+                        while (int.TryParse(Console.ReadLine(), out _ref) == false)
                         {
-                            succRead = true;
-                            succRead = int.TryParse(Console.ReadLine(), out _ref);
+                            Console.WriteLine("Enter again");
+                        }
 
-                        } while (succRead == false);
                         _ref = 1200 - _ref;
 
                         ourBuses.Add(new Bus(_numeVeh, _startDate, _lastCare, _kmsLastCare, _kilometrage, _ref));
+                        Console.WriteLine("added");
                         break;
                     case 2:
                         Console.WriteLine("Enter the vehicle license number");
                         string vehNum;
                         vehNum = Console.ReadLine();
                         Random rand = new Random(DateTime.Now.Millisecond);
-                        int num = rand.Next();
+                        int num = rand.Next(2000);
                         bool found = false;
                         for (int i = 0; i < ourBuses.Count; i++)
                         {
@@ -165,18 +174,18 @@ namespace dotNet5781_01_7195_2621
                         Console.WriteLine("enter 1 for care or 2 for  refueling");
                         int choice2;
                         bool succ2 = int.TryParse(Console.ReadLine(), out choice2);
-                        while (succ2 == false || (choice2 != 1 && choice != 2))//if the string is not a number or the number is diffrent of 1 or 2
+                        while (succ2 == false || (choice2 != 1 && choice2 != 2))//if the string is not a number or the number is diffrent of 1 or 2
                         {
                             Console.WriteLine("enter again 1 for care or 2 for refueling");
                             succ2 = int.TryParse(Console.ReadLine(), out choice2);
                         }
-                        if (choice == 1)
+                        if (choice2 == 1)
                         {
                             ourBuses[j].KmsLastCare = ourBuses[j].Kilometrage;
                             ourBuses[j].LastCare = DateTime.Now;
                             Console.WriteLine("The care succeeded");
                         }
-                        if (choice == 2)
+                        if (choice2 == 2)
                         {
                             ourBuses[j].AvailableKm = 1200;
                             Console.WriteLine("The refueling succeeded");
@@ -186,7 +195,7 @@ namespace dotNet5781_01_7195_2621
                         Console.WriteLine("The drive of every bus:");
                         foreach (Bus item in ourBuses)
                         {
-                            Console.Write(item.GetStringVehNum());
+                            Console.Write(item.GetStringVehNum()+"\t");
                             Console.WriteLine(item.Kilometrage);
                         }
                         break;
