@@ -27,13 +27,14 @@ namespace dotNet5781_01_7195_2621
         {
             TimeSpan timeFromLastCare = new TimeSpan();
             timeFromLastCare = DateTime.Now - LastCare;
-            if (VehicleNum == vehNum)
+            if (VehicleNum == vehNum)// if this is the bus
             {
                 if (AvailableKm >= num && Kilometrage-KmsLastCare < 20000 && timeFromLastCare.TotalDays < 365)
-                {
-                    Kilometrage += num;
-                    KmsLastCare = Kilometrage;
-                    AvailableKm -= num;
+                {//check if the bus is suitable to drive
+                    //update the drive:
+                    Kilometrage += num;//the kilometrage grows
+                    KmsLastCare = Kilometrage;//the ilometrage of the last care is the current
+                    AvailableKm -= num;//we can drive less kms because of the fuel
                     Console.WriteLine("the drive succeeded");
                     return true;
                 }
@@ -41,7 +42,7 @@ namespace dotNet5781_01_7195_2621
                 Console.WriteLine("the bus is not suitable to drive");
                 return true;//return true because we found the bus and print messege
             }
-            return false;
+            return false;//if it is not the bus return false because true means we found(good or even not)
 
         }
         public string GetStringVehNum()
@@ -49,10 +50,11 @@ namespace dotNet5781_01_7195_2621
             string returnNum;
             if (StartDate.Year < 2018)
             {
-                returnNum = VehicleNum.Insert(2, "-");
+                returnNum = VehicleNum.Insert(2, "-");//put "-" in the string in index 2
                 returnNum = returnNum.Insert(6, "-");
                 return returnNum;
             }
+          //2017 and before
             returnNum = VehicleNum.Insert(3, "-");
             returnNum = returnNum.Insert(6, "-");
             return returnNum;
