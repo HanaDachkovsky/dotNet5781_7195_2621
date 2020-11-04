@@ -23,7 +23,7 @@ namespace dotNet5781_01_7195_2621
             kilometrage = _kilometrage;
             availableKm = _availableKm;
         }
-        public bool CheckBus(string vehNum,int num)
+        public bool CheckBus(string vehNum,int num)//check if the bus suitable to the drive
         {
             TimeSpan timeFromLastCare = new TimeSpan();
             timeFromLastCare = DateTime.Now - LastCare;
