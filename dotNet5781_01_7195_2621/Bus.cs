@@ -15,7 +15,7 @@ namespace dotNet5781_01_7195_2621
         private double kilometrage;//the total kms
         private double availableKm;//the kms we can travel until the oil ends
         public Bus(string _vehicleNum, DateTime _startDate, DateTime _lastCare, double _kmsLastCare, double _kilometrage, double _availableKm )
-        {
+        {//ctor
             vehicleNum = _vehicleNum;
             startDate = _startDate;
             lastCare = _lastCare;
@@ -33,7 +33,7 @@ namespace dotNet5781_01_7195_2621
                 {//check if the bus is suitable to drive
                     //update the drive:
                     Kilometrage += num;//the kilometrage grows
-                    KmsLastCare = Kilometrage;//the ilometrage of the last care is the current
+                    //KmsLastCare = Kilometrage;//the ilometrage of the last care is the current
                     AvailableKm -= num;//we can drive less kms because of the fuel
                     Console.WriteLine("the drive succeeded");
                     return true;

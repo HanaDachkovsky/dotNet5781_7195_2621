@@ -21,9 +21,9 @@ namespace dotNet5781_01_7195_2621
                 Console.WriteLine("1: add a bus");
                 Console.WriteLine("2: choose a bus to drive");
                 Console.WriteLine("3: to care or to refueling");
-                Console.WriteLine("4: print the kilometers from the last care, from all the buses in the company");
+                Console.WriteLine("4: print the kilometers from the last care, fro all the buses in the company");
                 Console.WriteLine("0: to exit");
-                while (int.TryParse(Console.ReadLine(), out choice) == false) //sread choce from 1 to 4
+                while (int.TryParse(Console.ReadLine(), out choice) == false) //read choice from 1 to 4
                 {
 
                 }
@@ -33,10 +33,11 @@ namespace dotNet5781_01_7195_2621
 
                         bool succRead = true;
                         string _numeVeh;
+                        int nothing;
                         int _dayCtor, _monthCtor, _yearCtor ;
                         Console.WriteLine("Enter the vehicle license number");
                         _numeVeh = Console.ReadLine();
-                        while (_numeVeh.Length > 8 || _numeVeh.Length < 7)//if the number must have 7 or 8 digits- else, read again
+                        while (int.TryParse(_numeVeh, out nothing) ==false|| _numeVeh.Length > 8 || _numeVeh.Length < 7)//if the number must have 7 or 8 digits- else, read again
                         {
                             Console.WriteLine("Enter again");
                             _numeVeh = Console.ReadLine();
@@ -53,7 +54,7 @@ namespace dotNet5781_01_7195_2621
                                     succRead = false;//stop search because we found
                                 }
                             }
-                        } while (succRead == false);//if /the bus exits read again
+                        } while (succRead == false);//if the bus exits read again
                         Console.WriteLine("press 1 if the vehicle is new and any key if not");//press 1 if the bus is new and didnt drive
                         string ifNew = Console.ReadLine();
                         if (ifNew == "1")//if the bus is new
@@ -63,7 +64,7 @@ namespace dotNet5781_01_7195_2621
                             break;
                         }
 
-                        //if the bus is not new
+                        //if the bus is not new:
 
                         Console.WriteLine("Enter the activity start date");//read activity start date
                         Console.Write("Day: ");
@@ -194,7 +195,7 @@ namespace dotNet5781_01_7195_2621
                         foreach (Bus item in ourBuses)//for every bus
                         {
                             Console.Write(item.GetStringVehNum() + "\t");//print the string number
-                            Console.WriteLine(item.Kilometrage);
+                            Console.WriteLine(item.Kilometrage-item.KmsLastCare);
                         }
                         break;
 
