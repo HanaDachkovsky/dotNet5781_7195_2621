@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7195_2621
 {
-    enum AREA { General,North,South,Center,Jerusalem};
+    enum AREA { General, North, South, Center, Jerusalem };
     class BusLine
     {
         private List<BusLineStation> stations;
@@ -24,7 +24,7 @@ namespace dotNet5781_02_7195_2621
         public override string ToString()
         {
             string data;
-            data = busLine + " " + area+" ";
+            data = busLine + " " + area + " ";
             foreach (var item in stations)
             {
                 data += item.BusStationKey;
@@ -34,55 +34,100 @@ namespace dotNet5781_02_7195_2621
         }
         public bool CheckStation(BusLineStation station)
         {
-            for(int i=0;i<stations.Count;i++)
+            for (int i = 0; i < stations.Count; i++)
             {
-                if(stations[i]==station)
+                if (stations[i] == station)
                 {
                     return true;
                 }
             }
             return false;
         }
-        public void InsertStation(BusLineStation station)
+        public void InsertFirst(BusLineStation newStation)
         {
-            for (int i = 0; i < stations.Count; i++)
+            stations.Insert(0, newStation);
+            firstStstion = newStation;
+        }
+        public void InsertLast(BusLineStation newStation)
+        {
+            stations.Add(newStation);
+            lastStation = newStation;
+        }
+        public void InsertStation(BusLineStation newStation, BusLineStation prevStation)
+        {
+            int i;
+            if (!CheckStation(prevStation))
             {
-                if (stations[i].BusStationKey == station.BusStationKey)
+                throw new System.ArgumentException("the previous station not exsit");
+            }
+            for (i = 0; i < stations.Count; i++)
+            {
+                if (stations[i].BusStationKey == newStation.BusStationKey)
                 {
-                    //לזרוק חריגה
+                    throw new System.ArgumentException("station with the same number already exist");
                 }
             }
-
-
+            for (i = 0; i < stations.Count; i++)
+            {
+                if (stations[i] == prevStation)
+                {
+                    break;
+                }
+            }
+            stations.Insert(++i, newStation);
+            if (prevStation == lastStation)
+            {
+                lastStation = newStation;
+            }
+        }
+        public void DleteStation(BusLineStation station)
+        {
+            if(!CheckStation(station))
+            {
+                throw new System.ArgumentException("the station not exist");
+            }
+            int i;
+            for (i = 0; i < stations.Count; i++)
+            {
+                if (stations[i] == station)
+                {
+                    break;
+                }
+            }
+            stations.RemoveAt(i);
         }
         public BusLine SubPath(BusLineStation firstStation, BusLineStation secondStation)
         {
-            BusLine subBus;
-            if(CheckStation(firstStation)&&CheckStation(secondStation))
+            BusLine subBus=new BusLine();
+            if (CheckStation(firstStation) && CheckStation(secondStation))
             {
                 int i;
-                for ( i = 0; i < stations.Count; i++)
+                for (i = 0; i < stations.Count; i++)
                 {
                     if (stations[i] == firstStation)
                     {
                         break;
                     }
                 }
-                while( stations[i]!=secondStation )
+                subBus.InsertFirst(stations[i]);
+                i++;
+                while (stations[i] != secondStation)
                 {
-                    subBus.InsertStation(stations[i]);
+                    subBus.InsertLast(stations[i]);
+                    i++;
                 }
-                subBus.InsertStation(secondStation);
-                subBus.FirstStstion=firstStation;
-                subBus.LastStation = secondStation;
-                subBus.area = area;
+                subBus.InsertLast(secondStation);
+                subBus.Area = area;
+                subBus.busLine = busLine;
+                return subBus;
             }
             else
             {
-                //לזרוק חריגה
+                throw new System.ArgumentException("the stations or one of them not exist");
             }
 
         }
-
     }
 }
+
+    
