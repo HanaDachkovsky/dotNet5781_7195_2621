@@ -10,6 +10,9 @@ namespace dotNet5781_02_7195_2621
     {
         private double distanceFromPrevStat;//distance from previous station
         private TimeSpan timeFromPrevStat;//time from the previous station
+
+        public double DistanceFromPrevStat { get => distanceFromPrevStat; set => distanceFromPrevStat = value; }
+        public TimeSpan TimeFromPrevStat { get => timeFromPrevStat; set => timeFromPrevStat = value; }
         //בנאים
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -126,6 +127,64 @@ namespace dotNet5781_02_7195_2621
                 throw new System.ArgumentException("the stations or one of them not exist");
             }
 
+        }
+        public double getDistance(BusLineStation firstStation, BusLineStation secondStation)
+        {
+            int i = 0;
+            for(;i<stations.Count;i++)
+            {
+                if (firstStation.BusStationKey == stations[i].BusStationKey)
+                    break;
+            }
+            int j = 0;
+            for (; j < stations.Count; j++)
+            {
+                if (firstStation.BusStationKey == stations[j].BusStationKey)
+                    break;
+            }
+            if(i== stations.Count||j== stations.Count)
+                throw new System.ArgumentException("the stations or one of them not exist");
+            if(j<i)
+            {
+                int temp = j;
+                j = i;
+                i = temp;
+            }
+            if (i == j)
+                throw new System.ArgumentException("the stations are equal");
+            double distance=0;
+            for (i = i + 1; i <= j; i++)
+                distance += stations[i].DistanceFromPrevStat;
+            return distance;
+        }
+        public TimeSpan getTime(BusLineStation firstStation, BusLineStation secondStation)
+        {
+            int i = 0;
+            for (; i < stations.Count; i++)
+            {
+                if (firstStation.BusStationKey == stations[i].BusStationKey)
+                    break;
+            }
+            int j = 0;
+            for (; j < stations.Count; j++)
+            {
+                if (firstStation.BusStationKey == stations[j].BusStationKey)
+                    break;
+            }
+            if (i == stations.Count || j == stations.Count)
+                throw new System.ArgumentException("the stations or one of them not exist");
+            if (j < i)
+            {
+                int temp = j;
+                j = i;
+                i = temp;
+            }
+            if (i == j)
+                throw new System.ArgumentException("the stations are equal");
+            TimeSpan time = new TimeSpan(0,0,0);
+            for (i = i + 1; i <= j; i++)
+                time += stations[i].TimeFromPrevStat;
+            return time;
         }
     }
 }
