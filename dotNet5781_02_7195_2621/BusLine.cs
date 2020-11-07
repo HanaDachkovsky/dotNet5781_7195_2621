@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_7195_2621
 {
     enum AREA { General, North, South, Center, Jerusalem };
-    class BusLine
+    class BusLine:IComparable
     {
         private List<BusLineStation> stations;
         private int busLine;
@@ -17,8 +17,8 @@ namespace dotNet5781_02_7195_2621
         private BusStation lastStation;
         private AREA area;
 
-        internal BusStation FirstStstion { get => firstStstion; set => firstStstion = value; }
-        internal BusStation LastStation { get => lastStation; set => lastStation = value; }
+        internal BusStation FirstStstion { get => stations[0]; set => stations[0] = value; }
+        internal BusStation LastStation { get => stations[stations.Count-1]; set => stations[stations.Count - 1] = value; }
         internal AREA Area { get => area; set => area = value; }
 
         //בנאי
@@ -186,6 +186,16 @@ namespace dotNet5781_02_7195_2621
                 time += stations[i].TimeFromPrevStat;
             return time;
         }
+
+        public int CompareTo(BusLine obj)
+        {
+            return getTime(this.FirstStation, lastStation).CompareTo(obj.getTime(obj.FirstStstion, obj.LastStation));
+        }
+        //public int CompareTimes(BusLineStation firstStation, BusLineStation secondStation)
+        //{
+        //    BusLine newLine = SubPath(BusLineStation firstStation, BusLineStation secondStation);
+            
+        //}
     }
 }
 
