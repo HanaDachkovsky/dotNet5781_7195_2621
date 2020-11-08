@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_7195_2621
 {
     enum AREA { General, North, South, Center, Jerusalem };
-    class BusLine
+    class BusLine:IComparable
     {
         private List<BusLineStation> stations;
         private int busLine;
@@ -16,8 +17,8 @@ namespace dotNet5781_02_7195_2621
         private BusStation lastStation;
         private AREA area;
 
-        internal BusStation FirstStstion { get => firstStstion; set => firstStstion = value; }
-        internal BusStation LastStation { get => lastStation; set => lastStation = value; }
+        internal BusStation FirstStstion { get => stations[0]; set => stations[0] = value; }
+        internal BusStation LastStation { get => stations[stations.Count-1]; set => stations[stations.Count - 1] = value; }
         internal AREA Area { get => area; set => area = value; }
 
         //בנאי
@@ -127,6 +128,75 @@ namespace dotNet5781_02_7195_2621
             }
 
         }
+        public double getDistance(BusLineStation firstStation, BusLineStation secondStation)
+        {
+            int i = 0;
+            for(;i<stations.Count;i++)
+            {
+                if (firstStation.BusStationKey == stations[i].BusStationKey)
+                    break;
+            }
+            int j = 0;
+            for (; j < stations.Count; j++)
+            {
+                if (firstStation.BusStationKey == stations[j].BusStationKey)
+                    break;
+            }
+            if(i== stations.Count||j== stations.Count)
+                throw new System.ArgumentException("the stations or one of them not exist");
+            if(j<i)
+            {
+                int temp = j;
+                j = i;
+                i = temp;
+            }
+            if (i == j)
+                throw new System.ArgumentException("the stations are equal");
+            double distance=0;
+            for (i = i + 1; i <= j; i++)
+                distance += stations[i].DistanceFromPrevStat;
+            return distance;
+        }
+        public TimeSpan getTime(BusLineStation firstStation, BusLineStation secondStation)
+        {
+            int i = 0;
+            for (; i < stations.Count; i++)
+            {
+                if (firstStation.BusStationKey == stations[i].BusStationKey)
+                    break;
+            }
+            int j = 0;
+            for (; j < stations.Count; j++)
+            {
+                if (firstStation.BusStationKey == stations[j].BusStationKey)
+                    break;
+            }
+            if (i == stations.Count || j == stations.Count)
+                throw new System.ArgumentException("the stations or one of them not exist");
+            if (j < i)
+            {
+                int temp = j;
+                j = i;
+                i = temp;
+            }
+            if (i == j)
+                throw new System.ArgumentException("the stations are equal");
+            TimeSpan time = new TimeSpan(0,0,0);
+            for (i = i + 1; i <= j; i++)
+                time += stations[i].TimeFromPrevStat;
+            return time;
+        }
+
+        public int CompareTo(BusLine obj)
+        {
+            return getTime(this.FirstStation, lastStation).CompareTo(obj.getTime(obj.FirstStstion, obj.LastStation));
+        }
+        //public int CompareTimes(BusLineStation firstStation, BusLineStation secondStation)
+        //{
+        //    BusLine newLine = SubPath(BusLineStation firstStation, BusLineStation secondStation);
+            
+        //}
+
     }
 }
 
