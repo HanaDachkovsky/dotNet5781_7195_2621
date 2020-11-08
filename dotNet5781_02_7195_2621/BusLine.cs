@@ -36,7 +36,7 @@ namespace dotNet5781_02_7195_2621
         {
             for (int i = 0; i < stations.Count; i++)
             {
-                if (stations[i] == station)
+                if (stations[i].BusStationKey == station.BusStationKey)
                 {
                     return true;
                 }
@@ -69,13 +69,13 @@ namespace dotNet5781_02_7195_2621
             }
             for (i = 0; i < stations.Count; i++)
             {
-                if (stations[i] == prevStation)
+                if (stations[i].BusStationKey == prevStation.BusStationKey)
                 {
                     break;
                 }
             }
             stations.Insert(++i, newStation);
-            if (prevStation == lastStation)
+            if (prevStation.BusStationKey == lastStation.BusStationKey)
             {
                 lastStation = newStation;
             }
@@ -89,7 +89,7 @@ namespace dotNet5781_02_7195_2621
             int i;
             for (i = 0; i < stations.Count; i++)
             {
-                if (stations[i] == station)
+                if (stations[i].BusStationKey == station.BusStationKey)
                 {
                     break;
                 }
@@ -104,14 +104,14 @@ namespace dotNet5781_02_7195_2621
                 int i;
                 for (i = 0; i < stations.Count; i++)
                 {
-                    if (stations[i] == firstStation)
+                    if (stations[i].BusStationKey == firstStation.BusStationKey)
                     {
                         break;
                     }
                 }
                 subBus.InsertFirst(stations[i]);
                 i++;
-                while (stations[i] != secondStation)
+                while (stations[i].BusStationKey != secondStation.BusStationKey)
                 {
                     subBus.InsertLast(stations[i]);
                     i++;

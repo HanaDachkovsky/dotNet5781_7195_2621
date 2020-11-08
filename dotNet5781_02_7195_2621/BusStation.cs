@@ -14,7 +14,7 @@ namespace dotNet5781_02_7195_2621
         private string adress;
         static private Random rand = new Random(DateTime.Now.Millisecond);
 
-        public int BusStationKey { get => busStationKey; set => busStationKey = value; }
+        public int BusStationKey { get => busStationKey;}
 
         public BusStation(int code, double _latitude, double _longitude, string _adress = "")
         {
