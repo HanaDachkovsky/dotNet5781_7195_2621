@@ -12,20 +12,23 @@ namespace dotNet5781_02_7195_2621
     class BusLine:IComparable
     {
         private List<BusLineStation> stations;
-        private int busLine;
-        private BusStation firstStstion;
-        private BusStation lastStation;
+        private int busLineKey;
+        private BusLineStation firstStstion;
+        private BusLineStation lastStation;
         private AREA area;
 
-        internal BusStation FirstStstion { get => stations[0]; set => stations[0] = value; }
-        internal BusStation LastStation { get => stations[stations.Count-1]; set => stations[stations.Count - 1] = value; }
+        
         internal AREA Area { get => area; set => area = value; }
+        internal BusLineStation FirstStstion { get => firstStstion; set => firstStstion = value; }
+        internal BusLineStation LastStation { get => lastStation; set => lastStation = value; }
+        public int BusLineKey { get => busLineKey; set => busLineKey = value; }
+
 
         //בנאי
         public override string ToString()
         {
             string data;
-            data = busLine + " " + area + " ";
+            data = BusLineKey + " " + area + " ";
             foreach (var item in stations)
             {
                 data += item.BusStationKey;
@@ -33,11 +36,11 @@ namespace dotNet5781_02_7195_2621
             }
             return data;
         }
-        public bool CheckStation(BusLineStation station)
+        public bool CheckStation(int stationCode)
         {
             for (int i = 0; i < stations.Count; i++)
             {
-                if (stations[i].BusStationKey == station.BusStationKey)
+                if (stations[i].BusStationKey == stationCode)
                 {
                     return true;
                 }
@@ -47,12 +50,12 @@ namespace dotNet5781_02_7195_2621
         public void InsertFirst(BusLineStation newStation)
         {
             stations.Insert(0, newStation);
-            firstStstion = newStation;
+            FirstStstion = newStation;
         }
         public void InsertLast(BusLineStation newStation)
         {
             stations.Add(newStation);
-            lastStation = newStation;
+            LastStation = newStation;
         }
         public void InsertStation(BusLineStation newStation, BusLineStation prevStation)
         {
@@ -76,9 +79,9 @@ namespace dotNet5781_02_7195_2621
                 }
             }
             stations.Insert(++i, newStation);
-            if (prevStation.BusStationKey == lastStation.BusStationKey)
+            if (prevStation.BusStationKey == LastStation.BusStationKey)
             {
-                lastStation = newStation;
+                LastStation = newStation;
             }
         }
         public void DleteStation(BusLineStation station)
@@ -119,7 +122,7 @@ namespace dotNet5781_02_7195_2621
                 }
                 subBus.InsertLast(secondStation);
                 subBus.Area = area;
-                subBus.busLine = busLine;
+                subBus.BusLineKey = BusLineKey;
                 return subBus;
             }
             else
@@ -187,14 +190,20 @@ namespace dotNet5781_02_7195_2621
             return time;
         }
 
-        public int CompareTo(BusLine obj)
+        public int CompareTo(object obj)
         {
-            return getTime(this.FirstStation, lastStation).CompareTo(obj.getTime(obj.FirstStstion, obj.LastStation));
+            BusLine line = (BusLine)obj;
+            return getTime(FirstStstion, LastStation).CompareTo(line.getTime(line.FirstStstion, line.LastStation));///?
         }
+
+        //public int CompareTo(object obj)
+        //{
+        //    throw new NotImplementedException();
+        //}
         //public int CompareTimes(BusLineStation firstStation, BusLineStation secondStation)
         //{
         //    BusLine newLine = SubPath(BusLineStation firstStation, BusLineStation secondStation);
-            
+
         //}
 
     }
