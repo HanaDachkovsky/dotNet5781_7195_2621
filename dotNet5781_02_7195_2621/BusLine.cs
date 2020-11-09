@@ -60,7 +60,7 @@ namespace dotNet5781_02_7195_2621
         public void InsertStation(BusLineStation newStation, BusLineStation prevStation)
         {
             int i;
-            if (!CheckStation(prevStation))
+            if (!CheckStation(prevStation.BusStationKey))
             {
                 throw new System.ArgumentException("the previous station not exsit");
             }
@@ -86,7 +86,7 @@ namespace dotNet5781_02_7195_2621
         }
         public void DleteStation(BusLineStation station)
         {
-            if(!CheckStation(station))
+            if(!CheckStation(station.BusStationKey))
             {
                 throw new System.ArgumentException("the station not exist");
             }
@@ -103,7 +103,7 @@ namespace dotNet5781_02_7195_2621
         public BusLine SubPath(BusLineStation firstStation, BusLineStation secondStation)
         {
             BusLine subBus=new BusLine();
-            if (CheckStation(firstStation) && CheckStation(secondStation))
+            if (CheckStation(firstStation.BusStationKey) && CheckStation(secondStation.BusStationKey))
             {
                 int i;
                 for (i = 0; i < stations.Count; i++)
