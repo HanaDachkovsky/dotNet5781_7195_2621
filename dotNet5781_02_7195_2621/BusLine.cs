@@ -8,23 +8,41 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7195_2621
 {
+    
     enum AREA { General, North, South, Center, Jerusalem };
     class BusLine:IComparable
     {
+       
         private List<BusLineStation> stations;
         private int busLineKey;
-        private BusLineStation firstStstion;
+        private BusLineStation firstStation;
         private BusLineStation lastStation;
         private AREA area;
 
         
         internal AREA Area { get => area; set => area = value; }
-        internal BusLineStation FirstStstion { get => firstStstion; set => firstStstion = value; }
+        internal BusLineStation FirstStation { get => firstStation; set => firstStation = value; }
         internal BusLineStation LastStation { get => lastStation; set => lastStation = value; }
-        public int BusLineKey { get => busLineKey; set => busLineKey = value; }
-
-
-        //בנאי
+        public int BusLineKey { get => busLineKey; private set => busLineKey = value; }
+        static Random rand= new Random(DateTime.Now.Millisecond);
+        public  BusLine()
+        {
+            
+        }
+        public BusLine(int _busLineKey = 0,AREA _area=0)
+        {
+            if(_busLineKey==0)
+            {
+                _busLineKey = rand.Next(1000);
+            }
+            if(_busLineKey<0)//?
+            {
+                throw new ArgumentOutOfRangeException("the bus number is unvalid");
+            }
+            busLineKey = _busLineKey;
+            area = _area;
+        }
+        
         public override string ToString()
         {
             string data;
@@ -49,8 +67,9 @@ namespace dotNet5781_02_7195_2621
         }
         public void InsertFirst(BusLineStation newStation)
         {
+            
             stations.Insert(0, newStation);
-            FirstStstion = newStation;
+            FirstStation = newStation;
         }
         public void InsertLast(BusLineStation newStation)
         {
@@ -89,7 +108,7 @@ namespace dotNet5781_02_7195_2621
             if(!CheckStation(station.BusStationKey))
             {
                 throw new System.ArgumentException("the station not exist");
-            }
+            }//throw if there are less than 2 satations
             int i;
             for (i = 0; i < stations.Count; i++)
             {
@@ -193,7 +212,7 @@ namespace dotNet5781_02_7195_2621
         public int CompareTo(object obj)
         {
             BusLine line = (BusLine)obj;
-            return getTime(FirstStstion, LastStation).CompareTo(line.getTime(line.FirstStstion, line.LastStation));///?
+            return getTime(FirstStation, LastStation).CompareTo(line.getTime(line.FirstStation, line.LastStation));///?
         }
 
         //public int CompareTo(object obj)

@@ -9,10 +9,12 @@ namespace dotNet5781_02_7195_2621
 {
     class BusList : IEnumerable
     {
-        List<BusLine> allBuses;
+        private List<BusLine> allBuses;
+        private List<BusStation> allStations;
         public BusList()
         {
             allBuses = new List<BusLine>();
+            allStations= new List<BusStation>();
         }
         public IEnumerator GetEnumerator()
         {
@@ -22,8 +24,19 @@ namespace dotNet5781_02_7195_2621
         {
             foreach (BusLine item in allBuses)
             {
-                if (item.BusLine == 5) ;
+                if (item.BusLineKey == _line.BusLineKey)
+                {
+                    if(item.FirstStation.BusStationKey!=_line.LastStation.BusStationKey || item.LastStation.BusStationKey != _line.FirstStation.BusStationKey)
+                    {
+                        //throw new;
+                    }
+                }
             }
+            if (_line.LastStation == null || _line.FirstStation == null)
+            {
+                //throw if there are less than 2 satations
+            }
+            allBuses.Add(_line);
         }
         public List<BusLine> searchLines(int code)
         {
