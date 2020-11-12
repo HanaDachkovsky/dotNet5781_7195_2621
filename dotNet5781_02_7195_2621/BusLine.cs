@@ -27,7 +27,14 @@ namespace dotNet5781_02_7195_2621
         static Random rand= new Random(DateTime.Now.Millisecond);
         public  BusLine()
         {
-            
+            busLineKey = rand.Next(1000);
+            area = 0;
+            firstStation = new BusLineStation();
+            lastStation = new BusLineStation();
+            FirstStation.DistanceFromPrevStat = 0;
+            FirstStation.TimeFromPrevStat = new TimeSpan(0, 0, 0);
+            stations.Add(firstStation);
+            stations.Add(lastStation);
         }
         public BusLine(int _busLineKey = 0,AREA _area=0)
         {
@@ -41,6 +48,13 @@ namespace dotNet5781_02_7195_2621
             }
             busLineKey = _busLineKey;
             area = _area;
+            firstStation = new BusLineStation();
+            lastStation = new BusLineStation();
+            FirstStation.DistanceFromPrevStat = 0;
+            FirstStation.TimeFromPrevStat = new TimeSpan(0, 0, 0);
+            stations.Add(firstStation);
+            stations.Add(lastStation);
+          
         }
         
         public override string ToString()
@@ -67,10 +81,16 @@ namespace dotNet5781_02_7195_2621
         }
         public void InsertFirst(BusLineStation newStation)
         {
-            
-            stations.Insert(0, newStation);
+
             FirstStation = newStation;
+            FirstStation.DistanceFromPrevStat = 0;
+            FirstStation.TimeFromPrevStat = new TimeSpan(0, 0, 0);
+            stations.Insert(0, firstStation);
+            stations[1].DistanceFromPrevStat = rand.NextDouble() * (150 - 0.1) + 0.1;
+            stations[1].TimeFromPrevStat = new TimeSpan(0, (int)(stations[1].DistanceFromPrevStat * 60 / 50), 0);
+            
         }
+            
         public void InsertLast(BusLineStation newStation)
         {
             stations.Add(newStation);
@@ -97,18 +117,27 @@ namespace dotNet5781_02_7195_2621
                     break;
                 }
             }
-            stations.Insert(++i, newStation);
             if (prevStation.BusStationKey == LastStation.BusStationKey)
             {
                 LastStation = newStation;
             }
+            else
+            {
+                stations.Insert(++i, newStation);
+                stations[++i].DistanceFromPrevStat = rand.NextDouble() * (150 - 0.1) + 0.1;
+                stations[i].TimeFromPrevStat = new TimeSpan(0, (int)(stations[1].DistanceFromPrevStat * 60 / 50), 0);
+            }     
         }
         public void DleteStation(BusLineStation station)
         {
             if(!CheckStation(station.BusStationKey))
             {
                 throw new System.ArgumentException("the station not exist");
-            }//throw if there are less than 2 satations
+            }
+            if (stations.Count <= 2)
+            {
+                 //throw if there are less than 2 satations
+            }
             int i;
             for (i = 0; i < stations.Count; i++)
             {
@@ -118,10 +147,13 @@ namespace dotNet5781_02_7195_2621
                 }
             }
             stations.RemoveAt(i);
+            stations[++i].DistanceFromPrevStat += station.DistanceFromPrevStat;
+            stations[i].TimeFromPrevStat += station.TimeFromPrevStat;
         }
         public BusLine SubPath(BusLineStation firstStation, BusLineStation secondStation)
         {
             BusLine subBus=new BusLine();
+            subBus.stations.RemoveAt(0);
             if (CheckStation(firstStation.BusStationKey) && CheckStation(secondStation.BusStationKey))
             {
                 int i;
@@ -133,6 +165,7 @@ namespace dotNet5781_02_7195_2621
                     }
                 }
                 subBus.InsertFirst(stations[i]);
+                subBus.stations.RemoveAt(1);
                 i++;
                 while (stations[i].BusStationKey != secondStation.BusStationKey)
                 {

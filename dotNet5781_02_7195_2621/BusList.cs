@@ -32,10 +32,6 @@ namespace dotNet5781_02_7195_2621
                     }
                 }
             }
-            if (_line.LastStation == null || _line.FirstStation == null)
-            {
-                //throw if there are less than 2 satations
-            }
             allBuses.Add(_line);
         }
         public List<BusLine> searchLines(int code)
