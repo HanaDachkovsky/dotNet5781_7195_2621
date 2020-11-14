@@ -51,10 +51,18 @@ namespace dotNet5781_02_7195_2621
             allBuses.Sort();
             return (allBuses);
         }
-        public BusLine this[int i]
+        public BusLine this[int i]///////////////
         {
-            get { return allBuses[i]; }
-            set { allBuses[i] = value; }///////?
+            get//
+            {
+                foreach (BusLine item in allBuses)
+                {
+                    if(item.BusLineKey==)
+                } 
+            }
+            //set { allBuses[i] = value; }///////?
         }
+
+        
     }
 }
