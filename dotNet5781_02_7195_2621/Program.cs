@@ -163,6 +163,31 @@ namespace dotNet5781_02_7195_2621
                         }
 
                         break;
+                    case 3:
+                        try
+                        {
+                            int line3, first3, last3;
+                            Console.WriteLine("Enter a line to delete");
+                            if (int.TryParse(Console.ReadLine(), out line3) == false)
+                            {
+                                throw new ArgumentException("it must be a number");
+                            }
+                            Console.WriteLine("Enter a key of the first station");
+                            if (int.TryParse(Console.ReadLine(), out first3) == false)
+                            {
+                                throw new ArgumentException("it must be a number");
+                            }
+                            Console.WriteLine("Enter a key of the last station");
+                            if (int.TryParse(Console.ReadLine(), out last3) == false)
+                            {
+                                throw new ArgumentException("it must be a number");
+                            }
+                            Egged.DeleteLine(line3, first3, last3);////////////
+                        }
+                        catch (Exception msg)
+                        {
+                            Console.WriteLine(msg);
+                        }
                     case 7:
                         foreach (BusLine item in Egged)
                         {
