@@ -96,10 +96,10 @@ namespace dotNet5781_02_7195_2621
             stations.Add(newStation);
             LastStation = newStation;
         }
-        public void InsertStation(BusLineStation newStation, BusLineStation prevStation)
+        public void InsertStation(BusLineStation newStation, int prevStation)
         {
             int i;
-            if (!CheckStation(prevStation.BusStationKey))
+            if (!CheckStation(prevStation))
             {
                 throw new System.ArgumentException("the previous station not exsit");
             }
@@ -112,12 +112,12 @@ namespace dotNet5781_02_7195_2621
             }
             for (i = 0; i < stations.Count; i++)
             {
-                if (stations[i].BusStationKey == prevStation.BusStationKey)
+                if (stations[i].BusStationKey == prevStation)
                 {
                     break;
                 }
             }
-            if (prevStation.BusStationKey == LastStation.BusStationKey)
+            if (prevStation == LastStation.BusStationKey)
             {
                 LastStation = newStation;
             }

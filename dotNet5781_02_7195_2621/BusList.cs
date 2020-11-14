@@ -10,11 +10,10 @@ namespace dotNet5781_02_7195_2621
     class BusList : IEnumerable
     {
         private List<BusLine> allBuses;
-        private List<BusStation> allStations;
+       
         public BusList()
         {
             allBuses = new List<BusLine>();
-            allStations= new List<BusStation>();
         }
         public IEnumerator GetEnumerator()
         {
@@ -46,6 +45,7 @@ namespace dotNet5781_02_7195_2621
             ///////////////////////////////////
             return listOfBuses;
         }
+
         public List<BusLine> sortLines()
         {
             allBuses.Sort();
