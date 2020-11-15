@@ -178,6 +178,25 @@ namespace dotNet5781_02_7195_2621
                         {
                             Console.WriteLine(msg);
                         }
+                    case 5:
+                        try
+                        {
+                            int code5;
+                            Console.WriteLine("Enter the staion code");
+                            if (int.TryParse(Console.ReadLine(), out code5) == false)
+                            {
+                                throw new ArgumentException("it must be a number");
+                            }
+                            List <BusLine> list5= Egged.searchLines(code5);
+                            foreach (BusLine item in list5)
+                            {
+                                Console.WriteLine(item.BusLineKey);
+                            }
+                        }
+                        catch (Exception msg)
+                        {
+                            Console.WriteLine(msg);
+                        }
                     case 7:
                         foreach (BusLine item in Egged)
                         {
