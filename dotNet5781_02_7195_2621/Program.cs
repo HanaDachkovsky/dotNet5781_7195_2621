@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7195_2621
 {
+    /// <summary>
+    /// Main program for 2nd assignment of the course
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
