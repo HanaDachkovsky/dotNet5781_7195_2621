@@ -224,7 +224,7 @@ namespace dotNet5781_02_7195_2621
             int j = 0;//the index of the second station
             for (; j < stations.Count; j++)
             {
-                if (firstStation.BusStationKey == stations[j].BusStationKey)//find the index of the first station
+                if (lastStation.BusStationKey == stations[j].BusStationKey)//find the index of the first station
                     break;
             }
             if(i== stations.Count||j== stations.Count)//if the stations or one of them not exist
@@ -253,7 +253,7 @@ namespace dotNet5781_02_7195_2621
             int j = 0;//the index of the second station
             for (; j < stations.Count; j++)
             {
-                if (firstStation.BusStationKey == stations[j].BusStationKey)//find the index of the first station
+                if (lastStation.BusStationKey == stations[j].BusStationKey)//find the index of the first station
                     break;
             }
             if (i == stations.Count || j == stations.Count)//if the stations or one of them not exist
