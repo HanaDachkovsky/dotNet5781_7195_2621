@@ -9,16 +9,16 @@ namespace dotNet5781_02_7195_2621
     class BusStation
     {
         private int busStationKey;//number of station
-        private double latitude;//קו רוחב
-        private double longitude;//קו אורך  
+        private double latitude;
+        private double longitude;
         private string adress;
         static protected Random rand = new Random(DateTime.Now.Millisecond);
 
-        public int BusStationKey { get => busStationKey;}
+        public int BusStationKey { get => busStationKey; set => busStationKey = value; }
         public double Latitude { get => latitude; set => latitude = value; }
         public double Longitude { get => longitude; set => longitude = value; }
         public string Adress { get => adress; set => adress = value; }
-
+        //ctors
         public BusStation(int code, double _latitude, double _longitude, string _adress = "")
         {
             busStationKey = code;
@@ -30,15 +30,15 @@ namespace dotNet5781_02_7195_2621
         {
             busStationKey = code;
             adress = _adress;
-            latitude = rand.NextDouble() * (33.3 - 31) + 31;
-            longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
+            latitude = rand.NextDouble() * (33.3 - 31) + 31;//random number from 31 to 33.3
+            longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;//random number from 34.3 to 35.5
         }
         public BusStation ()
         {
             adress = "";
-            latitude = rand.NextDouble() * (33.3 - 31) + 31;
-            longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;
-            busStationKey = rand.Next(1000000);
+            latitude = rand.NextDouble() * (33.3 - 31) + 31;//random number from 31 to 33.3
+            longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3;//random number from 34.3 to 35.5
+            busStationKey = rand.Next(1000000);// random number until 1000000
         }
             
             
