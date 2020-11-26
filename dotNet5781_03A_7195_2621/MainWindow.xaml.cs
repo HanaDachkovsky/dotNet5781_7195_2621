@@ -1,4 +1,5 @@
-﻿using System;
+﻿using dotNet5781_02_7195_2621;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,41 @@ namespace dotNet5781_03A_7195_2621
     /// </summary>
     public partial class MainWindow : Window
     {
+        BusList busLines = new BusList();
+        //static Random rand = new Random(DateTime.Now.Millisecond);
+        private BusLine currentDisplayBusLine;
         public MainWindow()
         {
             InitializeComponent();
+            for (int i=0;i<10;i++)
+            {
+                busLines.Add(new BusLine());
+            }
+            cbBusLines.ItemsSource = busLines;
+            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.SelectedIndex = 0;
+            //?
+            ShowBusLine(cbBusLines.SelectedIndex);
+            //
+
+
+        }
+
+        private void ShowBusLine(int index)
+        {
+            currentDisplayBusLine = busLines[index].First();
+            UpGrid.DataContext = currentDisplayBusLine;
+            lbBusLineStations.DataContext = currentDisplayBusLine.Stations;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ShowBusLine((cbBusLines.SelectedValue as BusLine).BusLineKey);
         }
     }
 }

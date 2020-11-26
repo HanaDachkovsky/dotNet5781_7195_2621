@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7195_2621
 {
-    class BusList : IEnumerable
+     public class BusList : IEnumerable
     {
         private List<BusLine> allBuses;//list that contain all the buses
        //ctor

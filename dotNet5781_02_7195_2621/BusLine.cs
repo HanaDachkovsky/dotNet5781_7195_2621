@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace dotNet5781_02_7195_2621
 {
     
-    enum AREA { General, North, South, Center, Jerusalem };
-    class BusLine:IComparable
+    public enum AREA { General, North, South, Center, Jerusalem };
+    public class BusLine:IComparable
     {
        
         private List<BusLineStation> stations=new List<BusLineStation>();//list that contain all the stations in the line
@@ -24,6 +24,8 @@ namespace dotNet5781_02_7195_2621
         internal BusLineStation FirstStation { get => firstStation; set => firstStation = value; }
         internal BusLineStation LastStation { get => lastStation; set => lastStation = value; }
         public int BusLineKey { get => busLineKey; private set => busLineKey = value; }
+        public List<BusLineStation> Stations { get => stations; set => stations = value; }
+
         static Random rand= new Random(DateTime.Now.Millisecond);
         //ctor
         public  BusLine()

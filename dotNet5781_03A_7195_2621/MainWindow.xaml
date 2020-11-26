@@ -8,7 +8,7 @@
         Title="MainWindow" Height="640" Width="800">
     <Grid Name="MainGrid">        <Grid.RowDefinitions>            <RowDefinition Height="50*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
-            <ComboBox Name="cbBusLines" Grid.Column="1" HorizontalAlignment="Stretch" Margin="9.6,10,9.8,0" VerticalAlignment="Stretch"/>
+            <ComboBox Name="cbBusLines" Grid.Column="1" HorizontalAlignment="Stretch" Margin="9.6,10,9.8,0" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged"/>
             <TextBox Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.8,10,9.6,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch"/>
             <TextBox Grid.Column="2" HorizontalAlignment="Left" Margin="10.2,4,0,16" TextWrapping="Wrap" Text="Area:" Width="182" FontSize="25"/>
             <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="48" Margin="10,10,0,0" TextWrapping="Wrap" Text="Bus Line Number:" VerticalAlignment="Top" Width="178" RenderTransformOrigin="0.501,1.362" TextChanged="TextBox_TextChanged" FontSize="20"/>        </Grid>

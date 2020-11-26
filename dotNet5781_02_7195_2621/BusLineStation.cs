@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7195_2621
 {
-    class BusLineStation:BusStation
+    public class BusLineStation:BusStation
     {
         static public List<BusStation> allStations = new List<BusStation>();// list that contain all the stations
         private double distanceFromPrevStat;//distance from previous station

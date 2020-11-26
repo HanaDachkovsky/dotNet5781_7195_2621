@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace dotNet5781_02_7195_2621
 {
-    class BusStation
+    public class BusStation
     {
         private int busStationKey;//number of station
         private double latitude;
