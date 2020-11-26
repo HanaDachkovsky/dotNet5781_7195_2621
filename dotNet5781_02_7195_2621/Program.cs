@@ -85,7 +85,7 @@ namespace dotNet5781_02_7195_2621
                                     double long1 = 0, long2 = 0, lat1 = 0, lat2 = 0;
                                     int found1 = 0;//flag that  signal if the line exist in the list
                                     bool exist1 = false;//flag that signal if the station exist
-                                    AREA busArea;
+                                    AREA busArea=0;
                                     foreach (BusLine item in Egged)
                                     {
                                         if (item.BusLineKey == busNumber)
@@ -97,6 +97,7 @@ namespace dotNet5781_02_7195_2621
                                                 long2 = item.FirstStation.Longitude;
                                                 lat1 = item.LastStation.Latitude;
                                                 lat2 = item.FirstStation.Latitude;
+                                                busArea = item.Area;
                                                 exist1 = true;
                                             }
                                         }
@@ -112,7 +113,7 @@ namespace dotNet5781_02_7195_2621
                                     {
                                         firstStat = new BusLineStation(first1, lat1, long1);
                                         lastStat = new BusLineStation(last1, lat2, long2);
-                                        bus = new BusLine(busNumber, firstStat, lastStat);
+                                        bus = new BusLine(busNumber, firstStat, lastStat,busArea);
                                         Egged.Add(bus);
                                     }
                                     bool flag1 = false;
@@ -160,7 +161,7 @@ namespace dotNet5781_02_7195_2621
                                         {
                                             lastStat = new BusLineStation(last1);
                                         }
-                                        bus = new BusLine(busNumber, firstStat, lastStat);
+                                        bus = new BusLine(busNumber, firstStat, lastStat,busArea);
                                         Egged.Add(bus);
                                     }
                                 }

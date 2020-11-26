@@ -52,14 +52,14 @@ namespace dotNet5781_02_7195_2621
             stations.Add(firstStation);
             stations.Add(lastStation);
         }
-        public BusLine(int _busLineKey, BusLineStation first, BusLineStation last)
+        public BusLine(int _busLineKey, BusLineStation first, BusLineStation last,AREA _area=0)
         {
             if (_busLineKey < 0)
             {
                 throw new ArgumentOutOfRangeException("the bus number is unvalid");
             }
             busLineKey = _busLineKey;
-            area = 0;
+            area = _area;
             firstStation = new BusLineStation(first.BusStationKey,first.Latitude, first.Longitude, first.Adress);
             lastStation = new BusLineStation(last.BusStationKey,last.Latitude,last.Longitude,last.Adress);
             FirstStation.DistanceFromPrevStat = 0;
