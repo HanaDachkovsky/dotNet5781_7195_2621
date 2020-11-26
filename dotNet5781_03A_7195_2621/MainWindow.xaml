@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_7195_2621"
         mc:Ignorable="d"
-        Title="Home Page" Height="640" Width="800" Icon="file:///C:/Users/yuiya/OneDrive/Desktop/blueBus.jpg">
+        Title="Home Page" Height="640" Width="800" Icon="https://images.app.goo.gl/ySJN9WQ5ZAaj4jUr5">
     <Grid Name="MainGrid">        <Grid.RowDefinitions>            <RowDefinition Height="50*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
             <ComboBox Name="cbBusLines" HorizontalAlignment="Stretch" Margin="198,0,198.2,0" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged" FontSize="20" Grid.ColumnSpan="3"/>
