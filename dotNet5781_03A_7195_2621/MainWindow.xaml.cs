@@ -33,9 +33,9 @@ namespace dotNet5781_03A_7195_2621
             }
             cbBusLines.ItemsSource = busLines;
             cbBusLines.DisplayMemberPath = " BusLineNum ";
-            cbBusLines.SelectedIndex = 0;
+            cbBusLines.SelectedIndex =0;
             //?
-            ShowBusLine(cbBusLines.SelectedIndex);
+            ShowBusLine(busLines.);
             //
 
 
