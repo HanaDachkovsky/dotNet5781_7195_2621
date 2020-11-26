@@ -20,7 +20,7 @@ namespace dotNet5781_02_7195_2621
         private AREA area;
 
         
-        internal AREA Area { get => area; set => area = value; }
+        public AREA Area { get => area; set => area = value; }
         internal BusLineStation FirstStation { get => firstStation; set => firstStation = value; }
         internal BusLineStation LastStation { get => lastStation; set => lastStation = value; }
         public int BusLineKey { get => busLineKey; private set => busLineKey = value; }

@@ -29,16 +29,12 @@ namespace dotNet5781_03A_7195_2621
             InitializeComponent();
             for (int i=0;i<10;i++)
             {
-                busLines.Add(new BusLine());
+                busLines.Add(new BusLine());//Because the buses are random, with ctor the have default area, the area of all the buses is:General
             }
             cbBusLines.ItemsSource = busLines;
-            cbBusLines.DisplayMemberPath = " BusLineNum ";
+            cbBusLines.DisplayMemberPath = "BusLineKey";
             cbBusLines.SelectedIndex =0;
-            //?
-            ShowBusLine(busLines.);
-            //
-
-
+            ShowBusLine((cbBusLines.SelectedValue as BusLine).BusLineKey);
         }
 
         private void ShowBusLine(int index)
@@ -56,6 +52,18 @@ namespace dotNet5781_03A_7195_2621
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as BusLine).BusLineKey);
+            tbArea.Text= (cbBusLines.SelectedValue as BusLine).Area.ToString();
+           
+        }
+
+        private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbArea_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
         }
     }
 }

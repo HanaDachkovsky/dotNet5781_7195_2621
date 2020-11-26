@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03A_7195_2621"
         mc:Ignorable="d"
-        Title="MainWindow" Height="640" Width="800">
+        Title="Home Page" Height="640" Width="800" Icon="file:///C:/Users/yuiya/OneDrive/Desktop/blueBus.jpg">
     <Grid Name="MainGrid">        <Grid.RowDefinitions>            <RowDefinition Height="50*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
-            <ComboBox Name="cbBusLines" Grid.Column="1" HorizontalAlignment="Stretch" Margin="9.6,10,9.8,0" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged"/>
-            <TextBox Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.8,10,9.6,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch"/>
-            <TextBox Grid.Column="2" HorizontalAlignment="Left" Margin="10.2,4,0,16" TextWrapping="Wrap" Text="Area:" Width="182" FontSize="25"/>
-            <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="48" Margin="10,10,0,0" TextWrapping="Wrap" Text="Bus Line Number:" VerticalAlignment="Top" Width="178" RenderTransformOrigin="0.501,1.362" TextChanged="TextBox_TextChanged" FontSize="20"/>        </Grid>
+            <ComboBox Name="cbBusLines" HorizontalAlignment="Stretch" Margin="198,0,198.2,0" VerticalAlignment="Stretch" SelectionChanged="cbBusLines_SelectionChanged" FontSize="20" Grid.ColumnSpan="3"/>
+            <TextBox Name="tbArea" Grid.Column="3" HorizontalAlignment="Stretch" Margin="0.8,0,9.6,0" TextWrapping="Wrap" Text="{Binding Path=Area}" VerticalAlignment="Stretch" TextChanged="tbArea_TextChanged" BorderBrush="#FFF1F2F4" FontSize="20" Background="#FFE5E5E5"/>
+            <TextBox Grid.Column="2" HorizontalAlignment="Left" Margin="0.2,0,0,0" TextWrapping="Wrap" Text="Area:" Width="198" FontSize="20" TextChanged="TextBox_TextChanged_1" BorderBrush="#FFF2F4FA" Background="#FF15C1E2"/>
+            <TextBox Grid.Column="0" HorizontalAlignment="Left" Height="68" TextWrapping="Wrap" Text="Bus Line Number:" VerticalAlignment="Top" Width="198" RenderTransformOrigin="0.501,1.362" TextChanged="TextBox_TextChanged" FontSize="20" BorderBrush="#FFF7F7F7" Background="#FF15C1E2"/>        </Grid>
         <ListBox Name="lbBusLineStations" HorizontalAlignment="Left" Height="532" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="774" ItemsSource="{Binding}"/>
     </Grid>
 
