@@ -191,7 +191,6 @@ namespace dotNet5781_02_7195_2621
                             Console.WriteLine("Enter the code of the last station");
 
                             if (int.TryParse(Console.ReadLine(), out last2) == false)
-
                             {
 
                                 throw new ArgumentException("it must be a number");
