@@ -22,7 +22,6 @@ namespace dotNet5781_03A_7195_2621
     public partial class MainWindow : Window
     {
         BusList busLines = new BusList();
-        //static Random rand = new Random(DateTime.Now.Millisecond);
         private BusLine currentDisplayBusLine;
         public MainWindow()
         {
@@ -52,7 +51,7 @@ namespace dotNet5781_03A_7195_2621
         private void cbBusLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ShowBusLine((cbBusLines.SelectedValue as BusLine).BusLineKey);
-            tbArea.Text= (cbBusLines.SelectedValue as BusLine).Area.ToString();
+            tbArea.Text= (cbBusLines.SelectedValue as BusLine).Area.ToString();//change the area to be the area of the selected line
            
         }
 
