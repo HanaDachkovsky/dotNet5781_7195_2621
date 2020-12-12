@@ -1,0 +1,33 @@
+﻿<Window x:Class="dotNet5781_03B_7195_2621.AddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:dotNet5781_03B_7195_2621"
+        mc:Ignorable="d"
+        Title="AddWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Name="MainGrid" Margin="10,10,-10.4,-10">
+            <Grid.RowDefinitions>                <RowDefinition Height="*"/>                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbNumber" HorizontalAlignment="Left" Height="48" Margin="109.4,31,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="233" Grid.Column="1" Grid.Row="0" />
+            <DatePicker x:Name="dpStart" HorizontalAlignment="Left" Margin="139,71.2,0,0" Grid.Row="1" VerticalAlignment="Top" Height="81" Width="155" Grid.Column="0"/>
+            <DatePicker x:Name="dpCare" HorizontalAlignment="Left" Margin="69.4,71.2,0,0" Grid.Row="1" VerticalAlignment="Top" Height="81" Width="155" Grid.Column="1"/>
+            <TextBox x:Name="tbKmCare" Grid.Column="1" HorizontalAlignment="Left" Margin="69.4,53.8,0,28" Grid.Row="2" TextWrapping="Wrap" Width="120"/>
+            <TextBox x:Name="tbKm" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="69.4,9.8,0,0" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.413,-1.423"/>
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="172,19.8,0,0" Grid.Row="2" TextWrapping="Wrap" Text="enter kilometrage:" VerticalAlignment="Top" Width="99"/>
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="123,54.8,0,0" Grid.Row="2" TextWrapping="Wrap" Text="enter the kilometrage of the last care:" VerticalAlignment="Top" Width="204"/>
+            <TextBlock HorizontalAlignment="Left" Height="48" Margin="123,31,0,0" TextWrapping="Wrap" Text="enter the number of the bus to add:(7-8 digits)" VerticalAlignment="Top" Width="204"/>
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="102,40.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter the start date" VerticalAlignment="Top" Width="169"/>
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="90.4,40.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter the date of the last care" VerticalAlignment="Top" Width="178" Grid.Column="1"/>
+            <Button x:Name="btAdd" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Height="51" Margin="265.4,29.8,0,0" Grid.Row="2" VerticalAlignment="Top" Width="77" Click="btAdd_Click"/>
+            <TextBlock HorizontalAlignment="Left" Height="24" Margin="10,176.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="enter how many Km were driven after the refueling: (0-12000" VerticalAlignment="Top" Width="317"/>
+            <TextBox x:Name="tbRef" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="64.4,176.2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+        </Grid>
+    </Grid>
+</Window>

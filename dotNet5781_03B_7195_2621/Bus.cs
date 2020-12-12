@@ -10,7 +10,7 @@ using System.Runtime;//.Math;//.dll.Math;
 namespace dotNet5781_03B_7195_2621
 {
     public enum STATUS { Ready, Traveling, Refueling, Care };
-    class Bus
+    public class Bus
     {
         private string vehicleNum;
         private DateTime startDate;
@@ -73,17 +73,17 @@ namespace dotNet5781_03B_7195_2621
             string returnNum;
             if (StartDate.Year < 2018)
             {
-                returnNum = VehicleNum.Insert(2, "-");//put "-" in the string in index 2
+                returnNum = vehicleNum.Insert(2, "-");//put "-" in the string in index 2
                 returnNum = returnNum.Insert(6, "-");
                 return returnNum;
             }
             //2017 and before
-            returnNum = VehicleNum.Insert(3, "-");
+            returnNum = vehicleNum.Insert(3, "-");
             returnNum = returnNum.Insert(6, "-");
             return returnNum;
         }
 
-        public string VehicleNum { get => vehicleNum; }
+        public string VehicleNum { get => GetStringVehNum(); }
         public double AvailableKm { get => availableKm; set => availableKm = value; }
         public double KmsLastCare { get => kmsLastCare; set => kmsLastCare = value; }
         public DateTime LastCare { get => lastCare; set => lastCare = value; }

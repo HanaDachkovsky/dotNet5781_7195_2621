@@ -1,0 +1,27 @@
+﻿<Window x:Class="dotNet5781_03B_7195_2621.ShowWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="ShowWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,55,0,0" TextWrapping="Wrap" Text="number:" VerticalAlignment="Top" Width="131"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,114,0,0" TextWrapping="Wrap" Text="kilometrage" VerticalAlignment="Top" Width="131"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,232,0,0" TextWrapping="Wrap" Text="the date of the last care" VerticalAlignment="Top" Width="131"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,174,0,0" TextWrapping="Wrap" Text="startDate" VerticalAlignment="Top" Width="131"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,288,0,0" TextWrapping="Wrap" Text="available Km" VerticalAlignment="Top" Width="131"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,344,0,0" TextWrapping="Wrap" Text="km from the last care" VerticalAlignment="Top" Width="131"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,377,0,0" TextWrapping="Wrap" Text="status:" VerticalAlignment="Top" Width="131"/>
+        <TextBlock x:Name="tbNum" HorizontalAlignment="Left" Height="33" Margin="375,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
+        <TextBlock x:Name="tbKm" HorizontalAlignment="Left" Height="33" Margin="375,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
+        <TextBlock x:Name="tbStart" HorizontalAlignment="Left" Height="33" Margin="375,173,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
+        <TextBlock x:Name="tbKmofCare" HorizontalAlignment="Left" Height="33" Margin="375,331,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
+        <TextBlock x:Name="tbAvailableKm" HorizontalAlignment="Left" Height="33" Margin="375,275,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
+        <TextBlock x:Name="tbCareDate" HorizontalAlignment="Left" Height="33" Margin="375,212,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
+        <TextBlock x:Name="tbStatus" HorizontalAlignment="Left" Height="33" Margin="375,369,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
+        <Button x:Name="btCare" Content="care" HorizontalAlignment="Left" Height="59" Margin="619,88,0,0" VerticalAlignment="Top" Width="72" Click="btCare_Click"/>
+        <Button x:Name="btRef" Content="refuilling" HorizontalAlignment="Left" Height="59" Margin="619,240,0,0" VerticalAlignment="Top" Width="72"/>
+
+    </Grid>
+</Window>

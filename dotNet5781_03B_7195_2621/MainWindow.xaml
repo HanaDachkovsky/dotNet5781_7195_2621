@@ -6,7 +6,31 @@
         xmlns:local="clr-namespace:dotNet5781_03B_7195_2621"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+    <Window.Resources>
+        <DataTemplate x:Key="BusTemplate" DataType="local:Bus" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>                    <ColumnDefinition Width="20"/>                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions >
+                <TextBlock Grid.Column="0" Text="{Binding Path=VehicleNum}" />
+                <Button x:Name="driveButton" Grid.Column="2" Content="start driving" Click="driveButton_Click"/>
+                <Button x:Name="refuelingButton" Grid.Column="4" Content="refueling" Click="refuelingButton_Click"/>
+                <ProgressBar Grid.Column="6" />
+            </Grid>  
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>            <RowDefinition Height="80*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
+            <Button x:Name="addButton"  Content="Add a bus" RenderTransformOrigin="9.116,1.755"  Margin="595,0,-0.4,-0.4" Grid.ColumnSpan="2" Click="addButton_Click"/>
+        </Grid>
+        <ListBox x:Name="busList" HorizontalAlignment="Left" Height="350" Margin="0,0.4,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="794" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate }" SelectionChanged="busList_SelectionChanged" MouseDoubleClick="busList_MouseDoubleClick"/>
     </Grid>
 </Window>
