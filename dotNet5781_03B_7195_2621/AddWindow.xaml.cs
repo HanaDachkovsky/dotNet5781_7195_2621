@@ -37,27 +37,27 @@ namespace dotNet5781_03B_7195_2621
 
             if (tbNumber.Text.Length < 7 || tbNumber.Text.Length > 8)
             {
-                MessageBox.Show("Bus number is less than 7 digits or more than 8 digits", "ERROR");
+                MessageBox.Show("Bus number is less than 7 digits or more than 8 digits", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (dpStart.SelectedDate == null || dpCare.SelectedDate == null)
             {
-                MessageBox.Show("You didn't select the start date or the last care date ", "ERROR");
+                MessageBox.Show("You didn't select the start date or the last care date ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (dpStart.SelectedDate > dpCare.SelectedDate)
             {
-                MessageBox.Show("The date of the last care is earlier than the start date", "ERROR");
+                MessageBox.Show("The date of the last care is earlier than the start date", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (tbKm.Text == "" || tbKmCare.Text == "")
             {
-                MessageBox.Show("You didn't enter Kilometrage ", "ERROR");
+                MessageBox.Show("You didn't enter Kilometrage ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (int.Parse(tbKm.Text) < int.Parse(tbKmCare.Text))
             {
-                MessageBox.Show("The Kilometrage of the last care is smaller than the Kilometrage ", "ERROR");
+                MessageBox.Show("The Kilometrage of the last care is smaller than the Kilometrage ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (tbRef.Text == "")
@@ -66,20 +66,20 @@ namespace dotNet5781_03B_7195_2621
             }
             if ((int.Parse(tbRef.Text) > 1200))
             {
-                MessageBox.Show("The Km after refuilling have to be between 0-1200 ", "ERROR");
+                MessageBox.Show("The Km after refuilling have to be between 0-1200 ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if ((tbNumber.Text.Length == 7 && ((DateTime)dpStart.SelectedDate).Year >= 2018) || (tbNumber.Text.Length == 8 && ((DateTime)dpStart.SelectedDate).Year < 2018))
             {
 
-                MessageBox.Show("The bus number is not suitable to start date ", "ERROR");
+                MessageBox.Show("The bus number is not suitable to start date ", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             for (int i = 0; i < ExtraData.Count; i++)
             {
                 if (ExtraData[i].VehicleNum == tbNumber.Text)
                 {
-                    MessageBox.Show("This number allredy exists", "ERROR");
+                    MessageBox.Show("This number allredy exists", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
             }

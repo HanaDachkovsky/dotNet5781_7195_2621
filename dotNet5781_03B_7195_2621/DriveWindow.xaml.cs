@@ -23,26 +23,13 @@ namespace dotNet5781_03B_7195_2621
     {
         public ObservableCollection<Bus> ExtraData { get; set; }
         //BackgroundWorker driveWorker;
-        public DriveWindow(ObservableCollection<Bus> _ExtraData,BackgroundWorker driveWorker)
+        public DriveWindow(ObservableCollection<Bus> _ExtraData)
         {
             InitializeComponent();
-            //ExtraData = _ExtraData;
-            //driveWorker = new BackgroundWorker();
-        //    driveWorker.DoWork += DriveWorker_DoWork;
-        //    driveWorker.ProgressChanged += DriveWorker_ProgressChanged;
-        //    driveWorker.WorkerReportsProgress = true;
-        //
+        
         }
 
-        //private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void DriveWorker_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+      
 
         private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {

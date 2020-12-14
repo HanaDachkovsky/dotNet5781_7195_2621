@@ -33,7 +33,7 @@ namespace dotNet5781_03B_7195_2621
         public Bus()
         {
             startDate = new DateTime(rand.Next(1980, 2021), rand.Next(1, 13), rand.Next(1, 29));
-            if(StartDate.Year<2018)
+            if (StartDate.Year < 2018)
                 vehicleNum = rand.Next(1000000, 10000000).ToString();
             else
                 vehicleNum = rand.Next(10000000, 100000000).ToString();
@@ -43,29 +43,19 @@ namespace dotNet5781_03B_7195_2621
                 LastCare = new DateTime(StartDate.Year, StartDate.Month, StartDate.Day);
             KmsLastCare = rand.Next(20000);
             Kilometrage = rand.Next((int)KmsLastCare, 100000);
-            AvailableKm = rand.Next(1,1200);
+            AvailableKm = rand.Next(1, 1200);
             Status = STATUS.Ready;
         }
-        public bool CheckBus(string vehNum, int num)//check if the bus suitable to the drive
+        public bool CheckBus(int num)//check if the bus suitable to the drive
         {
             TimeSpan timeFromLastCare = new TimeSpan();
             timeFromLastCare = DateTime.Now - LastCare;
-            if (VehicleNum == vehNum)// if this is the bus
-            {
-                if (AvailableKm >= num && Kilometrage - KmsLastCare < 20000 && timeFromLastCare.TotalDays < 365)
-                {//check if the bus is suitable to drive
-                    //update the drive:
-                    Kilometrage += num;//the kilometrage grows
-                    //KmsLastCare = Kilometrage;//the ilometrage of the last care is the current
-                    AvailableKm -= num;//we can drive less kms because of the fuel
-                   // Console.WriteLine("the drive succeeded");
-                    return true;
-                }
-                //if the bus exit but not suitable to drive
-               // Console.WriteLine("the bus is not suitable to drive");
-                return true;//return true because we found the bus and print messege
+            if (AvailableKm >= num && Kilometrage - KmsLastCare < 20000 && timeFromLastCare.TotalDays < 365&&Status==STATUS.Ready)
+            {//check if the bus is suitable to drive
+                return true;
             }
-            return false;//if it is not the bus return false because true means we found(good or even not)
+
+            return false;
 
         }
         public string GetStringVehNum()

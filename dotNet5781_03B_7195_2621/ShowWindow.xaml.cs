@@ -27,12 +27,12 @@ namespace dotNet5781_03B_7195_2621
             ExtraData = _ExtraData;
             this.DataContext = ExtraData;
             //tbNum.Text = ExtraData.VehicleNum;
-            tbCareDate.Text = ExtraData.LastCare.ToString();
-            tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
-            tbKmofCare.Text = ExtraData.KmsLastCare.ToString();
-            tbStart.Text = ExtraData.StartDate.ToString();
-            tbStatus.Text = ExtraData.Status.ToString();
-            tbKm.Text = ExtraData.Kilometrage.ToString();
+            //tbCareDate.Text = ExtraData.LastCare.ToString();
+            //tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
+            tbKmofCare.Text = (ExtraData.Kilometrage - ExtraData.KmsLastCare).ToString();
+            //tbStart.Text = ExtraData.StartDate.Date.ToString();
+            //tbStatus.Text = ExtraData.Status.ToString();
+            //tbKm.Text = ExtraData.Kilometrage.ToString();
             //use binding
 
 

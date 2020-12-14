@@ -23,6 +23,7 @@ namespace dotNet5781_03B_7195_2621
     /// </summary>
      public partial class MainWindow : Window
     {
+        public int Km { get; set; }
         public BackgroundWorker driveWorker;
         public Random rand = new Random(DateTime.Now.Millisecond);
         ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
@@ -65,7 +66,7 @@ namespace dotNet5781_03B_7195_2621
                 }
             }
             while (found1 == true);
-            buses.Add(new Bus(rand1.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-15),200, 200, 1000, STATUS.Care));
+            buses.Add(new Bus(rand1.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-15),200, 200, 1000, STATUS.Ready));
             buses.Add(new Bus(rand2.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-2), 100000, 119000, 1000, STATUS.Ready));
             buses[0].AvailableKm = 10;
             busList.ItemsSource = buses;
@@ -74,7 +75,7 @@ namespace dotNet5781_03B_7195_2621
             driveWorker.ProgressChanged += DriveWorker_ProgressChanged;
             driveWorker.WorkerReportsProgress = true;
 
-
+    
         }
 
         private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -84,7 +85,10 @@ namespace dotNet5781_03B_7195_2621
 
         private void DriveWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            throw new NotImplementedException();
+            Bus bus = e.Argument as Bus;
+            int km = Km;
+            Km = 0;
+
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
@@ -103,17 +107,26 @@ namespace dotNet5781_03B_7195_2621
         {
             
         }
-        public int Km { get; set; }
+       
 
         private void driveButton_Click(object sender, RoutedEventArgs e)
         {
-           DriveWindow driveWindow = new DriveWindow(buses,driveWorker);
-            driveWindow.DataContext = this;
+            
+           Bus bus = ((sender as Button).DataContext)as Bus;
+           DriveWindow driveWindow = new DriveWindow(buses);
+           driveWindow.DataContext = this;
            driveWindow.ShowDialog();
-           
+            if (bus.CheckBus(Km) == false)
+            {
+                Km = 0;
+                MessageBox.Show("the bus is not suitable for driving", "ERROR",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             if(Km>0)
             {
-                MessageBox.Show("dfgdfg");
+                //var x = busList.SelectedItem;
+                driveWorker.RunWorkerAsync(bus);
+                //var x = busList.FindResource(bus);
+                
             }
 
         }
