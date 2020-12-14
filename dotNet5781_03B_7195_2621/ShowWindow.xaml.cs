@@ -25,7 +25,8 @@ namespace dotNet5781_03B_7195_2621
         {
             InitializeComponent();
             ExtraData = _ExtraData;
-            tbNum.Text = ExtraData.VehicleNum;
+            this.DataContext = ExtraData;
+            //tbNum.Text = ExtraData.VehicleNum;
             tbCareDate.Text = ExtraData.LastCare.ToString();
             tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
             tbKmofCare.Text = ExtraData.KmsLastCare.ToString();

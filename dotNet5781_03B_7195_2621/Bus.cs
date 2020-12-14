@@ -58,11 +58,11 @@ namespace dotNet5781_03B_7195_2621
                     Kilometrage += num;//the kilometrage grows
                     //KmsLastCare = Kilometrage;//the ilometrage of the last care is the current
                     AvailableKm -= num;//we can drive less kms because of the fuel
-                    Console.WriteLine("the drive succeeded");
+                   // Console.WriteLine("the drive succeeded");
                     return true;
                 }
                 //if the bus exit but not suitable to drive
-                Console.WriteLine("the bus is not suitable to drive");
+               // Console.WriteLine("the bus is not suitable to drive");
                 return true;//return true because we found the bus and print messege
             }
             return false;//if it is not the bus return false because true means we found(good or even not)

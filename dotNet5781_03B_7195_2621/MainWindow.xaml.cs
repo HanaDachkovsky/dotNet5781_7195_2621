@@ -103,12 +103,18 @@ namespace dotNet5781_03B_7195_2621
         {
             
         }
+        public int Km { get; set; }
 
         private void driveButton_Click(object sender, RoutedEventArgs e)
         {
            DriveWindow driveWindow = new DriveWindow(buses,driveWorker);
-           driveWindow.Show();
-
+            driveWindow.DataContext = this;
+           driveWindow.ShowDialog();
+           
+            if(Km>0)
+            {
+                MessageBox.Show("dfgdfg");
+            }
 
         }
 

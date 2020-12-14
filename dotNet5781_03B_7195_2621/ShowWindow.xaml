@@ -13,7 +13,7 @@
         <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,288,0,0" TextWrapping="Wrap" Text="available Km" VerticalAlignment="Top" Width="131"/>
         <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,344,0,0" TextWrapping="Wrap" Text="km from the last care" VerticalAlignment="Top" Width="131"/>
         <TextBlock HorizontalAlignment="Left" Height="33" Margin="135,377,0,0" TextWrapping="Wrap" Text="status:" VerticalAlignment="Top" Width="131"/>
-        <TextBlock x:Name="tbNum" HorizontalAlignment="Left" Height="33" Margin="375,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
+        <TextBlock Text="{Binding Path=VehicleNum}"   x:Name="tbNum" HorizontalAlignment="Left" Height="33" Margin="375,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
         <TextBlock x:Name="tbKm" HorizontalAlignment="Left" Height="33" Margin="375,114,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
         <TextBlock x:Name="tbStart" HorizontalAlignment="Left" Height="33" Margin="375,173,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>
         <TextBlock x:Name="tbKmofCare" HorizontalAlignment="Left" Height="33" Margin="375,331,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="148"/>

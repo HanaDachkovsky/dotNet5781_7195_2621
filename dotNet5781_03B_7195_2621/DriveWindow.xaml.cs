@@ -51,7 +51,7 @@ namespace dotNet5781_03B_7195_2621
             if (e == null) return;
 
             //allow get out of the text box
-            if (e.Key == Key.Return || e.Key == Key.Tab)
+            if (/*e.Key == Key.Return ||*/ e.Key == Key.Tab)
                 return;
 
             //allow list of system keys (add other key here if you want to allow)
@@ -63,15 +63,17 @@ namespace dotNet5781_03B_7195_2621
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
 
             //allow control system keys
-            if (Char.IsControl(c)) return;
+  //          if (Char.IsControl(c)) return;
 
             //allow digits (without Shift or Alt)
             if (Char.IsDigit(c))
                 if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
                     return; //let this key be written inside the textbox
-            if(e.Key ==Key.Enter)
+             if(e.Key ==Key.Enter ||e.Key == Key.Return)
             {
-                
+             (this.DataContext as MainWindow).Km= int.Parse((sender as TextBox).Text);
+              
+                Close();
             }
 
             //forbid letters and signs (#,$, %, ...)
