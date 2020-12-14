@@ -126,7 +126,12 @@ namespace dotNet5781_03B_7195_2621
                 //var x = busList.SelectedItem;
                 driveWorker.RunWorkerAsync(bus);
                 //var x = busList.FindResource(bus);
-                
+                var x = (sender as Button).Parent as Grid;
+                var y = x.Children[0];
+                var z = x.Children[1];
+                var w = x.Children[2];
+                var t = x.Children[3];
+                var g = x.Children[4];
             }
 
         }
