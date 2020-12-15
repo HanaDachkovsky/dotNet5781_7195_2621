@@ -79,7 +79,7 @@ namespace dotNet5781_03B_7195_2621
         public DateTime LastCare { get => lastCare; set => lastCare = value; }
         public double Kilometrage { get => kilometrage; set => kilometrage = value; }
         public DateTime StartDate { get => startDate; }
-        public STATUS Status { get => status; private set => status = value; }
+        public STATUS Status { get => status;  set => status = value; }
     }
 
     internal class sring
