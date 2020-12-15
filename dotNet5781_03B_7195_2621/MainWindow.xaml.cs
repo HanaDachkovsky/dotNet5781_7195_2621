@@ -89,7 +89,7 @@ namespace dotNet5781_03B_7195_2621
             e.Result = 220;
            
 
-             
+             driveWorker.ReportProgress(1,4)
 
         }
         private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
