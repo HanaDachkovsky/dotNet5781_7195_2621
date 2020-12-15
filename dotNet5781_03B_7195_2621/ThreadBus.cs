@@ -14,12 +14,14 @@ namespace dotNet5781_03B_7195_2621
         public ProgressBar ProggressTime { get; set; }
         //public Grid GridLine{get;set;}
         public int Seconds { get; set; }
-        public ThreadBus(Bus bus, TextBlock text, ProgressBar progressBar, int seconds)
+        public int Index { get; set; }
+        public ThreadBus(Bus bus, TextBlock text, ProgressBar progressBar, int seconds, int index)
         {
             Bus = bus;
             ProggressTime = progressBar;
             TextTime = text;
             Seconds = seconds;
+            Index = index;
         }
     }
 }
