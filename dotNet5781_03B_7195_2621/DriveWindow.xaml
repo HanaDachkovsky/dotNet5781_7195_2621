@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7195_2621"
         mc:Ignorable="d"
-        Title="DriveWindow" Height="450" Width="800">
+        Title="DriveWindow" Height="300" Width="300" Background="AliceBlue">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="62" Margin="241,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown" />
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBox HorizontalAlignment="Left" Height="62" Margin="39,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" TextChanged="TextBox_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown" Grid.Column="0" Grid.Row="0" />
+        <TextBlock HorizontalAlignment="Left" Margin="39,94,0,0" TextWrapping="Wrap" Text="Enter Kms for driving:" VerticalAlignment="Top" Height="44" Width="221" Foreground="#FF00539C" FontWeight="Bold" TextAlignment="Center" FontSize="20"/>
 
     </Grid>
 </Window>

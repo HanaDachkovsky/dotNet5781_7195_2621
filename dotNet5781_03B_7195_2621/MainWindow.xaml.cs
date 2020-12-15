@@ -78,17 +78,26 @@ namespace dotNet5781_03B_7195_2621
     
         }
 
-        private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         private void DriveWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Bus bus = e.Argument as Bus;
+            var x = e.Argument;
+            driveWorker.ReportProgress(6);
             int km = Km;
             Km = 0;
+            e.Result = 220;
+           
 
+             
+
+        }
+        private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            var y = e;
+            var z = sender;
+            var x = this;
+            //this.MainGrid.da
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
@@ -123,15 +132,11 @@ namespace dotNet5781_03B_7195_2621
             }
             if(Km>0)
             {
+                ThreadBus threadBus = new ThreadBus(bus, ((sender as Button).Parent as Grid).Children[4] as TextBlock, ((sender as Button).Parent as Grid).Children[3] as ProgressBar);
                 //var x = busList.SelectedItem;
-                driveWorker.RunWorkerAsync(bus);
+                driveWorker.RunWorkerAsync(threadBus);
                 //var x = busList.FindResource(bus);
-                var x = (sender as Button).Parent as Grid;
-                var y = x.Children[0];
-                var z = x.Children[1];
-                var w = x.Children[2];
-                var t = x.Children[3];
-                var g = x.Children[4];
+                //var x = (sender as Button).Parent as Grid;
             }
 
         }

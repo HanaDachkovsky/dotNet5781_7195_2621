@@ -58,6 +58,7 @@
     <Compile Include="ShowWindow.xaml.cs">
       <DependentUpon>ShowWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ThreadBus.cs" />
     <Page Include="AddWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
