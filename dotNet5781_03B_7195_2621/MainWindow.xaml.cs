@@ -24,8 +24,9 @@ namespace dotNet5781_03B_7195_2621
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int Km { get; set; }
-        //public BackgroundWorker driveWorker;
+        public int Km { get; set; } = 0;
+        public bool IsRef { get; set; } = false;
+        public bool IsCare { get; set; } = false;
         List<BackgroundWorker> driveWorkers = new List<BackgroundWorker>();
         public Random rand = new Random(DateTime.Now.Millisecond);
         ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
@@ -78,13 +79,14 @@ namespace dotNet5781_03B_7195_2621
                 driveWorker = new BackgroundWorker();
                 driveWorker.DoWork += DriveWorker_DoWork;
                 driveWorker.ProgressChanged += DriveWorker_ProgressChanged;
+                driveWorker.RunWorkerCompleted += DriveWorker_RunWorkerCompleted;
                 driveWorker.WorkerReportsProgress = true;
                 driveWorkers.Add(driveWorker);
             }
             
 
 
-            
+           
         }
 
 
@@ -111,6 +113,10 @@ namespace dotNet5781_03B_7195_2621
                 }
 
             }
+            driveWorkers[index].ReportProgress(0 , e.Argument as ThreadBus);
+            
+            e.Result = (e.Argument as ThreadBus).Bus;
+
 
         }
         private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -118,30 +124,33 @@ namespace dotNet5781_03B_7195_2621
             int progress = e.ProgressPercentage;
             (e.UserState as ThreadBus).ProggressTime.Value = progress;
             (e.UserState as ThreadBus).TextTime.Text = (e.UserState as ThreadBus).Seconds.ToString();
+            if((e.UserState as ThreadBus).Seconds==0)
+            {
+                (e.UserState as ThreadBus).TextTime.Text = string.Empty;
+            }
 
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddWindow addWindow = new AddWindow(buses);
-            addWindow.Show();
-            while (true)
-            {
-                if (addWindow.IsActive == false)
-                {
-                    MessageBox.Show("closed");
-                    break;
-                }
-            }
-            while(buses.Count>driveWorkers.Count)
+          
+            while(buses.Count>=driveWorkers.Count)
             {
                 BackgroundWorker driveWorker = new BackgroundWorker();
                 driveWorker = new BackgroundWorker();
                 driveWorker.DoWork += DriveWorker_DoWork;
                 driveWorker.ProgressChanged += DriveWorker_ProgressChanged;
+                driveWorker.RunWorkerCompleted += DriveWorker_RunWorkerCompleted;
                 driveWorker.WorkerReportsProgress = true;
                 driveWorkers.Add(driveWorker);
             }
+            AddWindow addWindow = new AddWindow(buses);
+            addWindow.Show();
+        }
+
+        private void DriveWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            (e.Result as Bus).Status = STATUS.Ready;
 
         }
 
@@ -152,18 +161,37 @@ namespace dotNet5781_03B_7195_2621
 
         private void refuelingButton_Click(object sender, RoutedEventArgs e)
         {
+            IsRef = true;
+            refueling(((sender as Button).Parent as Grid));
+
 
         }
 
+        private void refueling(Grid grid)
+        {
+            Bus bus = (grid.DataContext) as Bus;
+            int index = buses.IndexOf(bus);
+            if (IsRef ==true )
+            {
+                IsRef = false;
+                if (driveWorkers[index].IsBusy == false)
+                {
+                    bus.AvailableKm = 1200;
+                    bus.Status = STATUS.Refueling;
+                    grid.Background = Brushes.Orange;
+                    int length = 12;
+                    (grid.Children[4] as TextBlock).Text = length.ToString();
+                    ThreadBus threadBus = new ThreadBus(bus, grid.Children[4] as TextBlock, grid.Children[3] as ProgressBar, length, index);
+                    driveWorkers[index].RunWorkerAsync(threadBus);
+                    grid.Background = Brushes.AliceBlue;
 
+                }
+            }
+        }
+       
         private void driveButton_Click(object sender, RoutedEventArgs e)
         {
-            //driveWorker = new BackgroundWorker();
-            //driveWorker.DoWork += DriveWorker_DoWork;
-            //driveWorker.ProgressChanged += DriveWorker_ProgressChanged;
-            //driveWorker.WorkerReportsProgress = true;
-            //
-     //      (sender as Button).DataContext
+       
             Bus bus = ((sender as Button).DataContext) as Bus;
             int index= buses.IndexOf(bus);
             DriveWindow driveWindow = new DriveWindow(buses);
@@ -187,7 +215,7 @@ namespace dotNet5781_03B_7195_2621
                     ThreadBus threadBus = new ThreadBus(bus, ((sender as Button).Parent as Grid).Children[4] as TextBlock, ((sender as Button).Parent as Grid).Children[3] as ProgressBar, length,index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
                     ((sender as Button).Parent as Grid).Background = Brushes.AliceBlue;
-                    (((sender as Button).Parent as Grid).Children[4] as TextBlock).Text = string.Empty;
+                  
                 }
             }
 
@@ -198,7 +226,13 @@ namespace dotNet5781_03B_7195_2621
         private void busList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ShowWindow showWindow = new ShowWindow((Bus)busList.SelectedItem);
-            showWindow.Show();
+            showWindow.DataContext = this;
+            showWindow.ShowDialog();
+            DependencyObject obj = (DependencyObject)e.OriginalSource;
+            
+
+
+
 
         }
 

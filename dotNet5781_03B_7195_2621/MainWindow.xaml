@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7195_2621"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Icon="blueBus.jpg">
     <Window.Resources>
-        <DataTemplate x:Key="BusTemplate" DataType="local:Bus">
+        <DataTemplate x:Key="BusTemplate" DataType="local:Bus" >
             <Grid>
                 <Grid.RowDefinitions >
                     <RowDefinition/>
@@ -25,7 +25,9 @@
                 <Button x:Name="driveButton" Grid.Column="2" Content="start driving" Click="driveButton_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
                 <Button x:Name="refuelingButton" Grid.Column="4" Content="refueling" Click="refuelingButton_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
                 <ProgressBar Grid.Column="6" Width="200"/>
-                <TextBlock Grid.Column="8" Text="123" Foreground="#FF00539C"/>
+                <TextBlock Grid.Column="8"  Foreground="#FF00539C"/>
+                
+                
             </Grid>
         </DataTemplate>
     </Window.Resources>

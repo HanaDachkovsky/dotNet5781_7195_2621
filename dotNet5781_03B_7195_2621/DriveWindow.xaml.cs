@@ -22,7 +22,7 @@ namespace dotNet5781_03B_7195_2621
     public partial class DriveWindow : Window
     {
         public ObservableCollection<Bus> ExtraData { get; set; }
-        //BackgroundWorker driveWorker;
+
         public DriveWindow(ObservableCollection<Bus> _ExtraData)
         {
             InitializeComponent();
@@ -67,7 +67,6 @@ namespace dotNet5781_03B_7195_2621
             e.Handled = true; //ignore this key. mark event as handled, will not be route
 
         }
-
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 

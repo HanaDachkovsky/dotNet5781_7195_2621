@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="ShowWindow" Height="450" Width="800" Background="AliceBlue">
+        Title="ShowWindow" Height="450" Width="800" Background="AliceBlue" Icon="blueBus.jpg">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -27,15 +27,15 @@
         <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,16,0,0" TextWrapping="Wrap" Text="Available Km for driving:" VerticalAlignment="Top" Width="145" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="4" Grid.Column="0"/>
         <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,19,0,0" TextWrapping="Wrap" Text="Km from the last care:" VerticalAlignment="Top" Width="131" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="5" Grid.Column="0"/>
         <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,17,0,0" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Width="131" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="6" Grid.Column="0"/>
-        <TextBlock x:Name="tbNum" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Text="{Binding Path=VehicleNum}" Grid.Row="0" Grid.Column="1" Foreground="#FF00539C"/>
-        <TextBlock x:Name="tbKm" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Kilometrage}" VerticalAlignment="Top" Width="148" Grid.Row="1" Grid.Column="1" Foreground="#FF00539C"/>
-        <TextBlock x:Name="tbStart" HorizontalAlignment="Left" Height="33" Margin="51,20,0,0" TextWrapping="Wrap" Text="{Binding Path=StartDate}" VerticalAlignment="Top" Width="148" Grid.Row="3" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbNum" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"  Grid.Row="0" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbKm" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="1" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbStart" HorizontalAlignment="Left" Height="33" Margin="51,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="3" Grid.Column="1" Foreground="#FF00539C"/>
         <TextBlock x:Name="tbKmofCare" HorizontalAlignment="Left" Height="33" Margin="51,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="5" Grid.Column="1" Foreground="#FF00539C"/>
-        <TextBlock x:Name="tbAvailableKm" HorizontalAlignment="Left" Height="33" Margin="51,16,0,0" TextWrapping="Wrap" Text="{Binding Path=AvailableKm}" VerticalAlignment="Top" Width="148" Grid.Row="4" Grid.Column="1" Foreground="#FF00539C"/>
-        <TextBlock x:Name="tbCareDate" HorizontalAlignment="Left" Height="33" Margin="51,14,0,0" TextWrapping="Wrap" Text="{Binding Path=LastCare}" VerticalAlignment="Top" Width="148" Grid.Row="2" Grid.Column="1" Foreground="#FF00539C"/>
-        <TextBlock x:Name="tbStatus" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Status}" VerticalAlignment="Top" Width="148" Grid.Row="6" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbAvailableKm" HorizontalAlignment="Left" Height="33" Margin="51,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="4" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbCareDate" HorizontalAlignment="Left" Height="33" Margin="51,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="2" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbStatus" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" Grid.Row="6" Grid.Column="1" Foreground="#FF00539C"/>
         <Button x:Name="btCare" Content="care" HorizontalAlignment="Left" Height="59" Margin="103,0,0,0" VerticalAlignment="Top" Width="72" Click="btCare_Click" Grid.Column="2" Grid.Row="1" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
-        <Button x:Name="btRef" Content="refuilling" HorizontalAlignment="Left" Height="59" Margin="103,0,0,0" VerticalAlignment="Top" Width="72" Grid.Column="2" Grid.Row="4" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
+        <Button x:Name="btRef" Content="refuilling" HorizontalAlignment="Left" Margin="103.4,0,0,0" Width="72" Grid.Column="2" Grid.Row="4" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Height="59" VerticalAlignment="Top" Click="btRef_Click"/>
         <TextBlock x:Name="tbTime" Grid.Column="2" HorizontalAlignment="Left" Margin="116,21,0,0" Grid.Row="6" TextWrapping="Wrap" Text="time" VerticalAlignment="Top" FontSize="22"/>
 
     </Grid>

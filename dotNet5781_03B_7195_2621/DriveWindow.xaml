@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7195_2621"
         mc:Ignorable="d"
-        Title="DriveWindow" Height="300" Width="300" Background="AliceBlue">
+        Title="DriveWindow" Height="300" Width="300" Background="AliceBlue" Icon="blueBus.jpg">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

@@ -21,31 +21,39 @@ namespace dotNet5781_03B_7195_2621
     public partial class ShowWindow : Window
     {
         public Bus ExtraData { get; set; }
+
         public ShowWindow(Bus _ExtraData)
         {
             InitializeComponent();
             ExtraData = _ExtraData;
-            this.DataContext = ExtraData;
-            //tbNum.Text = ExtraData.VehicleNum;
-            //tbCareDate.Text = ExtraData.LastCare.ToString();
-            //tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
+            //this.DataContext = ExtraData;
             tbKmofCare.Text = (ExtraData.Kilometrage - ExtraData.KmsLastCare).ToString();
-            //tbStart.Text = ExtraData.StartDate.Date.ToString();
-            //tbStatus.Text = ExtraData.Status.ToString();
-            //tbKm.Text = ExtraData.Kilometrage.ToString();
-            //use binding
+            tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
+            tbCareDate.Text = ExtraData.LastCare.Date.ToString();
+            tbKm.Text = ExtraData.Kilometrage.ToString();
+            tbKmofCare.Text = ExtraData.KmsLastCare.ToString();
+            tbNum.Text = ExtraData.VehicleNum;
+            tbStart.Text = ExtraData.StartDate.Date.ToString();
+            tbStatus.Text = ExtraData.Status.ToString();
+
+
+
 
 
         }
 
         private void btCare_Click(object sender, RoutedEventArgs e)
         {
-
+            (this.DataContext as MainWindow).IsCare = true;
+            Close();
         }
 
         private void btRef_Click(object sender, RoutedEventArgs e)
         {
-
+            (this.DataContext as MainWindow).IsRef = true;
+            Close();
         }
+
+       
     }
 }
