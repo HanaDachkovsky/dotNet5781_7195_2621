@@ -8,9 +8,9 @@
         Title="MainWindow" Height="450" Width="800" Icon="blueBus.jpg">
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate" DataType="local:Bus" >
-            <Grid>
+            <Grid x:Name="DataTemplateGrid">
                 <Grid.RowDefinitions >
-                    <RowDefinition/>
+                    <RowDefinition  MouseDown="RowDefinition_MouseDown" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition />                    <ColumnDefinition />                    <ColumnDefinition />

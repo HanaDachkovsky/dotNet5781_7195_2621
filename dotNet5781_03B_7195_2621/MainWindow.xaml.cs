@@ -225,6 +225,8 @@ namespace dotNet5781_03B_7195_2621
 
         private void busList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            (sender as ListBox).SelectedItem as 
+               
             ShowWindow showWindow = new ShowWindow((Bus)busList.SelectedItem);
             showWindow.DataContext = this;
             showWindow.ShowDialog();
@@ -236,6 +238,10 @@ namespace dotNet5781_03B_7195_2621
 
         }
 
+        private void RowDefinition_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+  var z=          (sender as RowDefinition).DataContext;
+        }
     }
 }
 
