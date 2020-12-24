@@ -36,7 +36,7 @@
         <TextBlock x:Name="tbStatus" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" Grid.Row="6" Grid.Column="1" Foreground="#FF00539C"/>
         <Button x:Name="btCare" Content="care" HorizontalAlignment="Left" Height="59" Margin="103,0,0,0" VerticalAlignment="Top" Width="72" Click="btCare_Click" Grid.Column="2" Grid.Row="1" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
         <Button x:Name="btRef" Content="refuilling" HorizontalAlignment="Left" Margin="103.4,0,0,0" Width="72" Grid.Column="2" Grid.Row="4" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Height="59" VerticalAlignment="Top" Click="btRef_Click"/>
-        <TextBlock x:Name="tbTime" Grid.Column="2" HorizontalAlignment="Left" Margin="116,21,0,0" Grid.Row="6" TextWrapping="Wrap" Text="time" VerticalAlignment="Top" FontSize="22"/>
+        <TextBlock x:Name="tbTime" Grid.Column="2" HorizontalAlignment="Left" Margin="116,21,0,0" Grid.Row="6" TextWrapping="Wrap" Text="{Binding Path=WatchTime}" VerticalAlignment="Top" FontSize="22"/>
 
     </Grid>
 </Window>

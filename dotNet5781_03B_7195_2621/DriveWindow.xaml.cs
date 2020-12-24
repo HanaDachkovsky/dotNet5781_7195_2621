@@ -58,7 +58,7 @@ namespace dotNet5781_03B_7195_2621
                     return; //let this key be written inside the textbox
              if(e.Key ==Key.Enter ||e.Key == Key.Return)
             {
-             (this.DataContext as MainWindow).Km= int.Parse((sender as TextBox).Text);
+             MainWindow.Km= int.Parse((sender as TextBox).Text);
               
                 Close();
             }

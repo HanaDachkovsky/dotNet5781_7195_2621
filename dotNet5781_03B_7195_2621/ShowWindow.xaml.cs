@@ -26,15 +26,15 @@ namespace dotNet5781_03B_7195_2621
         {
             InitializeComponent();
             ExtraData = _ExtraData;
-            //this.DataContext = ExtraData;
+            this.DataContext = ExtraData;
             tbKmofCare.Text = (ExtraData.Kilometrage - ExtraData.KmsLastCare).ToString();
-            tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
-            tbCareDate.Text = ExtraData.LastCare.Date.ToString();
-            tbKm.Text = ExtraData.Kilometrage.ToString();
-            tbKmofCare.Text = ExtraData.KmsLastCare.ToString();
-            tbNum.Text = ExtraData.VehicleNum;
-            tbStart.Text = ExtraData.StartDate.Date.ToString();
-            tbStatus.Text = ExtraData.Status.ToString();
+            //tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
+            //tbCareDate.Text = ExtraData.LastCare.Date.ToString();
+            //tbKm.Text = ExtraData.Kilometrage.ToString();
+            //tbKmofCare.Text = ExtraData.KmsLastCare.ToString();
+            //tbNum.Text = ExtraData.VehicleNum;
+            //tbStart.Text = ExtraData.StartDate.Date.ToString();
+            //tbStatus.Text = ExtraData.Status.ToString();
 
 
 
@@ -44,13 +44,27 @@ namespace dotNet5781_03B_7195_2621
 
         private void btCare_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as MainWindow).IsCare = true;
-            Close();
+            Bus bus = DataContext as Bus;
+            int index=MainWindow.buses.IndexOf(bus);
+            if (MainWindow.driveWorkers[index].IsBusy == false)
+            {
+                bus.KmsLastCare=bus.Kilometrage;
+                bus.LastCare = DateTime.Now;
+                bus.Status = STATUS.Care;
+                bus.Color = Brushes.Red;
+                int length = 144;
+                bus.WatchTime = length.ToString();
+                
+                ThreadBus threadBus = new ThreadBus(bus , length, index);
+                MainWindow.driveWorkers[index].RunWorkerAsync(threadBus);
+                //bus.Color = Brushes.AliceBlue;
+
+            }
         }
 
         private void btRef_Click(object sender, RoutedEventArgs e)
         {
-            (this.DataContext as MainWindow).IsRef = true;
+            MainWindow.IsRef = true;
             Close();
         }
 

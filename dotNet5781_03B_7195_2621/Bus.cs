@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime;//.Math;//.dll.Math;
-
-
+using System.Windows;
+using System.ComponentModel;
+using System.Windows.Media;
 
 namespace dotNet5781_03B_7195_2621
 {
     public enum STATUS { Ready, Traveling, Refueling, Care };
-    public class Bus
+    public class Bus : INotifyPropertyChanged
     {
         private string vehicleNum;
         private DateTime startDate;
@@ -19,7 +20,22 @@ namespace dotNet5781_03B_7195_2621
         private double kilometrage;//the total kms
         private double availableKm;//the kms we can travel until the oil ends
         private STATUS status;
+        private string valueProBar;
+        private SolidColorBrush color=Brushes.AliceBlue;
+
         public Random rand = new Random(DateTime.Now.Millisecond);
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string watchTime;
+        public string WatchTime { get { return watchTime; } set { watchTime = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("WatchTime")); } } }
+        public string ValueProBar { get { return valueProBar; } set { valueProBar = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("ValueProBar")); } } }
+        public STATUS Status { get { return status; } set { status = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("Status")); } } }
+        public SolidColorBrush Color { get { return color; } set { color = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("Color")); } } }
+        // public string WatchTime1 { get; set;  } = "";
+        //public static DependencyProperty WatchTime1 = DependencyProperty.Register("WatchTime", typeof(string), typeof(Bus), new UIPropertyMetadata(""));
+
+
         public Bus(string _vehicleNum, DateTime _startDate, DateTime _lastCare, double _kmsLastCare, double _kilometrage, double _availableKm, STATUS _status)
         {//ctor
             vehicleNum = _vehicleNum;
@@ -79,7 +95,7 @@ namespace dotNet5781_03B_7195_2621
         public DateTime LastCare { get => lastCare; set => lastCare = value; }
         public double Kilometrage { get => kilometrage; set => kilometrage = value; }
         public DateTime StartDate { get => startDate; }
-        public STATUS Status { get => status;  set => status = value; }
+        //public STATUS Status { get => status;  set => status = value; }
     }
 
     internal class sring

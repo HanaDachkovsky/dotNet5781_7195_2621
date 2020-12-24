@@ -24,12 +24,12 @@ namespace dotNet5781_03B_7195_2621
     /// </summary>
     public partial class MainWindow : Window
     {
-        public int Km { get; set; } = 0;
-        public bool IsRef { get; set; } = false;
-        public bool IsCare { get; set; } = false;
-        List<BackgroundWorker> driveWorkers = new List<BackgroundWorker>();
+        static public int Km { get; set; } = 0;
+        static public bool IsRef { get; set; } = false;
+        static public bool IsCare { get; set; } = false;
+        static internal List<BackgroundWorker> driveWorkers = new List<BackgroundWorker>();
         public Random rand = new Random(DateTime.Now.Millisecond);
-        ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
+        static internal ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
         public MainWindow()
         {
 
@@ -122,11 +122,17 @@ namespace dotNet5781_03B_7195_2621
         private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int progress = e.ProgressPercentage;
-            (e.UserState as ThreadBus).ProggressTime.Value = progress;
-            (e.UserState as ThreadBus).TextTime.Text = (e.UserState as ThreadBus).Seconds.ToString();
-            if((e.UserState as ThreadBus).Seconds==0)
+            //(e.UserState as ThreadBus).ProggressTime.Value = progress;
+            //(e.UserState as ThreadBus).TextTime.Text = (e.UserState as ThreadBus).Seconds.ToString();
+
+            (e.UserState as ThreadBus).Bus.ValueProBar = progress.ToString();
+
+            //
+            (e.UserState as ThreadBus).Bus.WatchTime = (e.UserState as ThreadBus).Seconds.ToString();
+            if ((e.UserState as ThreadBus).Seconds==0)
             {
-                (e.UserState as ThreadBus).TextTime.Text = string.Empty;
+                //(e.UserState as ThreadBus).TextTime.Text = string.Empty;
+                (e.UserState as ThreadBus).Bus.WatchTime = "";
             }
 
         }
@@ -151,6 +157,7 @@ namespace dotNet5781_03B_7195_2621
         private void DriveWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             (e.Result as Bus).Status = STATUS.Ready;
+            (e.Result as Bus).Color = Brushes.AliceBlue;
 
         }
 
@@ -181,7 +188,7 @@ namespace dotNet5781_03B_7195_2621
                     grid.Background = Brushes.Orange;
                     int length = 12;
                     (grid.Children[4] as TextBlock).Text = length.ToString();
-                    ThreadBus threadBus = new ThreadBus(bus, grid.Children[4] as TextBlock, grid.Children[3] as ProgressBar, length, index);
+                    ThreadBus threadBus = new ThreadBus(bus, length, index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
                     grid.Background = Brushes.AliceBlue;
 
@@ -212,9 +219,9 @@ namespace dotNet5781_03B_7195_2621
                     ((sender as Button).Parent as Grid).Background = Brushes.GreenYellow;
                     int length = Km * 6 / rand.Next(20, 50);
                     (((sender as Button).Parent as Grid).Children[4] as TextBlock).Text = length.ToString();
-                    ThreadBus threadBus = new ThreadBus(bus, ((sender as Button).Parent as Grid).Children[4] as TextBlock, ((sender as Button).Parent as Grid).Children[3] as ProgressBar, length,index);
+                    ThreadBus threadBus = new ThreadBus(bus, length,index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
-                    ((sender as Button).Parent as Grid).Background = Brushes.AliceBlue;
+                    //((sender as Button).Parent as Grid).Background = Brushes.AliceBlue;
                   
                 }
             }
@@ -225,12 +232,11 @@ namespace dotNet5781_03B_7195_2621
 
         private void busList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            (sender as ListBox).SelectedItem as 
-               
+            //(sender as ListBox).SelectedItem as ;
             ShowWindow showWindow = new ShowWindow((Bus)busList.SelectedItem);
-            showWindow.DataContext = this;
+            //showWindow.DataContext = (Bus)busList.SelectedItem;
             showWindow.ShowDialog();
-            DependencyObject obj = (DependencyObject)e.OriginalSource;
+            //DependencyObject obj = (DependencyObject)e.OriginalSource;
             
 
 
@@ -238,10 +244,7 @@ namespace dotNet5781_03B_7195_2621
 
         }
 
-        private void RowDefinition_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-  var z=          (sender as RowDefinition).DataContext;
-        }
+        
     }
 }
 

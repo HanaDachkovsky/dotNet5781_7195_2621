@@ -8,9 +8,9 @@
         Title="MainWindow" Height="450" Width="800" Icon="blueBus.jpg">
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate" DataType="local:Bus" >
-            <Grid x:Name="DataTemplateGrid">
-                <Grid.RowDefinitions >
-                    <RowDefinition  MouseDown="RowDefinition_MouseDown" />
+            <Grid x:Name="DataTemplateGrid" Background="{Binding Path=Color, UpdateSourceTrigger=PropertyChanged}">
+                <Grid.RowDefinitions  >
+                    <RowDefinition  />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition />                    <ColumnDefinition />                    <ColumnDefinition />
@@ -24,8 +24,8 @@
                 <TextBlock Grid.Column="0" Text="{Binding Path=VehicleNum}"  Width="100" Foreground="#FF00539C" FontWeight="Bold"/>
                 <Button x:Name="driveButton" Grid.Column="2" Content="start driving" Click="driveButton_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
                 <Button x:Name="refuelingButton" Grid.Column="4" Content="refueling" Click="refuelingButton_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
-                <ProgressBar Grid.Column="6" Width="200"/>
-                <TextBlock Grid.Column="8"  Foreground="#FF00539C"/>
+                <ProgressBar Grid.Column="6" Width="200" Value="{Binding Path=ValueProBar}"/>
+                <TextBlock Grid.Column="8"  Foreground="#FF00539C" Text="{Binding Path=WatchTime}"/>
                 
                 
             </Grid>
