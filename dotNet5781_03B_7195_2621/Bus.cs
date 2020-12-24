@@ -32,8 +32,7 @@ namespace dotNet5781_03B_7195_2621
         public string ValueProBar { get { return valueProBar; } set { valueProBar = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("ValueProBar")); } } }
         public STATUS Status { get { return status; } set { status = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("Status")); } } }
         public SolidColorBrush Color { get { return color; } set { color = value; if (PropertyChanged != null) { PropertyChanged(this, new PropertyChangedEventArgs("Color")); } } }
-        // public string WatchTime1 { get; set;  } = "";
-        //public static DependencyProperty WatchTime1 = DependencyProperty.Register("WatchTime", typeof(string), typeof(Bus), new UIPropertyMetadata(""));
+       
 
 
         public Bus(string _vehicleNum, DateTime _startDate, DateTime _lastCare, double _kmsLastCare, double _kilometrage, double _availableKm, STATUS _status)
@@ -98,8 +97,6 @@ namespace dotNet5781_03B_7195_2621
         //public STATUS Status { get => status;  set => status = value; }
     }
 
-    internal class sring
-    {
-    }
+    
 }
 
