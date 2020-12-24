@@ -47,6 +47,7 @@ namespace dotNet5781_03B_7195_2621
         }
         public Bus()
         {
+            //random ctor
             startDate = new DateTime(rand.Next(1980, 2021), rand.Next(1, 13), rand.Next(1, 29));
             if (StartDate.Year < 2018)
                 vehicleNum = rand.Next(1000000, 10000000).ToString();
@@ -94,7 +95,6 @@ namespace dotNet5781_03B_7195_2621
         public DateTime LastCare { get => lastCare; set => lastCare = value; }
         public double Kilometrage { get => kilometrage; set => kilometrage = value; }
         public DateTime StartDate { get => startDate; }
-        //public STATUS Status { get => status;  set => status = value; }
     }
 
     

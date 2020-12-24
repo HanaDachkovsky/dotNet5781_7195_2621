@@ -25,9 +25,9 @@ namespace dotNet5781_03B_7195_2621
     public partial class MainWindow : Window
     {
         static public int Km { get; set; } = 0;
-        static public bool IsRef { get; set; } = false;
-        static public bool IsCare { get; set; } = false;
-        static internal List<BackgroundWorker> driveWorkers = new List<BackgroundWorker>();
+        //static public bool IsRef { get; set; } = false;
+        //static public bool IsCare { get; set; } = false;
+        static internal List<BackgroundWorker> driveWorkers = new List<BackgroundWorker>();//list of backgroundworkers for each bus
         public Random rand = new Random(DateTime.Now.Millisecond);
         static internal ObservableCollection<Bus> buses = new ObservableCollection<Bus>();
         public MainWindow()
@@ -35,7 +35,7 @@ namespace dotNet5781_03B_7195_2621
 
             InitializeComponent();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)//intialize 10 random buses
             {
                 Bus addedBus = new Bus();
                 bool found = false;
@@ -69,8 +69,8 @@ namespace dotNet5781_03B_7195_2621
                 }
             }
             while (found1 == true);
-            buses.Add(new Bus(rand1.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-15), 200, 200, 1000, STATUS.Ready));
-            buses.Add(new Bus(rand2.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-2), 100000, 119000, 1000, STATUS.Ready));
+            buses.Add(new Bus(rand1.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-15), 200, 200, 1000, STATUS.Ready));//add bus that need care
+            buses.Add(new Bus(rand2.ToString(), new DateTime(2016, 1, 1), DateTime.Now.AddMonths(-2), 100000, 119000, 1000, STATUS.Ready));//add bus with kilometrage that close to care
             buses[0].AvailableKm = 10;
             busList.ItemsSource = buses;
             for(int i=0;i<buses.Count;i++)
@@ -95,9 +95,9 @@ namespace dotNet5781_03B_7195_2621
         {
 
             Km = 0;
-            int index = (e.Argument as ThreadBus).Index;
-            int length = (e.Argument as ThreadBus).Seconds;
-            for (int i = 1; i <= length; i++)
+            int index = (e.Argument as ThreadBus).Index;//the index of the bus 
+            int length = (e.Argument as ThreadBus).Seconds;//the length of the thread
+            for (int i = 1; i <= length; i++)//until the drive end
             {
                 if (driveWorkers[index].CancellationPending == true)
                 {
@@ -115,7 +115,7 @@ namespace dotNet5781_03B_7195_2621
 
             }
             System.Threading.Thread.Sleep(1000);
-            driveWorkers[index].ReportProgress(0 , e.Argument as ThreadBus);
+            driveWorkers[index].ReportProgress(0 , e.Argument as ThreadBus);//zeroing of the progress bar
             
             e.Result = (e.Argument as ThreadBus).Bus;
 
@@ -124,16 +124,10 @@ namespace dotNet5781_03B_7195_2621
         private void DriveWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             int progress = e.ProgressPercentage;
-            //(e.UserState as ThreadBus).ProggressTime.Value = progress;
-            //(e.UserState as ThreadBus).TextTime.Text = (e.UserState as ThreadBus).Seconds.ToString();
-
-            (e.UserState as ThreadBus).Bus.ValueProBar = progress.ToString();
-
-            //
-            (e.UserState as ThreadBus).Bus.WatchTime = (e.UserState as ThreadBus).Seconds.ToString();
+            (e.UserState as ThreadBus).Bus.ValueProBar = progress.ToString();//update the proggress bar
+            (e.UserState as ThreadBus).Bus.WatchTime = (e.UserState as ThreadBus).Seconds.ToString();//update the watch
             if ((e.UserState as ThreadBus).Seconds==0)
             {
-                //(e.UserState as ThreadBus).TextTime.Text = string.Empty;
                 (e.UserState as ThreadBus).Bus.WatchTime = "";
             }
 
@@ -142,7 +136,7 @@ namespace dotNet5781_03B_7195_2621
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
           
-            while(buses.Count>=driveWorkers.Count)
+            while(buses.Count>=driveWorkers.Count)//add bacgroundworker to the new bus
             {
                 BackgroundWorker driveWorker = new BackgroundWorker();
                 driveWorker = new BackgroundWorker();
@@ -157,11 +151,9 @@ namespace dotNet5781_03B_7195_2621
         }
 
         private void DriveWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {//?
-            //System.Threading.Thread.Sleep(1000);
+        {
             (e.Result as Bus).Status = STATUS.Ready;
             (e.Result as Bus).Color = Brushes.AliceBlue;
-
         }
 
         private void busList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -171,34 +163,25 @@ namespace dotNet5781_03B_7195_2621
 
         private void refuelingButton_Click(object sender, RoutedEventArgs e)
         {
-            IsRef = true;
             Bus bus=((sender as Button).Parent as Grid).DataContext as Bus;
             refueling(bus);
-
 
         }
 
         internal static void refueling(Bus bus)
         {
-            //Bus bus = (grid.DataContext) as Bus;
             int index = buses.IndexOf(bus);
-            if (IsRef ==true )
-            {
-                IsRef = false;
                 if (driveWorkers[index].IsBusy == false)
                 {
                     bus.AvailableKm = 1200;
                     bus.Status = STATUS.Refueling;
                     bus.Color = Brushes.Orange;
                     int length = 12;
-                    //(grid.Children[4] as TextBlock).Text = length.ToString();
                     bus.WatchTime = length.ToString();
                     ThreadBus threadBus = new ThreadBus(bus, length, index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
-                    //grid.Background = Brushes.AliceBlue;
 
                 }
-            }
         }
        
         private void driveButton_Click(object sender, RoutedEventArgs e)
@@ -209,7 +192,7 @@ namespace dotNet5781_03B_7195_2621
             DriveWindow driveWindow = new DriveWindow(buses);
             driveWindow.DataContext = this;
             driveWindow.ShowDialog();
-            if (bus.CheckBus(Km) == false)
+            if (bus.CheckBus(Km) == false)//if the bus suitable to the drive
             {
                 Km = 0;
                 MessageBox.Show("the bus is not suitable for driving", "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -222,11 +205,10 @@ namespace dotNet5781_03B_7195_2621
                     bus.AvailableKm -= Km;
                     bus.Status = STATUS.Traveling;
                     bus.Color = Brushes.GreenYellow;
-                    int length = Km * 6 / rand.Next(20, 50);
+                    int length = Km * 6 / rand.Next(20, 50);//the length of the drive
                     bus.WatchTime = length.ToString();
                     ThreadBus threadBus = new ThreadBus(bus, length,index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
-                    //((sender as Button).Parent as Grid).Background = Brushes.AliceBlue;
                   
                 }
             }
@@ -237,15 +219,8 @@ namespace dotNet5781_03B_7195_2621
 
         private void busList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //(sender as ListBox).SelectedItem as ;
             ShowWindow showWindow = new ShowWindow((Bus)busList.SelectedItem);
-            //showWindow.DataContext = (Bus)busList.SelectedItem;
             showWindow.ShowDialog();
-            //DependencyObject obj = (DependencyObject)e.OriginalSource;
-            
-
-
-
 
         }
 

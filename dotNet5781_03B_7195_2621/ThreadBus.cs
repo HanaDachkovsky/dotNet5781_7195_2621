@@ -7,19 +7,14 @@ using System.Windows.Controls;
 
 namespace dotNet5781_03B_7195_2621
 {
-    class ThreadBus
+    class ThreadBus//information that we need to send to doWork. contain bus and graphic details it
     {
         public Bus Bus { get; set; }
-        //public TextBlock TextTime { get; set; }
-        //public ProgressBar ProggressTime { get; set; }
-        //public Grid GridLine{get;set;}
-        public int Seconds { get; set; }
-        public int Index { get; set; }
-        public ThreadBus(Bus bus, int seconds, int index)
+        public int Seconds { get; set; }//the length of the thread, presented in the watch of each line in the list box
+        public int Index { get; set; }//the index ofthe bus in the list
+        public ThreadBus(Bus bus, int seconds, int index)//ctor
         {
             Bus = bus;
-            //ProggressTime = progressBar;
-            //TextTime = text;
             Seconds = seconds;
             Index = index;
         }

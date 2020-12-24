@@ -27,18 +27,7 @@ namespace dotNet5781_03B_7195_2621
             InitializeComponent();
             ExtraData = _ExtraData;
             this.DataContext = ExtraData;
-            tbKmofCare.Text = (ExtraData.Kilometrage - ExtraData.KmsLastCare).ToString();
-            //tbAvailableKm.Text = ExtraData.AvailableKm.ToString();
-            //tbCareDate.Text = ExtraData.LastCare.Date.ToString();
-            //tbKm.Text = ExtraData.Kilometrage.ToString();
-            //tbKmofCare.Text = ExtraData.KmsLastCare.ToString();
-            //tbNum.Text = ExtraData.VehicleNum;
-            //tbStart.Text = ExtraData.StartDate.Date.ToString();
-            //tbStatus.Text = ExtraData.Status.ToString();
-
-
-
-
+            tbKmofCare.Text = (ExtraData.Kilometrage - ExtraData.KmsLastCare).ToString();//the Kms of the last care
 
         }
 
@@ -57,7 +46,6 @@ namespace dotNet5781_03B_7195_2621
                 
                 ThreadBus threadBus = new ThreadBus(bus , length, index);
                 MainWindow.driveWorkers[index].RunWorkerAsync(threadBus);
-                //bus.Color = Brushes.AliceBlue;
 
             }
         }
@@ -65,7 +53,6 @@ namespace dotNet5781_03B_7195_2621
         private void btRef_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.refueling(DataContext as Bus);
-            //Close();
         }
 
        
