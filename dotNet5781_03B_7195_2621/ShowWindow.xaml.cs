@@ -51,7 +51,7 @@ namespace dotNet5781_03B_7195_2621
                 bus.KmsLastCare=bus.Kilometrage;
                 bus.LastCare = DateTime.Now;
                 bus.Status = STATUS.Care;
-                bus.Color = Brushes.Red;
+                bus.Color = Brushes.Aqua;
                 int length = 144;
                 bus.WatchTime = length.ToString();
                 
@@ -64,8 +64,8 @@ namespace dotNet5781_03B_7195_2621
 
         private void btRef_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.IsRef = true;
-            Close();
+            MainWindow.refueling(DataContext as Bus);
+            //Close();
         }
 
        

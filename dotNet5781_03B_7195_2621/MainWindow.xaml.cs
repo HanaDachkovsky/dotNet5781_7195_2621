@@ -106,13 +106,15 @@ namespace dotNet5781_03B_7195_2621
                 }
                 else
                 {
-                    (e.Argument as ThreadBus).Seconds--;
+                    
                     // Perform a time consuming operation and report progress.
                     System.Threading.Thread.Sleep(1000);
+                    (e.Argument as ThreadBus).Seconds--;
                     driveWorkers[index].ReportProgress(i * 100 / length, e.Argument as ThreadBus);
                 }
 
             }
+            System.Threading.Thread.Sleep(1000);
             driveWorkers[index].ReportProgress(0 , e.Argument as ThreadBus);
             
             e.Result = (e.Argument as ThreadBus).Bus;
@@ -155,7 +157,8 @@ namespace dotNet5781_03B_7195_2621
         }
 
         private void DriveWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
+        {//?
+            //System.Threading.Thread.Sleep(1000);
             (e.Result as Bus).Status = STATUS.Ready;
             (e.Result as Bus).Color = Brushes.AliceBlue;
 
@@ -169,14 +172,15 @@ namespace dotNet5781_03B_7195_2621
         private void refuelingButton_Click(object sender, RoutedEventArgs e)
         {
             IsRef = true;
-            refueling(((sender as Button).Parent as Grid));
+            Bus bus=((sender as Button).Parent as Grid).DataContext as Bus;
+            refueling(bus);
 
 
         }
 
-        private void refueling(Grid grid)
+        internal static void refueling(Bus bus)
         {
-            Bus bus = (grid.DataContext) as Bus;
+            //Bus bus = (grid.DataContext) as Bus;
             int index = buses.IndexOf(bus);
             if (IsRef ==true )
             {
@@ -185,12 +189,13 @@ namespace dotNet5781_03B_7195_2621
                 {
                     bus.AvailableKm = 1200;
                     bus.Status = STATUS.Refueling;
-                    grid.Background = Brushes.Orange;
+                    bus.Color = Brushes.Orange;
                     int length = 12;
-                    (grid.Children[4] as TextBlock).Text = length.ToString();
+                    //(grid.Children[4] as TextBlock).Text = length.ToString();
+                    bus.WatchTime = length.ToString();
                     ThreadBus threadBus = new ThreadBus(bus, length, index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
-                    grid.Background = Brushes.AliceBlue;
+                    //grid.Background = Brushes.AliceBlue;
 
                 }
             }
@@ -216,9 +221,9 @@ namespace dotNet5781_03B_7195_2621
                     bus.Kilometrage += Km;
                     bus.AvailableKm -= Km;
                     bus.Status = STATUS.Traveling;
-                    ((sender as Button).Parent as Grid).Background = Brushes.GreenYellow;
+                    bus.Color = Brushes.GreenYellow;
                     int length = Km * 6 / rand.Next(20, 50);
-                    (((sender as Button).Parent as Grid).Children[4] as TextBlock).Text = length.ToString();
+                    bus.WatchTime = length.ToString();
                     ThreadBus threadBus = new ThreadBus(bus, length,index);
                     driveWorkers[index].RunWorkerAsync(threadBus);
                     //((sender as Button).Parent as Grid).Background = Brushes.AliceBlue;
