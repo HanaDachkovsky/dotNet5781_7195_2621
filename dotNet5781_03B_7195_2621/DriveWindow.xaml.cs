@@ -28,6 +28,14 @@ namespace dotNet5781_03B_7195_2621
             InitializeComponent();
         
         }
+        public DriveWindow()
+        {
+            ObservableCollection<Bus> newlist = new ObservableCollection<Bus>;
+            for(int i=0;i<MainWindow.buses.Count;i++)
+            {
+                //if()
+            }
+        }
 
       
 

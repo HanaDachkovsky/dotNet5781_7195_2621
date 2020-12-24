@@ -24,6 +24,10 @@ namespace dotNet5781_03B_7195_2621
     /// </summary>
     public partial class MainWindow : Window
     {
+        //
+        DriveWindow a = new DriveWindow();
+
+        //
         static public int Km { get; set; } = 0;
         //static public bool IsRef { get; set; } = false;
         //static public bool IsCare { get; set; } = false;
