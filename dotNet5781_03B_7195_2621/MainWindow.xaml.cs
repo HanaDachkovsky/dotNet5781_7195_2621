@@ -24,13 +24,8 @@ namespace dotNet5781_03B_7195_2621
     /// </summary>
     public partial class MainWindow : Window
     {
-        //
-        DriveWindow a = new DriveWindow();
-
-        //
+     
         static public int Km { get; set; } = 0;
-        //static public bool IsRef { get; set; } = false;
-        //static public bool IsCare { get; set; } = false;
         static internal List<BackgroundWorker> driveWorkers = new List<BackgroundWorker>();//list of backgroundworkers for each bus
         public Random rand = new Random(DateTime.Now.Millisecond);
         static internal ObservableCollection<Bus> buses = new ObservableCollection<Bus>();

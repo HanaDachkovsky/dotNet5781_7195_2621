@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:dotNet5781_03B_7195_2621"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Icon="blueBus.jpg">
+        Title="Main menu" Height="450" Width="800" Icon="blueBus.jpg">
     <Window.Resources>
         <DataTemplate x:Key="BusTemplate" DataType="local:Bus" >
             <Grid x:Name="DataTemplateGrid" Background="{Binding Path=Color, UpdateSourceTrigger=PropertyChanged}">
