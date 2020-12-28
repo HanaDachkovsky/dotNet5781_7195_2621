@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BO\" />
+    <ProjectReference Include="..\DLAPI\DLAPI.csproj" />
   </ItemGroup>
 
 </Project>
