@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace DO
 {
     /// <summary>
@@ -13,7 +14,7 @@ namespace DO
         public DateTime FromDate { get; set; }
         public double TotalTrip { get; set; }
         public double FuelRemain { get; set; }
-        public BusStatus Status { get; set; }
+        public Enums.BusStatus Status { get; set; }
 
 
 

@@ -20,9 +20,88 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
+        IBL bl = BlFactory.GetBl();
         public MainWindow()
         {
             InitializeComponent();
+            
+        }
+
+        private void tb_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+
+            TextBox text = sender as TextBox;
+            if (text == null) return;
+            if (e == null) return;
+
+            //allow get out of the text box
+            if (e.Key == Key.Tab)
+                return;
+
+            //allow list of system keys (add other key here if you want to allow)
+            if (e.Key == Key.Escape || e.Key == Key.Back || e.Key == Key.Delete ||
+                e.Key == Key.CapsLock || e.Key == Key.LeftShift || e.Key == Key.Home || e.Key == Key.End ||
+                e.Key == Key.Insert || e.Key == Key.Down || e.Key == Key.Right)
+                return;
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+            if(Char.IsLetter(c))
+            {
+                return;
+            }
+
+            //allow digits (without Shift or Alt)
+            if (Char.IsDigit(c))
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+                    return; //let this key be written inside the textbox
+            if (e.Key == Key.Enter || e.Key == Key.Return)
+            {
+                try
+                {
+                    if (bl.IsAdminAndExists(tbUserName.Text, pbPassword.Password))
+                    {
+                        ManagementWindow management = new ManagementWindow(bl);
+                        management.Show();
+                    }
+                    else
+                    {
+
+                    }
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show(exp.Message);
+                }
+
+            }
+            e.Handled = true;
+        }
+
+        private void tbUserName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btSignIn_Click(object sender, RoutedEventArgs e)
+        {
+
+            try
+            {
+                if (bl.IsAdminAndExists(tbUserName.Text, pbPassword.Password))
+                {
+                    ManagementWindow management = new ManagementWindow(bl);
+                    management.Show();
+                }
+                else
+                {
+
+                }
+            }
+            catch(Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
+
         }
     }
 }

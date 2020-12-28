@@ -19,9 +19,24 @@ namespace PL
     /// </summary>
     public partial class ManagementWindow : Window
     {
-        public ManagementWindow()
+        public ManagementWindow(IBL bl)
         {
             InitializeComponent();
+        }
+
+        private void btBusesView_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btLinesView_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btStationsView_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

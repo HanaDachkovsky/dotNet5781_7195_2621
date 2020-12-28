@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DO
 {
-    class Counter
+    public class Counter
     {
         public static int TripNum { get; set; } = 0;
         public static int LineTripNum { get; set; } = 0;

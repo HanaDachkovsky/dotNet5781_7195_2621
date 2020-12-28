@@ -11,9 +11,9 @@ namespace DO
     {
         public int Code { get; set; }
         public string Name { get; set; }
-        public string Adress { get; set; }
-        public int Lattitude { get; set; }
-        public int Longitude { get; set; }
+        public string Address { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
 
     }
 }

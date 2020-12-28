@@ -23,7 +23,11 @@
             </Grid>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
-        
-    </Grid>
+    <Grid Name="MainGrid">
+            <Grid.RowDefinitions>                <RowDefinition Height="80*"/>                <RowDefinition Height="400*"/>            </Grid.RowDefinitions>
+            <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                    <ColumnDefinition Width="*"/>                </Grid.ColumnDefinitions >
+            <Button x:Name="addButton"  Content="Add a bus" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22"/>
+        </Grid>
+            <ListBox x:Name="busList" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate }" />
+        </Grid>
 </Window>

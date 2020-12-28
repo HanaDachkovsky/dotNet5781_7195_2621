@@ -4,7 +4,9 @@ using System.Text;
 
 namespace DO
 {
-    public enum BusStatus { Ready, Care, Refuelling, Trip }
-    public enum Areas { General, North, South, Jerusalem, Center }
-
+    public class Enums
+    {
+        public enum BusStatus { Ready, Care, Refuelling, Trip }
+        public enum Areas { General, North, South, Jerusalem, Center }
+    }
 }

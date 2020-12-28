@@ -8,4 +8,8 @@
     <OutputPath>C:\Users\yuiya\source\repos\dotNet5781_7195_2621\bin\</OutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="BO\" />
+  </ItemGroup>
+
 </Project>

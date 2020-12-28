@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLAPI.DO;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace DO
     {
         public int Id { get; set; }
         public int Code { get; set; }
-        public Areas Arae { get; set; }
+        public Enums.Areas Arae { get; set; }
         public int FirstStation { get; set; }
         public int LastStation { get; set; }
 
