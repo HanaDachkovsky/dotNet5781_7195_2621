@@ -28,5 +28,20 @@ namespace PL
         {
 
         }
+
+        private void tbKm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbNumber_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void btAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

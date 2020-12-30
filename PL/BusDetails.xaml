@@ -6,7 +6,31 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="BusDetails" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,17,0,0" TextWrapping="Wrap" Text="Bus number:" Width="157" Foreground="#FF00539C" FontWeight="Bold" Grid.Column="0"  Grid.Row="0" />
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,17,0,0" TextWrapping="Wrap" Text="Total trip:" VerticalAlignment="Top" Width="145" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="1" Grid.Column="0"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,17,0,0" TextWrapping="Wrap" Text="The start date:" VerticalAlignment="Top" Width="145" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="2" Grid.Column="0"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,17,0,0" TextWrapping="Wrap" Text="Available Km for driving:" VerticalAlignment="Top" Width="145" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="3" Grid.Column="0"/>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="54,17,0,0" TextWrapping="Wrap" Text="Status:" VerticalAlignment="Top" Width="131" Foreground="#FF00539C" FontWeight="Bold" Grid.Row="4" Grid.Column="0"/>
+        <TextBlock x:Name="tbNum" Text="{Binding Path=VehicleNum }" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"  Grid.Row="0" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbKm" Text="{Binding Path=Kilometrage}" HorizontalAlignment="Left" Height="33" Margin="51,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="1" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbStart" Text="{Binding Path=StartDate}" HorizontalAlignment="Left" Height="33" Margin="51.2,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="2" Grid.Column="1" Foreground="#FF00539C" RenderTransformOrigin="0.304,-1.543"/>
+        <TextBlock x:Name="tbAvailableKm" Text="{Binding Path=AvailableKm}" HorizontalAlignment="Left" Height="33" Margin="51.2,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148" Grid.Row="3" Grid.Column="1" Foreground="#FF00539C"/>
+        <TextBlock x:Name="tbStatus" Text="{Binding Path=Status}" HorizontalAlignment="Left" Height="33" Margin="51.2,16,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="148" Grid.Row="4" Grid.Column="1" Foreground="#FF00539C"/>
+
     </Grid>
 </Window>

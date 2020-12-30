@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="NewBus" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Background="AliceBlue">
+        <Grid Name="MainGrid" Margin="10,10,-10.4,-10">
+            <Grid.RowDefinitions>                <RowDefinition Height="*"/>                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox x:Name="tbNumber" HorizontalAlignment="Left" Height="48" Margin="57,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" Grid.Column="1" Grid.Row="0" TextChanged="tbNumber_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown" />
+            <DatePicker x:Name="dpStart" HorizontalAlignment="Left" Margin="70,82.2,0,0" Grid.Row="1" VerticalAlignment="Top" Height="81" Width="155" Grid.Column="0"/>
+            <TextBox x:Name="tbKm" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="57,23,0,0" Grid.Row="2" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.413,-1.423" TextChanged="tbKm_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="93,23.8,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Enter total trip:" VerticalAlignment="Top" Width="132"  Foreground="#FF00539C" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Height="48" Margin="33,31,0,0" TextWrapping="Wrap" Text="Enter the number of the bus to add (7-8 digits):" VerticalAlignment="Top" Width="272"  Foreground="#FF00539C" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Height="26" Margin="70,40.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter the start date:" VerticalAlignment="Top" Width="169"  Foreground="#FF00539C" FontWeight="Bold"/>
+            <Button x:Name="btAdd" Content="Add" Grid.Column="1" HorizontalAlignment="Left" Height="51" Margin="269,24,0,0" Grid.Row="2" VerticalAlignment="Top" Width="77" Click="btAdd_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Height="24" Margin="10.4,40.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Enter how many Km were driven after the refueling (0-1200):" VerticalAlignment="Top" Width="353"  Foreground="#FF00539C" FontWeight="Bold" Grid.Column="1"/>
+            <TextBox x:Name="tbRef" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="57.4,99.2,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" TextChanged="tbRef_TextChanged" PreviewKeyDown="TextBox_PreviewKeyDown" RenderTransformOrigin="-0.035,0.527"/>
+        </Grid>
     </Grid>
 </Window>

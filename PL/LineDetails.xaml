@@ -6,7 +6,38 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="LineDetails" Height="450" Width="800">
-    <Grid>
-        
+    <Window.Resources>
+        <DataTemplate x:Key="LineStationTemplate">
+            <Grid x:Name="DataTemplateGrid" Background="AliceBlue" >
+                <Grid.RowDefinitions  >
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition />                    <ColumnDefinition/>                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions >
+                <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="5" VerticalAlignment="Top" Width="170" Height="44" Click="btUpdate_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" />
+                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="635,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"><Run Foreground="#FF00539C" FontWeight="Bold" FlowDirection="RightToLeft" Text="מספר תחנה:"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="329,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"><Run FlowDirection="RightToLeft" Text="אזור:" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="31" Margin="369,29.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"><Run FlowDirection="RightToLeft" Text="תחנות בקו:" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+        <ListBox HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="774" ItemTemplate="{StaticResource LineStationTemplate }" />
+
+
     </Grid>
 </Window>
