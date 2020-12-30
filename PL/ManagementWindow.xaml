@@ -19,8 +19,8 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btBusesView" Content="תצוגת אוטובוסים"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btBusesView_Click"/>
-        <Button x:Name="btLinesView" Content="תצוגת קווים" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btLinesView_Click"/>
-        <Button x:Name="btStationsView" Content="תצוגת תחנות" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btStationsView_Click"/>
+        <Button x:Name="btBusesView" Content="תצוגת אוטובוסים"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btBusesView_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
+        <Button x:Name="btLinesView" Content="תצוגת קווים" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btLinesView_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
+        <Button x:Name="btStationsView" Content="תצוגת תחנות" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btStationsView_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
     </Grid>
 </Window>

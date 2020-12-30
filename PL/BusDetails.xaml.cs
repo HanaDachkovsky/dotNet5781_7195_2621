@@ -15,23 +15,13 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for StationsWindow.xaml
+    /// Interaction logic for BusDetails.xaml
     /// </summary>
-    public partial class StationsWindow : Window
+    public partial class BusDetails : Window
     {
-        public StationsWindow()
+        public BusDetails()
         {
             InitializeComponent();
-        }
-
-        private void btDelete_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

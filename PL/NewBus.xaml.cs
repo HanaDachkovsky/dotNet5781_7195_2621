@@ -15,31 +15,16 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for BusesWindow.xaml
+    /// Interaction logic for NewBus.xaml
     /// </summary>
-    public partial class BusesWindow : Window
+    public partial class NewBus : Window
     {
-        public BusesWindow()
+        public NewBus()
         {
             InitializeComponent();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btRefuiling_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btCare_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btDelete_Click(object sender, RoutedEventArgs e)
+        private void tbRef_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }

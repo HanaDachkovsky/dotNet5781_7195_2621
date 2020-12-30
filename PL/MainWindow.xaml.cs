@@ -103,5 +103,10 @@ namespace PL
             }
 
         }
+
+        private void btSignUp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
