@@ -40,7 +40,7 @@ namespace DL
             DataSource.ListBus.Add(bus.Clone());
         }
 
-        public void AddBusOnTrip(BusOnTrip busOnTrip)
+        public int AddBusOnTrip(BusOnTrip busOnTrip)
         {
             if (DataSource.ListBus.FirstOrDefault(b => b.LicenseNum == busOnTrip.LicenseNum) == null)
             {
@@ -53,6 +53,7 @@ namespace DL
             //להוסיף חריגה עם תחנה קודמת?
             busOnTrip.Id = ++Counter.BusOnTripNum;
             DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
+            return busOnTrip.Id;
         }
 
         public void AddLine(Line line)
@@ -72,7 +73,7 @@ namespace DL
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
 
-        public void AddLineTrip(LineTrip lineTrip)
+        public int AddLineTrip(LineTrip lineTrip)
         {
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineTrip.LineId) == null)
             {
@@ -80,6 +81,7 @@ namespace DL
             }
             lineTrip.Id = ++Counter.LineTripNum;
             DataSource.ListLineTrip.Add(lineTrip.Clone());
+            return lineTrip.Id;
         }
 
         public void AddStation(Station station)
@@ -132,262 +134,488 @@ namespace DL
 
         public void DeleteBusOnTrip(int id)
         {
-            
+            DO.BusOnTrip busOnTrip= DataSource.ListBusOnTrip.Find(b => b.Id == id);
+            if (busOnTrip == null)
+            {
+                //throw new
+            }
+            DataSource.ListBusOnTrip.Remove(busOnTrip);
         }
 
         public void DeleteLine(int id)
         {
-            throw new NotImplementedException();
+            DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
+            if (line == null)
+            {
+                //throw new
+            }
+            DataSource.ListLine.Remove(line);
         }
 
         public void DeleteLineStation(int lineId, int station)
         {
-            throw new NotImplementedException();
+            DO.LineStation lineStation = DataSource.ListLineStation.Find(l => l.LineId==lineId&&l.Station==station);
+            if (lineStation == null)
+            {
+                //throw new
+            }
+            DataSource.ListLineStation.Remove(lineStation);
         }
 
         public void DeleteLineTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(l => l.Id == id);
+            if (lineTrip == null)
+            {
+                //throw new
+            }
+            DataSource.ListLineTrip.Remove(lineTrip);
         }
 
         public void DeleteStation(int code)
         {
-            throw new NotImplementedException();
+            DO.Station station = DataSource.ListStation.Find(s => s.Code == code);
+            if (station == null)
+            {
+                //throw new
+            }
+            DataSource.ListStation.Remove(station);
         }
 
         public void DeleteTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.Trip trip = DataSource.ListTrip.Find(t => t.Id==id);
+            if (trip == null)
+            {
+                //throw new
+            }
+            DataSource.ListTrip.Remove(trip);
         }
 
         public void DeleteUser(string userName)
         {
-            throw new NotImplementedException();
+            DO.User user = DataSource.ListUser.Find(u => u.UserName==userName);
+            if (user == null)
+            {
+                //throw new
+            }
+            DataSource.ListUser.Remove(user);
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(a => a.Station1==station1&&a.Station2==station2);
+            if(adjacentStations==null)
+            {
+                //throw new
+            }
+            return adjacentStations.Clone();
         }
 
-        public IEnumerable<AdjacentStations> GetAdjacentStationsBy(Predicate<AdjacentStations> predicate)
+        public IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate)
         {
-            throw new NotImplementedException();
+            return from adjacentStations in DataSource.ListAdjacentStations
+                   where predicate(adjacentStations)
+                   select adjacentStations.Clone();
         }
 
         public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
-            throw new NotImplementedException();
+            return from adjacentStations in DataSource.ListAdjacentStations
+                   select adjacentStations.Clone();
         }
 
         public IEnumerable<Bus> GetAllBus()
         {
-            throw new NotImplementedException();
+            return from bus in DataSource.ListBus
+                   select bus.Clone();
         }
 
         public IEnumerable<BusOnTrip> GetAllBusOnTrip()
         {
-            throw new NotImplementedException();
+            return from busOnTrip in DataSource.ListBusOnTrip
+                   select busOnTrip.Clone();
         }
 
         public IEnumerable<Line> GetAllLine()
         {
-            throw new NotImplementedException();
+            return from line in DataSource.ListLine
+                   select line.Clone();
         }
 
         public IEnumerable<LineStation> GetAllLineStation()
         {
-            throw new NotImplementedException();
+            return from lineStation in DataSource.ListLineStation
+                   select lineStation.Clone();
         }
 
         public IEnumerable<LineTrip> GetAllLineTrip()
         {
-            throw new NotImplementedException();
+            return from lineTrip in DataSource.ListLineTrip
+                   select lineTrip.Clone();
         }
 
         public IEnumerable<Station> GetAllStation()
         {
-            throw new NotImplementedException();
+            return from station in DataSource.ListStation
+                   select station.Clone();
         }
 
         public IEnumerable<Trip> GetAllTrip()
         {
-            throw new NotImplementedException();
+            return from trip in DataSource.ListTrip
+                   select trip.Clone();
         }
 
         public IEnumerable<User> GetAllUser()
         {
-            throw new NotImplementedException();
+            return from user in DataSource.ListUser
+                   select user.Clone();
         }
 
         public Bus GetBus(int licenseNum)
         {
-            throw new NotImplementedException();
+            DO.Bus bus = DataSource.ListBus.Find(b => b.LicenseNum==licenseNum);
+            if (bus == null)
+            {
+                //throw new
+            }
+            return bus.Clone();
         }
 
-        public IEnumerable<Bus> GetBusBy(Predicate<Bus> predicate)
+        public IEnumerable<Bus> GetAllBusBy(Predicate<Bus> predicate)
         {
-            throw new NotImplementedException();
+            return from bus in DataSource.ListBus
+                   where predicate(bus)
+                   select bus.Clone();
         }
 
         public BusOnTrip GetBusOnTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip busOnTrip = DataSource.ListBusOnTrip.Find(b => b.Id==id);
+            if (busOnTrip == null)
+            {
+                //throw new
+            }
+            return busOnTrip.Clone();
         }
 
-        public IEnumerable<BusOnTrip> GetBusOnTripBy(Predicate<BusOnTrip> predicate)
+        public IEnumerable<BusOnTrip> GetAllBusOnTripBy(Predicate<BusOnTrip> predicate)
         {
-            throw new NotImplementedException();
+            return from busOnTrip in DataSource.ListBusOnTrip
+                   where predicate(busOnTrip)
+                   select busOnTrip.Clone();
         }
 
         public Line GetLine(int id)
         {
-            throw new NotImplementedException();
+            DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
+            if (line == null)
+            {
+                //throw new
+            }
+            return line.Clone();
         }
 
-        public IEnumerable<Line> GetLine(Predicate<Line> predicate)
+        public IEnumerable<Line> GetAllLineBy(Predicate<Line> predicate)
         {
-            throw new NotImplementedException();
+            return from line in DataSource.ListLine
+                   where predicate(line)
+                   select line.Clone();
         }
 
         public LineStation GetLineStation(int lineId, int station)
         {
-            throw new NotImplementedException();
+            DO.LineStation lineStation = DataSource.ListLineStation.Find(ls=>ls.LineId==lineId&& ls.Station==station);
+            if (lineStation == null)
+            {
+                //throw new
+            }
+            return lineStation.Clone();
         }
 
-        public IEnumerable<LineStation> GetLineStation(Predicate<LineStation> predicate)
+        public IEnumerable<LineStation> GetAllLineStationBy(Predicate<LineStation> predicate)
         {
-            throw new NotImplementedException();
+            return from lineStation in DataSource.ListLineStation
+                   where predicate(lineStation)
+                   select lineStation.Clone();
         }
 
         public LineTrip GetLineTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(lt=>lt.Id==id);
+            if (lineTrip == null)
+            {
+                //throw new
+            }
+            return lineTrip.Clone();
         }
 
-        public IEnumerable<LineTrip> GetLineTrip(Predicate<LineTrip> predicate)
+        public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate)
         {
-            throw new NotImplementedException();
+            return from lineTrip in DataSource.ListLineTrip
+                   where predicate(lineTrip)
+                   select lineTrip.Clone();
         }
 
         public Station GetStation(int code)
         {
-            throw new NotImplementedException();
+            DO.Station station = DataSource.ListStation.Find(s=>s.Code==code);
+            if (station == null)
+            {
+                //throw new
+            }
+            return station.Clone();
         }
 
-        public IEnumerable<Station> GetStation(Predicate<Station> predicate)
+        public IEnumerable<Station> GetALLStationBy(Predicate<Station> predicate)
         {
-            throw new NotImplementedException();
+            return from station in DataSource.ListStation
+                   where predicate(station)
+                   select station.Clone();
         }
 
         public Trip GetTrip(int id)
         {
-            throw new NotImplementedException();
+            DO.Trip trip = DataSource.ListTrip.Find(t=>t.Id==id);
+            if (trip == null)
+            {
+                //throw new
+            }
+            return trip.Clone();
         }
 
-        public IEnumerable<Trip> GetTrip(Predicate<Trip> predicate)
+        public IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate)
         {
-            throw new NotImplementedException();
+            return from trip in DataSource.ListTrip
+                   where predicate(trip)
+                   select trip.Clone();
         }
 
         public User GetUser(string userName)
         {
-            throw new NotImplementedException();
+            DO.User user = DataSource.ListUser.Find(u=>u.UserName==userName);
+            if (user == null)
+            {
+                //throw new
+            }
+            return user.Clone();
         }
 
-        public IEnumerable<User> GetUser(Predicate<User> predicate)
+        public IEnumerable<User> GetAllUserBy(Predicate<User> predicate)
         {
-            throw new NotImplementedException();
+            return from user in DataSource.ListUser
+                   where predicate(user)
+                   select user.Clone();
         }
 
         public void UpdateAdjacentStations(AdjacentStations adjacentStations)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a=>a.Station1==adjacentStations.Station1&& a.Station2 == adjacentStations.Station2);
+
+            if (adj == null)
+            {
+                //throw new
+            }
+            DataSource.ListAdjacentStations.Remove(adj);
+            DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
+
         }
 
         public void UpdateAdjacentStations(int station1, int station2, Action<AdjacentStations> update)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a=>a.Station1==station1);
+
+            if (adj == null)
+            {
+                //throw new
+            }
+            update(adj);
+
         }
 
         public void UpdateBus(Bus bus)
         {
-            throw new NotImplementedException();
+            DO.Bus bu = DataSource.ListBus.Find(b => b.LicenseNum==bus.LicenseNum);
+
+            if (bu == null)
+            {
+                //throw new
+            }
+            DataSource.ListBus.Remove(bu);
+            DataSource.ListBus.Add(bus.Clone());
         }
 
         public void UpdateBus(int licenseNum, Action<Bus> update)
         {
-            throw new NotImplementedException();
+            DO.Bus bu = DataSource.ListBus.Find(b=>b.LicenseNum==licenseNum);
+
+            if (bu == null)
+            {
+                //throw new
+            }
+            update(bu);
         }
 
         public void UpdateBusOnTrip(BusOnTrip busOnTrip)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip busOn = DataSource.ListBusOnTrip.Find(b => b.Id==busOnTrip.Id);
+
+            if (busOn == null)
+            {
+                //throw new
+            }
+            DataSource.ListBusOnTrip.Remove(busOn);
+            DataSource.ListBusOnTrip.Add(busOnTrip.Clone());
         }
 
         public void UpdateBusOnTrip(int id, Action<BusOnTrip> update)
         {
-            throw new NotImplementedException();
+            DO.BusOnTrip busOn = DataSource.ListBusOnTrip.Find(b => b.Id == id);
+
+            if (busOn == null)
+            {
+                //throw new
+            }
+            update(busOn);
         }
 
         public void UpdateLine(Line line)
         {
-            throw new NotImplementedException();
+            DO.Line lin = DataSource.ListLine.Find(l=>l.Id==line.Id);
+
+            if (lin == null)
+            {
+                //throw new
+            }
+            DataSource.ListLine.Remove(lin);
+            DataSource.ListLine.Add(line.Clone());
         }
 
         public void UpdateLine(int id, Action<Line> update)
         {
-            throw new NotImplementedException();
+            DO.Line lin = DataSource.ListLine.Find(l => l.Id == id);
+
+            if (lin == null)
+            {
+                //throw new
+            }
+            update(lin);
         }
 
         public void UpdateLineStation(LineStation lineStation)
         {
-            throw new NotImplementedException();
+            DO.LineStation lineS = DataSource.ListLineStation.Find(ls=>ls.LineId==lineStation.LineId&&ls.Station==lineStation.Station);
+
+            if (lineS == null)
+            {
+                //throw new
+            }
+            DataSource.ListLineStation.Remove(lineS);
+            DataSource.ListLineStation.Add(lineStation.Clone());
         }
 
         public void UpdateLineStation(int lineId, int station, Action<LineStation> update)
         {
-            throw new NotImplementedException();
+            DO.LineStation lineS = DataSource.ListLineStation.Find(ls => ls.LineId == lineId && ls.Station == station);
+
+            if (lineS == null)
+            {
+                //throw new
+            }
+            update(lineS);
         }
 
         public void UpdateLineTrip(LineTrip lineTrip)
         {
-            throw new NotImplementedException();
+            DO.LineTrip lineT = DataSource.ListLineTrip.Find(lt => lt.Id==lineTrip.Id);
+
+            if (lineT == null)
+            {
+                //throw new
+            }
+            DataSource.ListLineTrip.Remove(lineT);
+            DataSource.ListLineTrip.Add(lineTrip.Clone());
         }
 
         public void UpdateLineTrip(int id, Action<LineTrip> update)
         {
-            throw new NotImplementedException();
+            DO.LineTrip lineT = DataSource.ListLineTrip.Find(lt => lt.Id == id);
+
+            if (lineT == null)
+            {
+                //throw new
+            }
+            update(lineT);
         }
 
         public void UpdateStation(Station station)
         {
-            throw new NotImplementedException();
+            DO.Station stat = DataSource.ListStation.Find(s=>s.Code==station.Code);
+
+            if (stat == null)
+            {
+                //throw new
+            }
+            DataSource.ListStation.Remove(stat);
+            DataSource.ListStation.Add(station.Clone());
         }
 
         public void UpdateStation(int code, Action<Station> update)
         {
-            throw new NotImplementedException();
+            DO.Station stat = DataSource.ListStation.Find(s => s.Code == code);
+
+            if (stat == null)
+            {
+                //throw new
+            }
+            update(stat);
         }
 
         public void UpdateTrip(Trip trip)
         {
-            throw new NotImplementedException();
+            DO.Trip tri = DataSource.ListTrip.Find(t=>t.Id==trip.Id);
+
+            if (tri == null)
+            {
+                //throw new
+            }
+            DataSource.ListTrip.Remove(tri);
+            DataSource.ListTrip.Add(trip.Clone());
         }
 
         public void UpdateTrip(int id, Action<Trip> update)
         {
-            throw new NotImplementedException();
+            DO.Trip tri = DataSource.ListTrip.Find(t => t.Id == id);
+
+            if (tri == null)
+            {
+                //throw new
+            }
+            update(tri);
         }
 
         public void UpdateUser(User user)
         {
-            throw new NotImplementedException();
+            DO.User use = DataSource.ListUser.Find(u=>u.UserName==user.UserName);
+
+            if (use == null)
+            {
+                //throw new
+            }
+            DataSource.ListUser.Remove(use);
+            DataSource.ListUser.Add(user.Clone());
         }
 
         public void UpdateUser(string userName, Action<User> update)
         {
-            throw new NotImplementedException();
+            DO.User use = DataSource.ListUser.Find(u => u.UserName == userName);
+
+            if (use == null)
+            {
+                //throw new
+            }
+            update(use);
         }
     }
 }
