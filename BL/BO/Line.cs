@@ -9,7 +9,7 @@ namespace BO
         public int Id { get; set; }//
         public int Code { get; set; }
         public Enums.Areas Arae { get; set; }
-        IEnumerable<LineStation> Stations { get; set; }
+        public IEnumerable<LineStation> Stations { get; set; }
 
     }
 }

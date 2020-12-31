@@ -203,7 +203,11 @@ namespace DL
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
-        {
+        {/////?
+            if (station1 == 0)
+            {
+                return new DO.AdjacentStations { Station1=0, Station2=station2, Distance=0, Time=0}
+            }
             DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(a => a.Station1==station1&&a.Station2==station2);
             if(adjacentStations==null)
             {
@@ -368,7 +372,7 @@ namespace DL
             return station.Clone();
         }
 
-        public IEnumerable<Station> GetALLStationBy(Predicate<Station> predicate)
+        public IEnumerable<Station> GetAllStationBy(Predicate<Station> predicate)
         {
             return from station in DataSource.ListStation
                    where predicate(station)
