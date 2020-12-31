@@ -182,18 +182,25 @@ namespace BL
 
         public void UpdateBus(Bus bus)
         {//
-            DO.Bus busToUpdate = new DO.Bus();
-            busToUpdate.LicenseNum = bus.LicenseNum;
-            busToUpdate.FromDate = bus.FromDate;
-            busToUpdate.TotalTrip = bus.TotalTrip;
-            busToUpdate.FuelRemain = bus.FuelRemain;
-            busToUpdate.Status = (DO.Enums.BusStatus)bus.Status;
-            dl.UpdateBus(busToUpdate);
+            try
+            {
+                DO.Bus busToUpdate = new DO.Bus();
+                busToUpdate.LicenseNum = bus.LicenseNum;
+                busToUpdate.FromDate = bus.FromDate;
+                busToUpdate.TotalTrip = bus.TotalTrip;
+                busToUpdate.FuelRemain = bus.FuelRemain;
+                busToUpdate.Status = (DO.Enums.BusStatus)bus.Status;
+                dl.UpdateBus(busToUpdate);
+            }
+            catch(Exception ex)
+            {
+                //throw
+            }
         }
 
         public void UpdateLine(Line line)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void UpdateStation(Station station)
@@ -205,6 +212,50 @@ namespace BL
             //public double Longitude { get; set; }
             //public IEnumerable<StationLine> Lines { get; set; }////?
             ///////
+        }
+        void AddStationToLine(int code, int lineId, TimeSpan time, double distance, int stationBefore)
+        { 
+            try
+            {
+                dl.GetStation(code);
+                if(stationBefore==0)
+                {
+                    dl.UpdateLine(lineId, l => l.FirstStation = code);
+                }
+                else if(stationBefore==dl.GetLine(lineId).LastStation)
+                {
+                    dl.UpdateLine(lineId, l => l.LastStation = code);
+                }
+                if((from item in dl.GetAllLineStationBy(ls => ls.LineId == lineId&& ls.Station==stationBefore) select item).Count()==0)
+                {
+                    //trow no stationBefore
+                }
+
+                int index = dl.GetLineStation(lineId, stationBefore).LineStationIndex + 1;
+                dl.GetAllLineStationBy(ls=>ls.LineId==lineId&&ls.LineStationIndex>=index).
+                
+
+
+
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        void DeleteStationInLine(int code)
+        {
+
+        }
+        void UpdateLineStation(BO.LineStation lineStation, int lineId)
+        {
+
         }
     }
 }
