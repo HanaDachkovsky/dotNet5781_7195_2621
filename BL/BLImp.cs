@@ -5,7 +5,7 @@ using System.Text;
 using BLAPI;
 using BO;
 using DLAPI;
-namespace BL
+namespace BLs
 {
     class BLImp : IBL
     {
@@ -24,7 +24,8 @@ namespace BL
             }
             catch(Exception ex)
             {
-                //throw
+
+                
             }
         }
 
@@ -78,36 +79,36 @@ namespace BL
         }
 
         public void DeleteLine(int num)
-        {//bus on trip
+        {//bus on trip,trip
 
-            //try
-            //{
-            //    dl.DeleteLine(num);
-            //    var x=dl.GetAllLineStationBy(ls => ls.LineId == num);
-            //    IEnumerable<int> xx = new int[] { 1, 2 };
-            //    from item in dl.GetAllLineStationBy(ls => ls.LineId == num)
-            //    select dl.de
-            //}
-            
-            //catch (Exception ex)
-            //{
+            try
+            {
+                dl.DeleteLine(num);
+                dl.GetAllLineStationBy(ls => ls.LineId == num).ToList().ForEach(ls=>dl.DeleteLineStation(num,ls.Station));
+                dl.GetAllLineTripBy(t => t.LineId == num).ToList().ForEach(t => dl.DeleteLineTrip(t.Id));
+                
+            }
 
-            //    //throw;
-            //}
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
         }
 
         public void DeleteStation(int num)
         {
-            //try
-            //{
-            //    dl.DeleteStation(num);
+            try
+            {
+                dl.DeleteStation(num);
+                dl.GetAllLineStationBy(ls => ls.Station == num).ToList().ForEach(ls => DeleteStationInLine(num, ls.LineId));
+                //תחנות עוקבות?
+            }
+            catch (Exception ex)
+            {
 
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    //throw;
-            //}
+                //throw;
+            }
         }
 
         public IEnumerable<Bus> GetAllBuses()
@@ -171,6 +172,10 @@ namespace BL
                     //throw
                     ;
                 return user.Admin;
+            }
+            catch(Exception ex)
+            {
+
             }
 
         }
@@ -250,13 +255,7 @@ namespace BL
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls=>ls.LineStationIndex++));
                 dl.AddLineStation(new DO.LineStation { Station = code, LineId = lineId, LineStationIndex = index, PrevStation = stationBefore, NextStation = next });
 
-
-
-
-
-
-
-
+                //תחנות עוקבות?
 
 
             }
@@ -270,6 +269,10 @@ namespace BL
         {
             try
             {
+                if(dl.GetLineStation(lineId,dl.GetLine(lineId).LastStation).LineStationIndex<=2)
+                {
+                   // throw new less than 2 stations in the line
+                }
                 int index;
                 dl.GetStation(code);
                 int next=dl.GetLineStation(lineId, code).NextStation;
@@ -287,6 +290,7 @@ namespace BL
                 index = dl.GetLineStation(lineId, code).LineStationIndex;
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
                 dl.DeleteLineStation(lineId, code);
+                //תחנות עוקבות?
             }
             catch (Exception ex)
             {
@@ -296,6 +300,10 @@ namespace BL
         }
         void UpdateLineStation(BO.LineStation lineStation, int lineId)
         {
+
+
+
+
 
         }
     }

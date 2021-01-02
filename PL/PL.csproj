@@ -151,9 +151,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
+    <ProjectReference Include="..\BL\BLs.csproj">
       <Project>{b5efbbb9-e891-4e95-bd22-30d45460f8f5}</Project>
-      <Name>BL</Name>
+      <Name>BLs</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
