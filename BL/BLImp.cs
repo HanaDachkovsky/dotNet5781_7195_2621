@@ -217,23 +217,40 @@ namespace BL
         { 
             try
             {
+                int index;
+                int next;
                 dl.GetStation(code);
+                dl.GetStation(stationBefore);
                 if(stationBefore==0)
                 {
+                    next = dl.GetLine(lineId).FirstStation;
                     dl.UpdateLine(lineId, l => l.FirstStation = code);
+                    index = 1; 
                 }
-                else if(stationBefore==dl.GetLine(lineId).LastStation)
+                else
+                {
+                    dl.GetLineStation(lineId, stationBefore);  
+                    index = dl.GetLineStation(lineId, stationBefore).LineStationIndex + 1;
+                    next = dl.GetLineStation(lineId, stationBefore).NextStation;
+                    //dl.GetLineStation(lineId, stationBefore).NextStation = code;
+                    dl.UpdateLineStation(lineId, stationBefore, ls => ls.NextStation = code);
+
+                }
+                if (stationBefore==dl.GetLine(lineId).LastStation)
                 {
                     dl.UpdateLine(lineId, l => l.LastStation = code);
                 }
-                if((from item in dl.GetAllLineStationBy(ls => ls.LineId == lineId&& ls.Station==stationBefore) select item).Count()==0)
+                else
                 {
-                    //trow no stationBefore
+                    //dl.GetLineStation(lineId, next).PrevStation = code;
+                    dl.UpdateLineStation(lineId, next, ls => ls.PrevStation = code);
                 }
+               
+                //dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => x.LineStationIndex++);
+                dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls=>ls.LineStationIndex++));
+                dl.AddLineStation(new DO.LineStation { Station = code, LineId = lineId, LineStationIndex = index, PrevStation = stationBefore, NextStation = next });
 
-                int index = dl.GetLineStation(lineId, stationBefore).LineStationIndex + 1;
-                dl.GetAllLineStationBy(ls=>ls.LineId==lineId&&ls.LineStationIndex>=index).
-                
+
 
 
 
@@ -246,12 +263,36 @@ namespace BL
             catch (Exception ex)
             {
 
-                throw;
+                //throw;
             }
         }
-        void DeleteStationInLine(int code)
+        void DeleteStationInLine(int code, int lineId)
         {
+            try
+            {
+                int index;
+                dl.GetStation(code);
+                int next=dl.GetLineStation(lineId, code).NextStation;
+                int prev = dl.GetLineStation(lineId, code).PrevStation;
+                if (dl.GetLine(lineId).FirstStation==code)
+                {
 
+                    int first = dl.GetLineStation(lineId, next).Station;
+                    dl.UpdateLine(lineId, l => l.FirstStation = first);
+                }
+                else if (dl.GetLine(lineId).LastStation == code)
+                {
+                    dl.UpdateLine(lineId, l => l.LastStation = prev);
+                }
+                index = dl.GetLineStation(lineId, code).LineStationIndex;
+                dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
+                dl.DeleteLineStation(lineId, code);
+            }
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
         }
         void UpdateLineStation(BO.LineStation lineStation, int lineId)
         {
