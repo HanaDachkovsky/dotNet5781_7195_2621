@@ -21,11 +21,16 @@ namespace DL
         {
             if(DataSource.ListAdjacentStations.FirstOrDefault(adjacent=> adjacent.Station1==adjacentStations.Station1 && adjacent.Station2 == adjacentStations.Station2) !=null)
             {
-                //throw new 
+                throw new DO.BadAdjacentStationsCodesException(adjacentStations.Station1, adjacentStations.Station2, "Duplicate adjacent stations");
             }
-            if(DataSource.ListStation.FirstOrDefault(s=>s.Code==adjacentStations.Station1)==null|| DataSource.ListStation.FirstOrDefault(s => s.Code == adjacentStations.Station2) == null)
+            if(DataSource.ListStation.FirstOrDefault(s=>s.Code==adjacentStations.Station1)==null)
+            {//2 exs??
+
+                throw new DO.BadStationCodeException(adjacentStations.Station1, $", bad station code: {adjacentStations.Station1}");
+            }
+            if (DataSource.ListStation.FirstOrDefault(s => s.Code == adjacentStations.Station2) == null)
             {
-                //throw new
+                throw new DO.BadStationCodeException(adjacentStations.Station2, $", bad station code: {adjacentStations.Station2}");
             }
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
@@ -34,7 +39,7 @@ namespace DL
         {
             if (DataSource.ListBus.FirstOrDefault(b => b.LicenseNum == bus.LicenseNum) != null)
             {
-                //throw new 
+                throw new DO.BadBusLicenseNumException(bus.LicenseNum, "Duplicate bus license number");
             }
           
             DataSource.ListBus.Add(bus.Clone());
@@ -66,13 +71,22 @@ namespace DL
         public void AddLineStation(LineStation lineStation)
         {
             //חריגה עם תחנה קיימת בקו?
-            if (DataSource.ListStation.FirstOrDefault(s => s.Code == lineStation.Station) == null || DataSource.ListLine.FirstOrDefault(l =>l.Id == lineStation.LineId) == null)
+            //שרהלה: אני מוסיפה
+            if(DataSource.ListLineStation.FirstOrDefault(ls=>ls.Station==lineStation.Station&&ls.LineId==lineStation.LineId)!=null)
             {
-                //throw new
+                throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "Duplicate line stations");
+            }
+            if (DataSource.ListStation.FirstOrDefault(s => s.Code == lineStation.Station) == null)
+            {
+                throw new DO.BadStationCodeException(lineStation.Station, $", bad station code: {lineStation.Station}");
+            }
+            if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineStation.LineId) == null)
+            {
+                throw new DO.BadLineIdException(lineStation.LineId, ", bad line id: {lineStation.LineId}")
             }
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
-
+        //up to here
         public int AddLineTrip(LineTrip lineTrip)
         {
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineTrip.LineId) == null)
@@ -206,7 +220,7 @@ namespace DL
         {/////?
             if (station1 == 0)
             {
-                return new DO.AdjacentStations { Station1=0, Station2=station2, Distance=0, Time=0}
+                return new DO.AdjacentStations { Station1 = 0, Station2 = station2, Distance = 0, Time = new TimeSpan(0, 0, 0) };
             }
             DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(a => a.Station1==station1&&a.Station2==station2);
             if(adjacentStations==null)
