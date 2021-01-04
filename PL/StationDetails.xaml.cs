@@ -23,5 +23,10 @@ namespace PL
         {
             InitializeComponent();
         }
+
+        private void btUpdate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,0 +1,41 @@
+﻿<Window x:Class="PL.AddStationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="AddStationWindow" Height="450" Width="800">
+    <Grid>
+        <Grid Name="MainGrid" Margin="10,10,-10.4,-10">
+            <Grid.RowDefinitions>                <RowDefinition Height="*"/>                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btAdd" Content="הוספה" Grid.Column="1" HorizontalAlignment="Left" Height="51" Margin="288,10,0,0" Grid.Row="4" VerticalAlignment="Top" Width="77" Click="btAdd_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
+            <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" Height="23" Margin="193,41,0,0" TextWrapping="Wrap" Text="קוד תחנה" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="193,35,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="שם תחנה"/></TextBlock>
+            <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="193,45,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="כתובת תחנה"/></TextBlock>
+            <TextBlock Grid.Column="1"  HorizontalAlignment="Left" Margin="202,29,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-1.074"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform><Run FlowDirection="RightToLeft" Text="קו אורך"/></TextBlock>
+            <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="193,41,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="קו רוחב"/></TextBlock>
+            <TextBox x:Name="tbCode" HorizontalAlignment="Left" Height="23" Margin="206,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbCode_PreviewKeyDown"/>
+            <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="23" Margin="206,37,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="-0.243,-0.076"/>
+            <TextBox x:Name="tbAddress" HorizontalAlignment="Left" Height="23" Margin="206,38,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="tbLong" HorizontalAlignment="Left" Height="23" Margin="206,33,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbLongLat_PreviewKeyDown"/>
+            <TextBox x:Name="tbLat" HorizontalAlignment="Left" Height="23" Margin="206,27,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbLongLat_PreviewKeyDown"/>
+        </Grid>
+    </Grid>
+</Window>

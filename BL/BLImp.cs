@@ -34,7 +34,7 @@ namespace BLs
             throw new NotImplementedException();
         }
 
-        public void AddStation(int code, string name, string address, double latitude, double longitude, IEnumerable<StationLine> lines)
+        public void AddStation(int code, string name, string address, double latitude, double longitude)
         {
             try
             {

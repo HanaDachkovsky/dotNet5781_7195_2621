@@ -82,7 +82,7 @@ namespace DL
             }
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineStation.LineId) == null)
             {
-                throw new DO.BadLineIdException(lineStation.LineId, ", bad line id: {lineStation.LineId}")
+                throw new DO.BadLineIdException(lineStation.LineId, ", bad line id: {lineStation.LineId}");
             }
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
@@ -91,7 +91,7 @@ namespace DL
         {
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineTrip.LineId) == null)
             {
-                //throw new
+                throw new DO.BadLineIdException(lineTrip.LineId, ", bad line id: {lineTrip.LineId}");
             }
             lineTrip.Id = ++Counter.LineTripNum;
             DataSource.ListLineTrip.Add(lineTrip.Clone());

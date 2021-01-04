@@ -34,7 +34,7 @@ namespace BLAPI
         IEnumerable<BO.Station> GetAllStations();
         void DeleteStation(int num);
         void UpdateStation(BO.Station station);
-        void AddStation(int code, string name,string address, double latitude, double longitude, IEnumerable<StationLine> lines);
+        void AddStation(int code, string name,string address, double latitude, double longitude);
         #endregion
 
     }
