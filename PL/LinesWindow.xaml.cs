@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,12 @@ namespace PL
     /// </summary>
     public partial class LinesWindow : Window
     {
-        public LinesWindow()
+        IBL bl;
+        public LinesWindow(IBL bl2)
         {
             InitializeComponent();
+            bl = bl2;
+            lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)

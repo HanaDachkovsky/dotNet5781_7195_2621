@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,14 +21,19 @@ namespace PL
     /// </summary>
     public partial class StationDetails : Window
     {
-        public StationDetails()
+        IBL bl;
+        public StationDetails(IBL bl2, BO.Station station )
         {
             InitializeComponent();
+            DataContext = station;
+            bl = bl2;
+            lbLines.ItemsSource = new ObservableCollection<BO.StationLine>(station.Lines);     
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-            
+            new UpDateStation(bl, DataContext as BO.Station).ShowDialog();
+            DataContext = bl.getStation((DataContext as BO.Station).Code);
         }
     }
 }

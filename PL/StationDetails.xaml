@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StationDetails" Height="450" Width="800">
     <Window.Resources>
-        <DataTemplate x:Key="LineInStationTemplate">
+        <DataTemplate x:Key="LineInStationTemplate" DataType="local:BO.StationLine">
             <Grid x:Name="DataTemplateGrid" Background="AliceBlue" >
                 <Grid.RowDefinitions  >
                     <RowDefinition />
@@ -19,11 +19,8 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions >
                 <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="5" VerticalAlignment="Top" Width="170" Height="44" Click="btUpdate_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" />
-                <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <TextBlock Grid.Column="3" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <TextBlock Name="tbNumber" Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <TextBlock Name="tbLastStation" Text="{Binding Path=LastStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -36,8 +33,11 @@
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="635,18,0,0" TextWrapping="Wrap"  Grid.Row="0" VerticalAlignment="Top" Width="119"><Span FlowDirection="RightToLeft" ><Run Foreground="#FF00539C" FontWeight="Bold" Text="מספר תחנה"/><Run Foreground="#FF00539C" FontWeight="Bold" Text=":"/></Span></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="396,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Width="73"><Span FlowDirection="RightToLeft"><Run Text="שם"  Foreground="#FF00539C" FontWeight="Bold"/><Run Text=" התחנה"  Foreground="#FF00539C" FontWeight="Bold"/><Run Text=":"/></Span></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="31" Margin="369,29.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"><Run Foreground="#FF00539C" FontWeight="Bold" FlowDirection="RightToLeft" Text="קוים שעוברים בתחנה:"/></TextBlock>
-        <ListBox HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="774" ItemTemplate="{StaticResource LineInStationTemplate }" />
+        <ListBox x:Name="lbLines" HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="774" ItemTemplate="{StaticResource LineInStationTemplate }"  />
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="170,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"  Grid.Row="0"><Run FlowDirection="RightToLeft" Text="כתובת:" Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
         <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="129,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="btUpdate_Click"/>
+        <TextBlock Name="tbNumberStation" HorizontalAlignment="Left" Margin="552,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top"/>
+        <TextBlock Name="tbName" HorizontalAlignment="Left" Margin="307,20,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top"/>
+        <TextBlock Name="tbAddress" HorizontalAlignment="Left" Margin="65,18,0,0" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top"/>
     </Grid>
 </Window>

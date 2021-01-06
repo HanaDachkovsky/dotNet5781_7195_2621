@@ -6,7 +6,7 @@ namespace BO
 {
     public class StationLine
     {
-        public int Id { get; set; }////proparty?
+        public int Id { get; set; }////proparty?->למחוק
         public int Code { get; set; }
         public int LastStation { get; set; }
         public DateTime ArrivalTimes { get; set; }

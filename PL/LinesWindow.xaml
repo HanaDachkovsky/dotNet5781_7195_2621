@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LinesWindow" Height="450" Width="800">
     <Window.Resources>
-        <DataTemplate x:Key="LineTemplate">
+        <DataTemplate x:Key="LineTemplate" DataType="local:BO.Line">
             <Grid x:Name="DataTemplateGrid" Background="AliceBlue">
                 <Grid.RowDefinitions  >
                     <RowDefinition/>
@@ -15,7 +15,7 @@
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition />                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions >
-                <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
+                <TextBlock Text="{Binding Path=}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
                 <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold"/>
             </Grid>
         </DataTemplate>
@@ -23,8 +23,8 @@
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>            <RowDefinition Height="80*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
-            <Button x:Name="addButton"  Content="Add a Line" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Click="addButton_Click"/>
+            <Button x:Name="addButton"  Content="הוספת קו" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Click="addButton_Click"/>
         </Grid>
-        <ListBox x:Name="LineList" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemsSource="{Binding}" ItemTemplate="{StaticResource LineTemplate }" />
+        <ListBox x:Name="lbLines" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemTemplate="{StaticResource LineTemplate }" />
     </Grid>
 </Window>

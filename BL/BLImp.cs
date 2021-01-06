@@ -208,15 +208,19 @@ namespace BLs
            
         }
 
-        public void UpdateStation(Station station)
+        public void UpdateStation(int code, string name, string address)
         {
-            //    //public int Code { get; set; }
-            //public string Name { get; set; }
-            //public string Address { get; set; }
-            //public double Latitude { get; set; }
-            //public double Longitude { get; set; }
-            //public IEnumerable<StationLine> Lines { get; set; }////?
-            ///////
+            try
+            {        
+                dl.UpdateStation(code, s => s.Name=name);
+                dl.UpdateStation(code, s=>s.Address=address); 
+
+            }
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
         }
         void AddStationToLine(int code, int lineId, TimeSpan time, double distance, int stationBefore)
         { 
@@ -306,5 +310,33 @@ namespace BLs
 
 
         }
+        BO.Station getStation(int code)
+        {
+            try
+            {
+                DO.Station station = dl.GetStation(code);
+                return new BO.Station
+                {
+                    Code = station.Code,
+                    Name = station.Name,
+                    Address = station.Address,
+                    Longitude = station.Longitude,
+                    Latitude = station.Latitude,
+                    Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
+                            let line = dl.GetLine(lineSt.LineId)
+                            let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
+                            select new BO.StationLine
+                            {
+                                Id = line.Id,
+                                Code = line.Code,
+                                LastStation = line.LastStation,
+                                ArrivalTimes = arrivalTimes
+                            }
+                }
+            }
+            catch(Exception ec)
+            {
+
+            }
     }
 }

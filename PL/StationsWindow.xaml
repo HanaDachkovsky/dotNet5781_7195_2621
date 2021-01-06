@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="StationsWindow" Height="450" Width="800">
     <Window.Resources>
-        <DataTemplate x:Key="StationTemplate">
+        <DataTemplate x:Key="StationTemplate" DataType="local:BO.Station">
             <Grid x:Name="DataTemplateGrid" Background="AliceBlue" >
                 <Grid.RowDefinitions  >
                     <RowDefinition/>
@@ -15,7 +15,7 @@
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition />                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions >
-                <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  Foreground="#FF00539C" FontWeight="Bold"><Run FlowDirection="RightToLeft" /></TextBlock>
+                <TextBlock Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  Foreground="#FF00539C" FontWeight="Bold"><Run FlowDirection="RightToLeft" /></TextBlock>
                 <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Click="btDelete_Click"/>
                 <!--Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Click="btDelete_Click"/-->
             </Grid>
@@ -27,7 +27,7 @@
             <Button x:Name="btAdd"  Content="הוספת תחנה" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Click="addButton_Click"/>
             
         </Grid>
-        <ListBox x:Name="StationList" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemsSource="{Binding}" ItemTemplate="{StaticResource StationTemplate }" />
+        <ListBox x:Name="lbStations" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2"   ItemTemplate="{StaticResource StationTemplate }" SelectionChanged="lbStations_SelectionChanged" />
     </Grid>
 
 </Window>

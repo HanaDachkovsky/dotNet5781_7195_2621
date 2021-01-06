@@ -31,9 +31,10 @@ namespace BLAPI
         #endregion
 
         #region Station
+        BO.Station getStation(int code);
         IEnumerable<BO.Station> GetAllStations();
         void DeleteStation(int num);
-        void UpdateStation(BO.Station station);
+        void UpdateStation(int code, string name, string address);
         void AddStation(int code, string name,string address, double latitude, double longitude);
         #endregion
 

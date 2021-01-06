@@ -20,6 +20,7 @@ namespace PL
     /// </summary>
     public partial class ManagementWindow : Window
     {
+        IBL bl;
         public ManagementWindow(IBL bl)
         {
             InitializeComponent();
@@ -32,12 +33,12 @@ namespace PL
 
         private void btLinesView_Click(object sender, RoutedEventArgs e)
         {
-
+            new LinesWindow(bl).ShowDialog();
         }
 
         private void btStationsView_Click(object sender, RoutedEventArgs e)
         {
-
+            new StationsWindow(bl).ShowDialog();
         }
     }
 }

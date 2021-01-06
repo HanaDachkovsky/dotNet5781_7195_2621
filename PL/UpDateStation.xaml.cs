@@ -21,22 +21,30 @@ namespace PL
     public partial class UpDateStation : Window
     {
         IBL bl;
-        public UpDateStation()
+        public UpDateStation(IBL bl2, BO.Station station)
         {
             InitializeComponent();
+            bl = bl2;
+            DataContext = station;
+            tbAddress.Text = (DataContext as BO.Station).Address;
+            tbName.Text = (DataContext as BO.Station).Name;
         }
         private void btUpDate_Click(object sender, RoutedEventArgs e)
         {
             if(tbAddress.Text==string.Empty)
             {
                 MessageBox.Show("שדה הכתובת ריק");
-                tbAddress.Text = (DataContext as PO.Station).Address;
+                tbAddress.Text = (DataContext as BO.Station).Address;
+                return;
             }
             if (tbName.Text == string.Empty)
             {
                 MessageBox.Show("שדה שם התחנה ריק");
-                tbName.Text = (DataContext as PO.Station).Name;
+                tbName.Text = (DataContext as BO.Station).Name;
+                return;
             }
+            bl.UpdateStation((DataContext as BO.Station).Code, tbName.Text, tbAddress.Text);
+            Close();
         }
     }
 }
