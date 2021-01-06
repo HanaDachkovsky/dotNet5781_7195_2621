@@ -36,12 +36,16 @@ namespace PL
             //remove->נמחק מליסט
             //refresh
         }
-
+        private void refresh()
+        {
+            lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+        }
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             //lbStations.ItemsSource
             //למחוק מהרשימה עצמה
             bl.DeleteStation((((sender as Button).Parent as Grid).DataContext as BO.Station).Code);
+            refresh();
             lbStations.SelectedItems.Remove((((sender as Button).Parent as Grid).DataContext as BO.Station));
             ///////???
             
@@ -57,6 +61,11 @@ namespace PL
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void lbStations_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new StationDetails(bl, (sender as ListBox).SelectedItem as BO.Station).ShowDialog();
         }
     }
 }

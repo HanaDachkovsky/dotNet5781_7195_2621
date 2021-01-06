@@ -29,9 +29,29 @@ namespace BLs
             }
         }
 
-        public void AddLine(int code, Enums.Areas area, object )
+        void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2)
+
         {
-            throw new NotImplementedException();
+            //line trip??
+            try
+            {
+                dl.GetStation(station1.Code);
+                dl.GetStation(station2.Code);
+                if (station1.Code== station2.Code)
+                {
+                    //thow 2 תחנות שוות
+                }
+
+                dl.AddLine(new DO.Line { Code = code, Arae = (DO.Enums.Areas)area, FirstStation = station1.Code, LastStation = station2.Code });
+                dl.AddLineStation(new DO.LineStation { Station = station1.Code, LineStationIndex = 1, PrevStation = 0, NextStation = station2.Code, });
+                dl.AddLineStation(new DO.LineStation { Station = station2.Code, PrevStation = station1.Code, NextStation = 0, LineStationIndex = 2 });
+            }
+            catch (Exception ex)
+            {
+
+                //throw;
+            }
+
         }
 
         public void AddStation(int code, string name, string address, double latitude, double longitude)
@@ -332,7 +352,7 @@ namespace BLs
                                 LastStation = line.LastStation,
                                 ArrivalTimes = arrivalTimes
                             }
-                }
+                };
             }
             catch(Exception ec)
             {

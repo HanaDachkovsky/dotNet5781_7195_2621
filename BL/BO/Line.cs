@@ -10,6 +10,7 @@ namespace BO
         public int Code { get; set; }
         public Enums.Areas Arae { get; set; }
         public IEnumerable<LineStation> Stations { get; set; }
+        public string LastStationName { get; set; }
 
     }
 }

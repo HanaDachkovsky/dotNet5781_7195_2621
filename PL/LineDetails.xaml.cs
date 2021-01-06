@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace PL
     /// </summary>
     public partial class LineDetails : Window
     {
-        public LineDetails()
+        IBL bl;
+        public LineDetails(IBL bl2, BO.Line line)
         {
             InitializeComponent();
+            bl = bl2;
+            DataContext = line;
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)

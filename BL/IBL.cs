@@ -24,7 +24,7 @@ namespace BLAPI
         IEnumerable<BO.Line> GetAllLines();
         void DeleteLine(int num);
         void UpdateLine(BO.Line line);
-        void AddLine(int code,Enums.Areas area,....);
+        void AddLine(int code,Enums.Areas area,BO.Station station1, BO.Station station2);
         void AddStationToLine(int code, int lineId,TimeSpan time, double distance, int stationBefore);
         void DeleteStationInLine(int code, int lineId);
         void UpdateLineStation(BO.LineStation lineStation, int lineId);

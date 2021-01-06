@@ -381,7 +381,7 @@ namespace DL
             DO.Station station = DataSource.ListStation.Find(s=>s.Code==code);
             if (station == null)
             {
-                //throw new
+                //throw
             }
             return station.Clone();
         }

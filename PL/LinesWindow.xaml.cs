@@ -31,7 +31,19 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
+            new AddWindowLine(bl).ShowDialog();
+            lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+        }
 
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int id = ((((sender as Button).Parent as Grid).DataContext as BO.Line)).Id;///בעיית מחיקה
+            bl.DeleteLine(id);
+        }
+
+        private void lbLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            new LineDetails(bl, (sender as ListBox).SelectedItem as BO.Line).ShowDialog();
         }
     }
 }
