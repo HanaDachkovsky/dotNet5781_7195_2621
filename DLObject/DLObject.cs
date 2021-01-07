@@ -8,13 +8,13 @@ using System.Text;
 
 namespace DL
 {
-    sealed class DalObjectn : IDAL    //internal
+    sealed class DLObject : IDAL    //internal
     {
         #region singelton
-        static readonly DalObjectn instance = new DalObjectn();
-        static DalObjectn() { }// static ctor to ensure instance init is done just before first usage
-        DalObjectn() { } // default => private
-        public static DalObjectn Instance { get => instance; }// The public Instance property to use
+        static readonly DLObject instance = new DLObject();
+        static DLObject() { }// static ctor to ensure instance init is done just before first usage
+        DLObject() { } // default => private
+        public static DLObject Instance { get => instance; }// The public Instance property to use
         #endregion
         //לברר בקשר לבונוס של המחיקה!
         public void AddAdjacentStations(AdjacentStations adjacentStations)

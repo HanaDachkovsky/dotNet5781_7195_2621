@@ -43,5 +43,10 @@ namespace PL
         {
 
         }
+
+        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

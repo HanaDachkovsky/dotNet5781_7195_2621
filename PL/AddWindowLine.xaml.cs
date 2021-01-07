@@ -26,7 +26,7 @@ namespace PL
         {
             InitializeComponent();
             bl = bl2; 
-            cbArea.ItemsSource = BO.Enums.Areas;
+            cbArea.ItemsSource = Enum.GetValues(typeof(BO.Enums.Areas));
             ObservableCollection<BO.Station> stations = new ObservableCollection<BO.Station>(bl.GetAllStations());
             cbFirst.ItemsSource = stations;
             cbLast.ItemsSource = stations;

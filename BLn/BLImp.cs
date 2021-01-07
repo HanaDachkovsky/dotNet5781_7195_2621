@@ -5,7 +5,7 @@ using System.Text;
 using BLAPI;
 using BO;
 using DLAPI;
-namespace BLs
+namespace BL
 {
     class BLImp : IBL
     {
@@ -29,7 +29,7 @@ namespace BLs
             }
         }
 
-        void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2)
+        public void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2)
 
         {
             //line trip??
@@ -174,9 +174,9 @@ namespace BLs
                                    Id = line.Id,
                                    Code = line.Code,
                                    LastStation = line.LastStation,
-                                   ArrivalTimes = arrivalTimes
+                                   // ArrivalTimes = arrivalTimes
                                }
-                   }
+                   };
         }
         private IEnumerable<DateTime> ExceptedArrivalTimes(int lineId, int code)
         {
@@ -196,6 +196,7 @@ namespace BLs
             catch (Exception ex)
             {
 
+                throw new Exception();
             }
 
         }
@@ -242,7 +243,7 @@ namespace BLs
                 //throw;
             }
         }
-        void AddStationToLine(int code, int lineId, TimeSpan time, double distance, int stationBefore)
+        public void AddStationToLine(int code, int lineId, TimeSpan time, double distance, int stationBefore)
         {
             try
             {
@@ -289,7 +290,7 @@ namespace BLs
                 //throw;
             }
         }
-        void DeleteStationInLine(int code, int lineId)
+        public void DeleteStationInLine(int code, int lineId)
         {
             try
             {
@@ -322,7 +323,7 @@ namespace BLs
                 //throw;
             }
         }
-        void UpdateLineStation(BO.LineStation lineStation, int lineId)
+        public void UpdateLineStation(BO.LineStation lineStation, int lineId)
         {
 
 
@@ -330,7 +331,7 @@ namespace BLs
 
 
         }
-        BO.Station getStation(int code)
+        public BO.Station getStation(int code)
         {
             try
             {
@@ -350,14 +351,16 @@ namespace BLs
                                 Id = line.Id,
                                 Code = line.Code,
                                 LastStation = line.LastStation,
-                                ArrivalTimes = arrivalTimes
+                                // ArrivalTimes = arrivalTimes
+
                             }
                 };
             }
             catch (Exception ec)
             {
-
+                throw new Exception();
             }
         }
     }
+}
 

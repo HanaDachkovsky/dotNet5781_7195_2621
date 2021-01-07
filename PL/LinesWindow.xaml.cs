@@ -45,5 +45,10 @@ namespace PL
         {
             new LineDetails(bl, (sender as ListBox).SelectedItem as BO.Line).ShowDialog();
         }
+
+        private void lbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
