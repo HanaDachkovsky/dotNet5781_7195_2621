@@ -22,7 +22,7 @@ namespace DS
         static DataSource()
         {
             InitAllList();
-           
+
 
         }
         static void InitAllList()
@@ -524,21 +524,27 @@ namespace DS
                 },
                   new DO.User
                 {
-                     UserName="Yaakov",
+                    UserName="Yaakov",
                     Password="12345#$",
                     Admin=false
                 },
                    new DO.User
                 {
-                     UserName="Sara",
+                    UserName="Sara",
                     Password="sTa770",
                     Admin=false
                 },
                     new DO.User
                 {
-                     UserName="Hana",
+                    UserName="Hana",
                     Password="hD771",
                     Admin=false
+                },
+                     new DO.User
+                {
+                    UserName="aaa",
+                    Password="aaa",
+                    Admin=true
                 }
             };
         }

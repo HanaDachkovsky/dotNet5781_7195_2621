@@ -64,6 +64,7 @@ namespace PL
 
         private void lbStations_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            var x = (sender as ListBox).SelectedItem;
             new StationDetails(bl, (sender as ListBox).SelectedItem as BO.Station).ShowDialog();
         }
     }
