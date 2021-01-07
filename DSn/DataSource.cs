@@ -22,6 +22,8 @@ namespace DS
         static DataSource()
         {
             InitAllList();
+           
+
         }
         static void InitAllList()
         {
@@ -459,7 +461,7 @@ namespace DS
                 //int lastStation = 10 * i + 10;
                 //line.FirstStation = firstStation;
                 //line.LastStation = lastStation;
-                //line.Code = i + 1;
+                line.Code = i + 1;
                 line.Id = ++DO.Counter.LineNum;
                 line.Arae = DO.Enums.Areas.Jerusalem;
                 //for (int j = firstStation; j <= lastStation; j++)

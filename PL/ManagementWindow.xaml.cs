@@ -21,9 +21,10 @@ namespace PL
     public partial class ManagementWindow : Window
     {
         IBL bl;
-        public ManagementWindow(IBL bl)
+        public ManagementWindow(IBL bl2)
         {
             InitializeComponent();
+            bl = bl2;
         }
 
         private void btBusesView_Click(object sender, RoutedEventArgs e)

@@ -148,6 +148,7 @@ namespace BL
                        Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                   let name = dl.GetStation(station.Station).Name
                                   //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
+                                  where (station.LineStationIndex!=1)
                                   let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
                                   let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
                                   select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }

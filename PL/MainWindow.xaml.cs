@@ -63,6 +63,7 @@ namespace PL
                     {
                         ManagementWindow management = new ManagementWindow(bl);
                         management.Show();
+                        Close();
                     }
                     else
                     {
@@ -92,6 +93,7 @@ namespace PL
                 {
                     ManagementWindow management = new ManagementWindow(bl);
                     management.Show();
+                    Close();
                 }
                 else
                 {

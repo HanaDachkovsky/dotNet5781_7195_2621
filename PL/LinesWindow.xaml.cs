@@ -39,8 +39,12 @@ namespace PL
         {
             int id = ((((sender as Button).Parent as Grid).DataContext as BO.Line)).Id;///בעיית מחיקה
             bl.DeleteLine(id);
+            refresh();
         }
-
+        private void refresh()
+        {
+            lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+        }
         private void lbLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             new LineDetails(bl, (sender as ListBox).SelectedItem as BO.Line).ShowDialog();

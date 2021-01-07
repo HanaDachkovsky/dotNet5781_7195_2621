@@ -24,9 +24,9 @@
         <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="79,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="תחנה אחרונה"/></TextBlock>
         <TextBox Name="tbNumber" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="48,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbNumber_PreviewKeyDown" TextChanged="tbNumber_TextChanged"/>
         <ComboBox Name="cbArea" Grid.Column="0" HorizontalAlignment="Left" Margin="48,22,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="cbFirst" Grid.Column="0" HorizontalAlignment="Left" Margin="48,24,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120"/>
-        <Button Name="btAdd" Grid.Column="0" Content="הוספה" HorizontalAlignment="Left" Margin="60,24,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="btAdd_Click"/>
-        <ComboBox Name="cbLast" Grid.Column="0" HorizontalAlignment="Left" Margin="48,19,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120"/>
+        <ComboBox Name="cbFirst" Grid.Column="0" HorizontalAlignment="Left" Margin="48,24,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120" DisplayMemberPath="Name"/>
+        <Button Name="btAdd" Grid.Column="0" Content="הוספה" HorizontalAlignment="Left" Margin="60,24,0,0" Grid.Row="4" VerticalAlignment="Top" Width="75" Click="btAdd_Click" />
+        <ComboBox Name="cbLast" Grid.Column="0" HorizontalAlignment="Left" Margin="48,19,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" DisplayMemberPath="Name"/>
 
     </Grid>
 </Window>

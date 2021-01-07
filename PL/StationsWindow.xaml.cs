@@ -26,10 +26,9 @@ namespace PL
         public StationsWindow(IBL bl2)
         {
             InitializeComponent();
-            lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
             bl = bl2;
-            
-
+            lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+           
             //list=new obs
             //itemsource=list
             //
