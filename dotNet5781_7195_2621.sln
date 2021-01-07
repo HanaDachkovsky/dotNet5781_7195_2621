@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLs", "BL\BLs.csproj", "{B5
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalObject", "DalObject\DalObject.csproj", "{B9FA6712-04BF-48D5-A0CD-09C0F9B09495}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLAPIn", "DLAPIn\DLAPIn.csproj", "{FC35955E-E956-47B7-BD01-468FE1CC55E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{B9FA6712-04BF-48D5-A0CD-09C0F9B09495}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9FA6712-04BF-48D5-A0CD-09C0F9B09495}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9FA6712-04BF-48D5-A0CD-09C0F9B09495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC35955E-E956-47B7-BD01-468FE1CC55E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC35955E-E956-47B7-BD01-468FE1CC55E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC35955E-E956-47B7-BD01-468FE1CC55E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC35955E-E956-47B7-BD01-468FE1CC55E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
