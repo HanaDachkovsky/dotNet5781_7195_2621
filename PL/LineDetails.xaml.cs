@@ -1,6 +1,7 @@
 ﻿using BLAPI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,11 +27,24 @@ namespace PL
             InitializeComponent();
             bl = bl2;
             DataContext = line;
+            lbStations.ItemsSource = new ObservableCollection<BO.LineStation>(line.Stations);
+        }
+
+        
+        private void btAddStation_Click(object sender, RoutedEventArgs e)
+        {
+            new AddLineStation(bl, line);
+         
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-
+            new UpdateLine(bl, line).Show();
+            refresh();
+        }
+        private void refresh()
+        {
+            DataContext = bl.GetLine((DataContext as BO.Line).Id);
         }
     }
 }

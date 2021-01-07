@@ -140,7 +140,7 @@ namespace BL
         public IEnumerable<Line> GetAllLines()
         {
             return from line in dl.GetAllLine()
-                   select new BO.Line//בעיה עם תחנה ראשונה
+                   select new BO.Line//
                    {
                        Id = line.Id,
                        Code = line.Code,
@@ -190,8 +190,7 @@ namespace BL
             {
                 DO.User user = dl.GetUser(userName);
                 if (user.Password != password)
-                    //throw
-                    ;
+                    throw new Exception();
                 return user.Admin;
             }
             catch (Exception ex)
@@ -225,9 +224,14 @@ namespace BL
             }
         }
 
-        public void UpdateLine(Line line)
+        public void UpdateLine(int id, int code, Enums.Areas area)
         {
-
+            dl.UpdateLine(id, l => l.Code = code);
+            dl.UpdateLine(id, l => l.Arae = (DO.Enums.Areas)area);
+        }
+        public BO.Line GetLine(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateStation(int code, string name, string address)

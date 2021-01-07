@@ -545,6 +545,18 @@ namespace DS
                     UserName="aaa",
                     Password="aaa",
                     Admin=true
+                },
+                     new DO.User
+                {
+                    UserName="1",
+                    Password="a",
+                    Admin=true
+                },
+                    new DO.User
+                {
+                    UserName="m",
+                    Password="m",
+                    Admin=true
                 }
             };
         }
