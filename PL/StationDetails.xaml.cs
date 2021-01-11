@@ -35,5 +35,10 @@ namespace PL
             new UpDateStation(bl, DataContext as BO.Station).ShowDialog();
             DataContext = bl.getStation((DataContext as BO.Station).Code);
         }
+
+        private void lbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

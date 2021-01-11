@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LinesWindow" Height="450" Width="800">
+        Title="קוים" Height="450" Width="800" Background="AliceBlue">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  
@@ -39,14 +39,14 @@
                 </Grid.ColumnDefinitions >
                 <TextBlock x:Name="tbCode" Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
                 <TextBlock x:Name="tbLastStation" Text="{Binding Path=LastStationName}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
-                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Click="btDelete_Click"/>
+                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Click="btDelete_Click"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>            <RowDefinition Height="80*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
-            <Button x:Name="addButton"  Content="הוספת קו" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Click="addButton_Click"/>
+            <Button x:Name="addButton"  Content="הוספת קו" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Click="addButton_Click" FontSize="22"/>
         </Grid>
         <ListBox x:Name="lbLines" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemTemplate="{StaticResource LineTemplate }" SelectionChanged="lbLines_SelectionChanged" MouseDoubleClick="lbLines_MouseDoubleClick"/>
     </Grid>

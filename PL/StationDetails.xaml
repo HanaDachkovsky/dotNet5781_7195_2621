@@ -52,14 +52,50 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Left" Height="39" Margin="635,18,0,0" TextWrapping="Wrap"  Grid.Row="0" VerticalAlignment="Top" Width="119"><Span FlowDirection="RightToLeft" ><Run Foreground="#FF00539C" FontWeight="Bold" Text="מספר תחנה"/><Run Foreground="#FF00539C" FontWeight="Bold" Text=":"/></Span></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="39" Margin="396,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Width="73"><Span FlowDirection="RightToLeft"><Run Text="שם"  Foreground="#FF00539C" FontWeight="Bold"/><Run Text=" התחנה"  Foreground="#FF00539C" FontWeight="Bold"/><Run Text=":"/></Span></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Height="31" Margin="369,29.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"><Run Foreground="#FF00539C" FontWeight="Bold" FlowDirection="RightToLeft" Text="קוים שעוברים בתחנה:"/></TextBlock>
-        <ListBox x:Name="lbLines" HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="774" ItemTemplate="{StaticResource LineInStationTemplate }"  />
-        <TextBlock HorizontalAlignment="Left" Height="39" Margin="170,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"  Grid.Row="0"><Run FlowDirection="RightToLeft" Text="כתובת:" Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
-        <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="129,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="btUpdate_Click"/>
-        <TextBlock Name="tbNumberStation" HorizontalAlignment="Left" Margin="552,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top"/>
-        <TextBlock Name="tbName" HorizontalAlignment="Left" Margin="307,20,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top"/>
-        <TextBlock Name="tbAddress" HorizontalAlignment="Left" Margin="65,18,0,0" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="0.4,17,0,0" TextWrapping="Wrap"  Grid.Row="0" VerticalAlignment="Top" Width="119" Grid.Column="5"><Span FlowDirection="RightToLeft" ><Run Foreground="#FF00539C" FontWeight="Bold" Text="מספר תחנה"/><Run Foreground="#FF00539C" FontWeight="Bold" Text=":"/></Span></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="10.4,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0" Width="122" Grid.Column="3" Grid.ColumnSpan="2"><Span FlowDirection="RightToLeft"><Run Text="שם"  Foreground="#FF00539C" FontWeight="Bold"/><Run Text=" התחנה"  Foreground="#FF00539C" FontWeight="Bold"/><Run Text=":"/></Span></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="31" Margin="60.4,29.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" Grid.ColumnSpan="2" Grid.Column="2"><Run Foreground="#FF00539C" FontWeight="Bold" FlowDirection="RightToLeft" Text="קוים שעוברים בתחנה:"/></TextBlock>
+        <ListBox x:Name="lbLines" HorizontalAlignment="Left" Height="280" Margin="0,0,-0.4,0" Grid.Row="2" VerticalAlignment="Top" Width="794" ItemTemplate="{StaticResource LineInStationTemplate }" SelectionChanged="lbLines_SelectionChanged" Grid.ColumnSpan="6"  />
+        <TextBlock HorizontalAlignment="Left" Height="39" Margin="35.2,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"><Run FlowDirection="RightToLeft" Text="כתובת:" Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
+        <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="0,21.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="131" Click="btUpdate_Click" Height="39"/>
+        <TextBlock Name="tbNumberStation" HorizontalAlignment="Left" Margin="32.4,15,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="4" RenderTransformOrigin="0.5,0.5" Height="24" Width="78">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.009"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Name="tbName" HorizontalAlignment="Left" Margin="11.4,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.5,0.5" Height="52" Width="103">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.192"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
+        <TextBlock Name="tbAddress" HorizontalAlignment="Left" Margin="21,12,0,0" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top" RenderTransformOrigin="0.539,0.798" Height="47" Width="90">
+            <TextBlock.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.263"/>
+                    <TranslateTransform X="-0.158" Y="0.045"/>
+                </TransformGroup>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Window>

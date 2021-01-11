@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="TimesWindow" Height="450" Width="500">
+        Title="לוח זמנים" Height="450" Width="500" Background="AliceBlue">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationsWindow" Height="450" Width="800">
+        Title="תחנות" Height="450" Width="800" Background="AliceBlue">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  
@@ -46,7 +46,7 @@
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>            <RowDefinition Height="80*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
-            <Button x:Name="btAdd"  Content="הוספת תחנה" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Click="addButton_Click"/>
+            <Button x:Name="btAdd"  Content="הוספת תחנה" RenderTransformOrigin="9.116,1.755"  Margin="1,0,0,0"  Grid.Column="3"  FontSize="22" Click="addButton_Click"/>
             
         </Grid>
         <ListBox x:Name="lbStations" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2"   ItemTemplate="{StaticResource StationTemplate }" SelectionChanged="lbStations_SelectionChanged" MouseDoubleClick="lbStations_MouseDoubleClick" />

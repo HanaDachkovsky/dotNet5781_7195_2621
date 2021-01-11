@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="UpDateStation" Height="300" Width="400" Background="AliceBlue">
+        Title="עדכון תחנה" Height="300" Width="400" Background="AliceBlue">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  
@@ -44,7 +44,7 @@
         <TextBlock HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" Height="37" Margin="46.2,11.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="115"><Span FlowDirection="RightToLeft"><Run Text="כתובת"/><Run Text=":"/></Span></TextBlock>
         <TextBox Name="tbName"  HorizontalAlignment="Left" Height="39"  Grid.Column="0" Grid.Row="0" Margin="25,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
         <TextBox Name="tbAddress" HorizontalAlignment="Left" Height="39"  Grid.Column="0" Grid.Row="1" Margin="25,9.8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-        <Button Name="btUpDate" Content="עדכון" Grid.Column="1" HorizontalAlignment="Left" Height="27" Margin="36.2,83.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Click="btUpDate_Click" />
+        <Button Name="btUpDate" Content="עדכון" HorizontalAlignment="Left" Height="27" Margin="53,84.8,0,0" Grid.Row="1" VerticalAlignment="Top" Width="101" Click="btUpDate_Click" />
 
     </Grid>
 </Window>
