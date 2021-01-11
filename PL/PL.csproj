@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +62,9 @@
     <Compile Include="AddStationWindow.xaml.cs">
       <DependentUpon>AddStationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddTimeWindow.xaml.cs">
+      <DependentUpon>AddTimeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddWindowLine.xaml.cs">
       <DependentUpon>AddWindowLine.xaml</DependentUpon>
     </Compile>
@@ -80,20 +84,27 @@
     <Compile Include="StationsWindow.xaml.cs">
       <DependentUpon>StationsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimesWindow.xaml.cs">
+      <DependentUpon>TimesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateLine.xaml.cs">
       <DependentUpon>UpdateLine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateLineStation.xaml.cs">
-      <DependentUpon>UpdateLineStation.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UpDateStation.xaml.cs">
       <DependentUpon>UpDateStation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpDateTimeWindow.xaml.cs">
+      <DependentUpon>UpDateTimeWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="AddLineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddStationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddTimeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,15 +162,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TimesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateLineStation.xaml">
+    <Page Include="UpDateStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpDateStation.xaml">
+    <Page Include="UpDateTimeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

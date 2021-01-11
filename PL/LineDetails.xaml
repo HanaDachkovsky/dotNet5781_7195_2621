@@ -40,7 +40,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="513,30,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="171,30,0,0" TextWrapping="Wrap" Text="{Binding Path=Arae}" VerticalAlignment="Top"/>
         <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="81,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="btUpdate_Click"/>
-        <Button x:Name="btAddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="240,35,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="btAddStation_Click"/>
+        <Button x:Name="btAddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="231,35.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="btAddStation_Click"/>
+        <Button x:Name="btTimes" Content="לוחות זמנים" HorizontalAlignment="Left" Margin="565,35.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="105" Click="btTimes_Click" />
 
 
     </Grid>

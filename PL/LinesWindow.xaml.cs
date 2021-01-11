@@ -48,6 +48,7 @@ namespace PL
         private void lbLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             new LineDetails(bl, (sender as ListBox).SelectedItem as BO.Line).ShowDialog();
+            refresh();
         }
 
         private void lbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)

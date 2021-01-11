@@ -231,7 +231,28 @@ namespace BL
         }
         public BO.Line GetLine(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DO.Line line = dl.GetLine(id);
+                return new BO.Line//
+                {
+                    Id = line.Id,
+                    Code = line.Code,
+                    Arae = (Enums.Areas)line.Arae,
+                    Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
+                               let name = dl.GetStation(station.Station).Name
+                               //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
+                               where (station.LineStationIndex != 1)
+                               let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
+                               let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
+                               select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
+
+                };
+            }
+            catch(Exception ex)
+            {
+                throw new Exception();
+            }
         }
 
         public void UpdateStation(int code, string name, string address)
@@ -255,7 +276,6 @@ namespace BL
                 int index;
                 int next;
                 dl.GetStation(code);
-                dl.GetStation(stationBefore);
                 if (stationBefore == 0)
                 {
                     next = dl.GetLine(lineId).FirstStation;
@@ -264,6 +284,7 @@ namespace BL
                 }
                 else
                 {
+                    dl.GetStation(stationBefore);
                     dl.GetLineStation(lineId, stationBefore);
                     index = dl.GetLineStation(lineId, stationBefore).LineStationIndex + 1;
                     next = dl.GetLineStation(lineId, stationBefore).NextStation;
@@ -361,7 +382,7 @@ namespace BL
                             }
                 };
             }
-            catch (Exception ec)
+            catch (Exception ex)
             {
                 throw new Exception();
             }

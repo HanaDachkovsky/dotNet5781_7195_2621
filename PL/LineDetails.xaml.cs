@@ -33,18 +33,23 @@ namespace PL
         
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
-            new AddLineStation(bl, line);
+            new AddLineStation(bl,DataContext as BO.Line);
          
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-            new UpdateLine(bl, line).Show();
+            new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
             refresh();
         }
         private void refresh()
         {
             DataContext = bl.GetLine((DataContext as BO.Line).Id);
+        }
+
+        private void btTimes_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

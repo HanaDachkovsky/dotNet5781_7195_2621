@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,13 +16,24 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for UpdateLineStation.xaml
+    /// Interaction logic for UpDateTimeWindow.xaml
     /// </summary>
-    public partial class UpdateLineStation : Window
+    public partial class UpDateTimeWindow : Window
     {
-        public UpdateLineStation()
+        IBL bl;
+        public UpDateTimeWindow(IBL bl2,BO.LineTrip linetrip)
         {
             InitializeComponent();
+            bl = bl2;
+            DataContext = linetrip;
+
+        }
+
+    
+
+        private void btUpDate_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

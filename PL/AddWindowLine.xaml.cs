@@ -30,6 +30,7 @@ namespace PL
             ObservableCollection<BO.Station> stations = new ObservableCollection<BO.Station>(bl.GetAllStations());
             cbFirst.ItemsSource = stations;
             cbLast.ItemsSource = stations;
+            
         }
 
         private void tbNumber_PreviewKeyDown(object sender, KeyEventArgs e)

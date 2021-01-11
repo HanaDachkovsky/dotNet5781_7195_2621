@@ -16,13 +16,23 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for AddLineStation.xaml
+    /// Interaction logic for TimesWindow.xaml
     /// </summary>
-    public partial class AddLineStation : Window
+    public partial class TimesWindow : Window
     {
-        public AddLineStation(IBL bl2,BO.Line line)
+        IBL bl;
+        
+        public TimesWindow(IBL bl2, BO.Line line)
         {
             InitializeComponent();
-        } 
+            bl = bl2;
+            DataContext = line;
+        }
+
+      
+        private void btAddTime_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
