@@ -47,6 +47,7 @@
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\Line.cs" />
     <Compile Include="BO\LineStation.cs" />
+    <Compile Include="BO\LineTrip.cs" />
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\StationLine.cs" />
     <Compile Include="BO\User.cs" />

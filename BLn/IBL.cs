@@ -31,6 +31,11 @@ namespace BLAPI
         void UpdateLineStation(BO.LineStation lineStation, int lineId);
         #endregion
 
+        #region LineTrip
+        void AddLineTrip(int lineId, TimeSpan startAt, TimeSpan finishAt, TimeSpan freq);
+        IEnumerable<BO.LineTrip> getLineTrips(int id);
+        #endregion
+
         #region Station
         BO.Station getStation(int code);
         IEnumerable<BO.Station> GetAllStations();

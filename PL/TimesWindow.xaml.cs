@@ -1,6 +1,7 @@
 ﻿using BLAPI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace PL
             InitializeComponent();
             bl = bl2;
             DataContext = line;
+            lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips(line.Id));
         }
 
       

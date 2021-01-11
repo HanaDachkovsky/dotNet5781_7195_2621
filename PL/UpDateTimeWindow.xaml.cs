@@ -35,5 +35,30 @@ namespace PL
         {
 
         }
+
+        private void tbStartH_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbStartM_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbFinishH_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbFinishM_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void tbfreuquency_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

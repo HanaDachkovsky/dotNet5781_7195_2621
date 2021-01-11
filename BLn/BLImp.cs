@@ -387,6 +387,35 @@ namespace BL
                 throw new Exception();
             }
         }
+        public void AddLineTrip(int lineId, TimeSpan startAt, TimeSpan finishAt, TimeSpan freq)
+        {
+            try
+            {
+                if(dl.GetAllLineTripBy(lt => lt.LineId == lineId).Select(lt=>(lt.StartAt==startAt)||(lt.StartAt>startAt&&lt.StartAt<finishAt)||(lt.StartAt<startAt&&lt.FinishAt>startAt)).Count()>0)
+                {
+                    //trow
+                }
+                dl.AddLineTrip(new DO.LineTrip { LineId = lineId, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        public IEnumerable<BO.LineTrip> getLineTrips(int id)
+        {
+            try
+            {
+                return from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
+                       select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency };
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }
 

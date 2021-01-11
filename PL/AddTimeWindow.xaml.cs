@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,12 @@ namespace PL
     /// </summary>
     public partial class AddTimeWindow : Window
     {
-        public AddTimeWindow()
+        IBL bl;
+        public AddTimeWindow(IBL bl2, BO.Line line)
         {
             InitializeComponent();
+            bl = bl2;
+            DataContext = line;
         }
 
         private void tbFinishM_TextChanged(object sender, TextChangedEventArgs e)
@@ -51,6 +55,36 @@ namespace PL
 
         private void btAdd_Click(object sender, RoutedEventArgs e)
         {
+            if(tbStartH.Text==string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                return;
+            }
+            if (tbStartM.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                return;
+            }
+            if (tbFinishH.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                return;
+            }
+            if (tbFinishM.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                return;
+            }
+            if (tbfreuquency.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                return;
+            }
+            TimeSpan startAt = new TimeSpan(int.Parse(tbStartH.Text), int.Parse(tbStartM.Text), 0);
+            TimeSpan finishAt = new TimeSpan(int.Parse(tbFinishH.Text), int.Parse(tbFinishM.Text), 0);
+            TimeSpan freq = new TimeSpan(0, int.Parse(tbfreuquency.Text), 0);
+            bl.AddLineTrip((DataContext as BO.Line).Id,startAt, finishAt, freq);
+            Close();
 
         }
     }

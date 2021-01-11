@@ -49,7 +49,7 @@ namespace PL
 
         private void btTimes_Click(object sender, RoutedEventArgs e)
         {
-
+            new TimesWindow(bl, DataContext as BO.Line).ShowDialog();
         }
     }
 }
