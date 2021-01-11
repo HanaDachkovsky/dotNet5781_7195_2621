@@ -34,7 +34,26 @@ namespace PL
       
         private void btAddTime_Click(object sender, RoutedEventArgs e)
         {
+            new AddTimeWindow(bl, DataContext as BO.Line).ShowDialog();
+            refresh();
+        }
 
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int id = (((sender as Button).Parent as Grid).DataContext as BO.LineTrip).Id;
+            bl.DeleteLineTrip(id);
+            refresh();
+        }
+
+        private void refresh()
+        {
+            lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips((DataContext as BO.Line).Id));
+        }
+
+        private void btUpDate_Click(object sender, RoutedEventArgs e)
+        {
+            new UpDateTimeWindow(bl, ((sender as Button).Parent as Grid).DataContext as BO.LineTrip).ShowDialog();
+            refresh();
         }
     }
 }

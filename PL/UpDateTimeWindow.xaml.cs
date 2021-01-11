@@ -21,20 +21,63 @@ namespace PL
     public partial class UpDateTimeWindow : Window
     {
         IBL bl;
-        public UpDateTimeWindow(IBL bl2,BO.LineTrip linetrip)
+        public UpDateTimeWindow(IBL bl2,BO.LineTrip lineTrip)
         {
             InitializeComponent();
             bl = bl2;
-            DataContext = linetrip;
-
+            DataContext = lineTrip;
+            init();
         }
 
-    
-
+        private void init()
+        {
+            BO.LineTrip lineTrip= DataContext as BO.LineTrip;
+            tbStartH.Text = lineTrip.StartAt.Hours.ToString();
+            tbStartM.Text = lineTrip.StartAt.Minutes.ToString();
+            tbFinishH.Text = lineTrip.FinishAt.Hours.ToString();
+            tbFinishM.Text = lineTrip.FinishAt.Minutes.ToString();
+            tbfreuquency.Text = lineTrip.Frequency.TotalMinutes.ToString();
+        }
         private void btUpDate_Click(object sender, RoutedEventArgs e)
         {
-
+            if (tbStartH.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                init();
+                return;
+            }
+            if (tbStartM.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                init();
+                return;
+            }
+            if (tbFinishH.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                init();
+                return;
+            }
+            if (tbFinishM.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                init();
+                return;
+            }
+            if (tbfreuquency.Text == string.Empty)
+            {
+                MessageBox.Show("יש למלא את כל השדות", "שגיאה");
+                init();
+                return;
+            }
+            TimeSpan startAt = new TimeSpan(int.Parse(tbStartH.Text), int.Parse(tbStartM.Text), 0);
+            TimeSpan finishAt = new TimeSpan(int.Parse(tbFinishH.Text), int.Parse(tbFinishM.Text), 0);
+            TimeSpan freq = new TimeSpan(0, int.Parse(tbfreuquency.Text), 0);
+            bl.UpdateLineTrip(DataContext as BO.LineTrip,startAt, finishAt, freq );
+            Close();
         }
+
+        
 
         private void tbStartH_TextChanged(object sender, TextChangedEventArgs e)
         {

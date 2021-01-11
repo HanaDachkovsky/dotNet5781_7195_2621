@@ -391,10 +391,13 @@ namespace BL
         {
             try
             {
-                if(dl.GetAllLineTripBy(lt => lt.LineId == lineId).Select(lt=>(lt.StartAt==startAt)||(lt.StartAt>startAt&&lt.StartAt<finishAt)||(lt.StartAt<startAt&&lt.FinishAt>startAt)).Count()>0)
+                //if (dl.GetAllLineTripBy(lt => lt.LineId == lineId).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
+                if (dl.GetAllLineTripBy(lt => lt.LineId == lineId&&((lt.StartAt==startAt)||(lt.StartAt>startAt&&lt.StartAt<finishAt)||(lt.StartAt<startAt&&lt.FinishAt>startAt))).Count()>0)
                 {
                     //trow
+                    //delete else
                 }
+                else
                 dl.AddLineTrip(new DO.LineTrip { LineId = lineId, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
             }
             catch (Exception ex)
@@ -407,8 +410,8 @@ namespace BL
         {
             try
             {
-                return from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
-                       select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency };
+                return( from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
+                       select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency , Id=item.Id, LineId=item.LineId}).OrderBy(x=>x.StartAt);
             }
             catch (Exception ex)
             {
@@ -416,6 +419,36 @@ namespace BL
                 throw;
             }
         }
+        public void DeleteLineTrip(int id)
+        {
+            try
+            {
+                dl.DeleteLineTrip(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public void UpdateLineTrip(LineTrip lineTrip, TimeSpan startAt, TimeSpan finishAt, TimeSpan freq)
+        {
+            try
+            {
+                if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId&&lt.Id!=lineTrip.Id).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
+                {
+                    //trow
+                }
+                dl.UpdateLineTrip(new DO.LineTrip { LineId = lineTrip.LineId, Id = lineTrip.Id, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
 

@@ -491,7 +491,7 @@ namespace DS
                     ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[j].Code, PrevStation = ListStation[j - 1].Code, NextStation = ListStation[j + 1].Code });
                 }
                 ListLine.Add(line);
-                ListLineTrip.Add(new DO.LineTrip { Id = ++DO.Counter.LineTripNum, LineId = line.Id, StartAt = new TimeSpan(), Frequency = new TimeSpan(0, 10, 0), FinishAt = new TimeSpan() });
+                ListLineTrip.Add(new DO.LineTrip { Id = ++DO.Counter.LineTripNum, LineId = line.Id, StartAt = new TimeSpan(6,0,0), Frequency = new TimeSpan(0, 10, 0), FinishAt = new TimeSpan(23,0,0) });
 
             }
             ListLine.Add(new Line { Id = ++DO.Counter.LineNum, Code = 10, FirstStation = ListStation[0].Code, LastStation = ListStation[49].Code });

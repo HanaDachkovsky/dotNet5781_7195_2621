@@ -5,22 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="AddLineStation" Height="400" Width="500">
+        Title="הוספת תחנה לקו" Height="400" Width="500" Background="AliceBlue">
     <Window.Resources>
-        <local:NotBooleanToVisibilityConverter
-            x:Key="notBooleanToVisibilityConverter" />
+        <Style TargetType="Button">
+            <Setter Property="FontSize"  
+                    Value="18" />
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="Background"
+                            Value="#FF9BD0FF"/>
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="FontSize"  
+                    Value="16" />
+        </Style>
     </Window.Resources>
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="114,72,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="114,138,0,0" VerticalAlignment="Top" Width="120"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Height="25" Margin="353,37,0,0" VerticalAlignment="Top" Width="34"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="93,226,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="94,312,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="367,197,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.845,2.269"/>
-        <TextBlock HorizontalAlignment="Left" Height="22" Margin="228,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187"><Run FlowDirection="RightToLeft" Text="הוספת תחנה ראשונה"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="241,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129"><Run FlowDirection="RightToLeft" Text="מרחק מהתחנה קודמת"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="258,313,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="זמן מתחנה קודמת"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="161,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="השתמש במרחק וזמן הקיימים במערכת"/></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ComboBox HorizontalAlignment="Left" Margin="92,20,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="0"/>
+        <ComboBox HorizontalAlignment="Left" Margin="92,15,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="0"/>
+        <CheckBox Content="" HorizontalAlignment="Left" Height="25" Margin="164,3,0,0" VerticalAlignment="Top" Width="34" Grid.Row="0" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="92,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="0" Grid.Row="4"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="92,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="0" Grid.Row="5"/>
+        <CheckBox Content="" HorizontalAlignment="Left" Margin="164,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.845,2.269"  Height="29" Grid.Column="1" Grid.Row="3" Width="33" Grid.RowSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="35,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145" FontSize="12" FontWeight="Normal" Foreground="Black" Grid.Row="0" Grid.Column="1"><Span FlowDirection="RightToLeft"><Run Text="הוספת "/><Run Text="תחנה ראשונה"/></Span></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="31,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" Grid.Column="1" Grid.Row="4"><Run FlowDirection="RightToLeft" Text="מרחק מהתחנה קודמת"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="31,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5"><Run FlowDirection="RightToLeft" Text="זמן מתחנה קודמת"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="186,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" FontWeight="Normal" FontSize="12" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"><Run FlowDirection="RightToLeft" Text="השתמש במרחק וזמן הקיימים במערכת"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="46,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"><Run FlowDirection="RightToLeft" Text="התחנה להוספה"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="46,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"><Span FlowDirection="RightToLeft"><Run Text="אחרי "/><Run Text="ה"/><Run Text="תחנה"/></Span></TextBlock>
+        <Button Content="הוספה" HorizontalAlignment="Left" Margin="57,26,0,0"  VerticalAlignment="Top" Width="75" Grid.Column="0" Grid.Row="6"/>
 
     </Grid>
 </Window>

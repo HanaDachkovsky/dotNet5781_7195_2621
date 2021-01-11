@@ -34,6 +34,8 @@ namespace BLAPI
         #region LineTrip
         void AddLineTrip(int lineId, TimeSpan startAt, TimeSpan finishAt, TimeSpan freq);
         IEnumerable<BO.LineTrip> getLineTrips(int id);
+        void DeleteLineTrip(int id);
+        void UpdateLineTrip(LineTrip lineTrip, TimeSpan startAt, TimeSpan finishAt, TimeSpan freq);
         #endregion
 
         #region Station

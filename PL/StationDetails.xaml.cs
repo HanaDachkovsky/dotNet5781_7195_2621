@@ -27,7 +27,7 @@ namespace PL
             InitializeComponent();
             DataContext = station;
             bl = bl2;
-            lbLines.ItemsSource = new ObservableCollection<BO.StationLine>(station.Lines);     
+            lbLines.ItemsSource = new ObservableCollection<BO.StationLine>(station.Lines);//ex     
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)

@@ -7,6 +7,28 @@
         mc:Ignorable="d"
         Title="LinesWindow" Height="450" Width="800">
     <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize"  
+                    Value="18" />
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="Background"
+                            Value="#FF9BD0FF"/>
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="FontSize"  
+                    Value="16" />
+        </Style>
         <DataTemplate x:Key="LineTemplate" DataType="local:BO.Line">
             <Grid x:Name="DataTemplateGrid" Background="AliceBlue">
                 <Grid.RowDefinitions  >
