@@ -26,7 +26,7 @@ namespace BLAPI
         void DeleteLine(int num);
         void UpdateLine(int id, int code, Enums.Areas area);
         void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2);
-        void AddStationToLine(int code, int lineId, TimeSpan time, double distance, int stationBefore);
+        void AddStationToLine(int code, int lineId, int stationBefore);
         void DeleteStationInLine(int code, int lineId);
         void UpdateLineStation(BO.LineStation lineStation, int lineId);
         #endregion
@@ -46,6 +46,10 @@ namespace BLAPI
         void AddStation(int code, string name, string address, double latitude, double longitude);
         #endregion
 
+        #region LineStation
+        void UpdateTimeOrDistance(int code, int lineId, TimeSpan time, double distance);
+
+        #endregion
     }
 }
 

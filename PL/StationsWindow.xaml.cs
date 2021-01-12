@@ -53,7 +53,8 @@ namespace PL
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddStationWindow addStationWindow = new AddStationWindow(bl);
+            //AddStationWindow addStationWindow = new AddStationWindow(bl);
+            new AddStationWindow(bl).ShowDialog();
             lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
         }
 

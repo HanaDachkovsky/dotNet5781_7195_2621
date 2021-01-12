@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="LineDetails" Height="450" Width="800">
+        Title="פרטי קו" Height="450" Width="800">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  
@@ -36,6 +36,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition />                    <ColumnDefinition/>                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>

@@ -44,16 +44,16 @@ namespace BL
                     //thow 2 תחנות שוות
                 }
 
-                int lineID=dl.AddLine(new DO.Line { Code = code, Arae = (DO.Enums.Areas)area, FirstStation = station1.Code, LastStation = station2.Code });
-                dl.AddLineStation(new DO.LineStation { Station = station1.Code, LineStationIndex = 1, PrevStation = 0, NextStation = station2.Code, LineId=lineID });
-                dl.AddLineStation(new DO.LineStation { Station = station2.Code, PrevStation = station1.Code, NextStation = 0, LineStationIndex = 2, LineId=lineID });
-                if(dl.GetAllAdjacentStationsBy(a=>a.Station1==station1.Code&&a.Station2==station2.Code).Count()<1)
+                int lineID = dl.AddLine(new DO.Line { Code = code, Arae = (DO.Enums.Areas)area, FirstStation = station1.Code, LastStation = station2.Code });
+                dl.AddLineStation(new DO.LineStation { Station = station1.Code, LineStationIndex = 1, PrevStation = 0, NextStation = station2.Code, LineId = lineID });
+                dl.AddLineStation(new DO.LineStation { Station = station2.Code, PrevStation = station1.Code, NextStation = 0, LineStationIndex = 2, LineId = lineID });
+                if (dl.GetAllAdjacentStationsBy(a => a.Station1 == station1.Code && a.Station2 == station2.Code).Count() < 1)
                 {
                     double dis = calDistance(station1.Code, station2.Code);
                     TimeSpan time = calTime(station1.Code, station2.Code);
                     dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = station1.Code, Station2 = station2.Code, Distance = dis, Time = time });
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace BL
                 DO.Station station2 = dl.GetStation(code2);
                 GeoCoordinate coor1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
                 GeoCoordinate coor2 = new GeoCoordinate(station2.Latitude, station2.Longitude);
-                return coor1.GetDistanceTo(coor2)*1.5;
+                return coor1.GetDistanceTo(coor2) * 1.5;
 
             }
             catch (Exception ex)
@@ -180,7 +180,7 @@ namespace BL
                        Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                   let name = dl.GetStation(station.Station).Name
                                   //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
-                                  where (station.LineStationIndex!=1)
+                                  where (station.LineStationIndex != 1)
                                   let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
                                   let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
                                   select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
@@ -281,7 +281,7 @@ namespace BL
 
                 };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception();
             }
@@ -301,18 +301,22 @@ namespace BL
                 //throw;
             }
         }
-        public void AddStationToLine(int code, int lineId, TimeSpan time, double distance, int stationBefore)
+        public void AddStationToLine(int code, int lineId, int stationBefore)
         {
             try
             {
                 int index;
                 int next;
                 dl.GetStation(code);
+                bool first = false;
+                bool last = false;
                 if (stationBefore == 0)
                 {
                     next = dl.GetLine(lineId).FirstStation;
                     dl.UpdateLine(lineId, l => l.FirstStation = code);
                     index = 1;
+                    first = true;
+
                 }
                 else
                 {
@@ -327,6 +331,7 @@ namespace BL
                 if (stationBefore == dl.GetLine(lineId).LastStation)
                 {
                     dl.UpdateLine(lineId, l => l.LastStation = code);
+                    last = true;
                 }
                 else
                 {
@@ -338,8 +343,20 @@ namespace BL
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
                 dl.AddLineStation(new DO.LineStation { Station = code, LineId = lineId, LineStationIndex = index, PrevStation = stationBefore, NextStation = next });
 
-                //תחנות עוקבות?
+                //תחנות עוקבות
 
+                if (first == false && dl.GetAllAdjacentStationsBy(a => a.Station1 == stationBefore && a.Station2 == code).Count() < 1)
+                {
+                    double dis = calDistance(stationBefore, code);
+                    TimeSpan time = calTime(stationBefore, code);
+                    dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = stationBefore, Station2 = code, Distance = dis, Time = time });
+                }
+                if (last == false && dl.GetAllAdjacentStationsBy(a => a.Station1 == code && a.Station2 == next).Count() < 1)
+                {
+                    double dis = calDistance(code, next);
+                    TimeSpan time = calTime(code, next);
+                    dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = code, Station2 = code, Distance = dis, Time = time });
+                }
 
             }
             catch (Exception ex)
@@ -383,7 +400,7 @@ namespace BL
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
                 dl.DeleteLineStation(lineId, code);
                 //תחנות עוקבות?
-               
+
             }
             catch (Exception ex)
             {
@@ -434,13 +451,13 @@ namespace BL
             try
             {
                 //if (dl.GetAllLineTripBy(lt => lt.LineId == lineId).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
-                if (dl.GetAllLineTripBy(lt => lt.LineId == lineId&&((lt.StartAt==startAt)||(lt.StartAt>startAt&&lt.StartAt<finishAt)||(lt.StartAt<startAt&&lt.FinishAt>startAt))).Count()>0)
+                if (dl.GetAllLineTripBy(lt => lt.LineId == lineId && ((lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt))).Count() > 0)
                 {
                     //trow
                     //delete else
                 }
                 else
-                dl.AddLineTrip(new DO.LineTrip { LineId = lineId, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
+                    dl.AddLineTrip(new DO.LineTrip { LineId = lineId, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
             }
             catch (Exception ex)
             {
@@ -452,8 +469,8 @@ namespace BL
         {
             try
             {
-                return( from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
-                       select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency , Id=item.Id, LineId=item.LineId}).OrderBy(x=>x.StartAt);
+                return (from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
+                        select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency, Id = item.Id, LineId = item.LineId }).OrderBy(x => x.StartAt);
             }
             catch (Exception ex)
             {
@@ -478,11 +495,34 @@ namespace BL
         {
             try
             {
-                if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId&&lt.Id!=lineTrip.Id).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
+                if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
                 {
                     //trow
                 }
                 dl.UpdateLineTrip(new DO.LineTrip { LineId = lineTrip.LineId, Id = lineTrip.Id, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+        public void UpdateTimeOrDistance(int code, int lineId, TimeSpan time, double distance)
+        {
+            try
+            {
+                dl.GetStation(code);
+                var prev = dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.NextStation == code).FirstOrDefault();
+                if(prev==null)
+                {
+                    //throw;
+                    //delete else!
+                }
+                else
+                {
+                    dl.UpdateAdjacentStations(new DO.AdjacentStations { Station1 = prev.Station, Station2 = code, Distance = distance, Time = time });
+                }
+
             }
             catch (Exception ex)
             {

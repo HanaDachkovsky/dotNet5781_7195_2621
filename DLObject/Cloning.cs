@@ -12,7 +12,7 @@ namespace DL
             T copyToObject = new T();
             foreach (PropertyInfo propertyInfo in typeof(T).GetProperties())
             {
-                propertyInfo.SetValue(copyToObject, propertyInfo.GetValue(original, null), null);
+                propertyInfo.SetValue(copyToObject, propertyInfo.GetValue(original, null), null);//ex
             }
             return copyToObject;
         }

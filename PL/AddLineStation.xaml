@@ -41,9 +41,9 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="cbAddedStation" HorizontalAlignment="Left" Margin="72,27,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="0"/>
-        <ComboBox x:Name="cbStationBefore" HorizontalAlignment="Left" Margin="72,33,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="0"/>
-        <CheckBox x:Name="chIsFirst" Content="" HorizontalAlignment="Left" Height="25" Margin="164,3,0,0" VerticalAlignment="Top" Width="34" Grid.Row="0" Grid.Column="1"/>
+        <ComboBox x:Name="cbAddedStation" HorizontalAlignment="Left" Margin="72,27,0,0" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="0" DisplayMemberPath="Name"/>
+        <ComboBox x:Name="cbStationBefore" HorizontalAlignment="Left" Margin="72,33,0,0" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="0" DisplayMemberPath="Name"/>
+        <CheckBox x:Name="chIsFirst" Content="" HorizontalAlignment="Left" Height="25" Margin="164,3,0,0" VerticalAlignment="Top" Width="34" Grid.Row="0" Grid.Column="1" Click="chIsFirst_Click"/>
         <!--<TextBox HorizontalAlignment="Left" Height="23" Margin="92,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="0" Grid.Row="4"/>-->
         <!--<TextBox HorizontalAlignment="Left" Height="23" Margin="92,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="0" Grid.Row="5"/>-->
         <!--<CheckBox Content="" HorizontalAlignment="Left" Margin="164,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.845,2.269"  Height="29" Grid.Column="1" Grid.Row="3" Width="33" Grid.RowSpan="2"/>-->
@@ -52,7 +52,7 @@
         <!--<TextBlock HorizontalAlignment="Left" Margin="31,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="5"><Run FlowDirection="RightToLeft" Text="זמן מתחנה קודמת"/></>-->
         <!--<TextBlock HorizontalAlignment="Left" Margin="186,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="Black" FontWeight="Normal" FontSize="12" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"><Run FlowDirection="RightToLeft" Text="השתמש במרחק וזמן הקיימים במערכת"/></TextBlock>-->
         <TextBlock HorizontalAlignment="Left" Margin="46,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1"><Run FlowDirection="RightToLeft" Text="התחנה להוספה"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="46,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"><Span FlowDirection="RightToLeft"><Run Text="אחרי "/><Run Text="ה"/><Run Text="תחנה"/></Span></TextBlock>
+        <TextBlock x:Name="textStatBef" HorizontalAlignment="Left" Margin="46,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2"><Span FlowDirection="RightToLeft"><Run Text="אחרי "/><Run Text="ה"/><Run Text="תחנה"/></Span></TextBlock>
         <Button Content="הוספה" HorizontalAlignment="Left" Margin="72,35,0,0"  VerticalAlignment="Top" Width="96" Grid.Column="0" Grid.Row="3" Height="38" Click="Button_Click"/> 
     </Grid>
 </Window>

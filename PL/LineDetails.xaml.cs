@@ -34,6 +34,7 @@ namespace PL
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
             new AddLineStation(bl, DataContext as BO.Line).ShowDialog() ;
+            refreshStations();
             //?
          
         }
@@ -41,7 +42,12 @@ namespace PL
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
             //new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
-            refresh();
+            //refresh();
+            var lineStation = ((sender as Button).Parent as Grid).DataContext as BO.LineStation;
+            int lineId = (DataContext as BO.Line).Id;
+            new UpdateLineStationWindow(bl, lineStation, lineId).ShowDialog();
+            //refresh
+            //!!!!!!!!!!!!!!!!!
         }
         private void refresh()
         {

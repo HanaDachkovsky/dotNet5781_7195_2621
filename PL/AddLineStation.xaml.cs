@@ -27,12 +27,46 @@ namespace PL
             InitializeComponent();
             bl = bl2;
             DataContext = line;
-            cbAddedStation.ItemsSource=new ObservableCollection<>
+            cbAddedStation.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+            cbStationBefore.ItemsSource = new ObservableCollection<BO.LineStation>(line.Stations);
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            if(cbAddedStation.SelectedItem==null)
+            {
+                MessageBox.Show("יש להכניס תחנה להוספה", "שגיאה");
+                return;
+            }
+            if (chIsFirst.IsChecked==false&&cbStationBefore.SelectedItem==null)
+            {
+                MessageBox.Show("יש להכניס תחנה קודמת", "שגיאה");
+                return;
+            }
+            int code = (cbAddedStation.SelectedItem as BO.Station).Code;
+            int lineId = (DataContext as BO.Line).Id;
+            int statBefore;
+            if (chIsFirst.IsChecked == true)
+                statBefore = 0;
+            else
+                statBefore = (cbStationBefore.SelectedItem as BO.LineStation).Code;
+            bl.AddStationToLine(code, lineId, statBefore);
+            Close();
+        }
+
+        private void chIsFirst_Click(object sender, RoutedEventArgs e)
+        {
+            if((sender as CheckBox).IsChecked==true)
+            {
+                cbStationBefore.Visibility = Visibility.Hidden;
+                textStatBef.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                cbStationBefore.Visibility = Visibility.Visible;
+                textStatBef.Visibility = Visibility.Visible;
+            }
         }
     }
 }

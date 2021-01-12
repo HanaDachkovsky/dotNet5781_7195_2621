@@ -102,7 +102,8 @@ namespace PL
                 return;
 
             char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
-            if(c=='.')
+            //if(c=='.')
+            if(c== '¾')
             {
                 bool hasPoint = false;
                 int length = (sender as TextBox).Text.Length;
