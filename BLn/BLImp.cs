@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
 using System.Text;
+//using System.Device.Location;
 using BLAPI;
 using BO;
 using DLAPI;
@@ -42,9 +44,16 @@ namespace BL
                     //thow 2 תחנות שוות
                 }
 
-                dl.AddLine(new DO.Line { Code = code, Arae = (DO.Enums.Areas)area, FirstStation = station1.Code, LastStation = station2.Code });
-                dl.AddLineStation(new DO.LineStation { Station = station1.Code, LineStationIndex = 1, PrevStation = 0, NextStation = station2.Code, });
-                dl.AddLineStation(new DO.LineStation { Station = station2.Code, PrevStation = station1.Code, NextStation = 0, LineStationIndex = 2 });
+                int lineID=dl.AddLine(new DO.Line { Code = code, Arae = (DO.Enums.Areas)area, FirstStation = station1.Code, LastStation = station2.Code });
+                dl.AddLineStation(new DO.LineStation { Station = station1.Code, LineStationIndex = 1, PrevStation = 0, NextStation = station2.Code, LineId=lineID });
+                dl.AddLineStation(new DO.LineStation { Station = station2.Code, PrevStation = station1.Code, NextStation = 0, LineStationIndex = 2, LineId=lineID });
+                if(dl.GetAllAdjacentStationsBy(a=>a.Station1==station1.Code&&a.Station2==station2.Code).Count()<1)
+                {
+                    double dis = calDistance(station1.Code, station2.Code);
+                    TimeSpan time = calTime(station1.Code, station2.Code);
+                    dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = station1.Code, Station2 = station2.Code, Distance = dis, Time = time });
+                }
+                
             }
             catch (Exception ex)
             {
@@ -52,6 +61,29 @@ namespace BL
                 //throw;
             }
 
+        }
+
+        private TimeSpan calTime(int code1, int code2)
+        {
+            return new TimeSpan(0, (int)(60 * calDistance(code1, code2) / 30), 0);
+        }
+
+        private double calDistance(int code1, int code2)
+        {
+            try
+            {
+                DO.Station station1 = dl.GetStation(code1);
+                DO.Station station2 = dl.GetStation(code2);
+                GeoCoordinate coor1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
+                GeoCoordinate coor2 = new GeoCoordinate(station2.Latitude, station2.Longitude);
+                return coor1.GetDistanceTo(coor2)*1.5;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
 
         public void AddStation(int code, string name, string address, double latitude, double longitude)
@@ -331,17 +363,27 @@ namespace BL
                 if (dl.GetLine(lineId).FirstStation == code)
                 {
 
-                    int first = dl.GetLineStation(lineId, next).Station;
+                    int first = dl.GetLineStation(lineId, next).Station;////?
                     dl.UpdateLine(lineId, l => l.FirstStation = first);
                 }
                 else if (dl.GetLine(lineId).LastStation == code)
                 {
                     dl.UpdateLine(lineId, l => l.LastStation = prev);
                 }
+                else
+                {
+                    if (dl.GetAllAdjacentStationsBy(a => a.Station1 == prev && a.Station2 == next).Count() < 1)
+                    {
+                        double dis = calDistance(prev, next);
+                        TimeSpan time = calTime(prev, next);
+                        dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = prev, Station2 = next, Distance = dis, Time = time });
+                    }
+                }
                 index = dl.GetLineStation(lineId, code).LineStationIndex;
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
                 dl.DeleteLineStation(lineId, code);
                 //תחנות עוקבות?
+               
             }
             catch (Exception ex)
             {

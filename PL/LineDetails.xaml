@@ -45,7 +45,8 @@
                 <TextBlock Text="{Binding Path=DistanceFromPrevStat}" Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
                 <TextBlock Text="{Binding Path=TimeFromPrevStat}" Grid.Column="3" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
                 <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="5" VerticalAlignment="Top" Width="170" Height="44" Click="btUpdate_Click" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" />
+                <Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="5" VerticalAlignment="Top" Width="170" Height="44" Click="btUpdate_Click"   />
+                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="6" VerticalAlignment="Top" Width="170" Height="44" Click="btDelete_Click"   />
             </Grid>
         </DataTemplate>
     </Window.Resources>
@@ -66,10 +67,10 @@
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="10.4,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Grid.Column="5"><Run Foreground="#FF00539C" FontWeight="Bold" FlowDirection="RightToLeft" Text="מספר קו:"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="13,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Grid.Column="3"><Run FlowDirection="RightToLeft" Text="אזור:" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="31" Margin="5,23,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="139" Grid.ColumnSpan="2" Grid.Column="3"><Run FlowDirection="RightToLeft" Text="תחנות בקו:" /></TextBlock>
-        <ListBox Name="lbStations" HorizontalAlignment="Left" Height="269" Grid.Row="2" VerticalAlignment="Top" Width="792" ItemTemplate="{StaticResource LineStationTemplate }" Grid.ColumnSpan="6"/>
+        <ListBox Name="lbStations" HorizontalAlignment="Left" Height="279" Grid.Row="2" VerticalAlignment="Top" Width="792" ItemTemplate="{StaticResource LineStationTemplate }" Grid.ColumnSpan="6"/>
         <TextBlock HorizontalAlignment="Left" Margin="39.4,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="4" Width="68"/>
         <TextBlock HorizontalAlignment="Left" Margin="38.4,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Arae}" VerticalAlignment="Top" Grid.Column="2" Width="61"/>
-        <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="10,15,0,0" VerticalAlignment="Top" Width="116" Click="btUpdate_Click"/>
+        <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="6,17,0,0" VerticalAlignment="Top" Width="116" Click="btUpdate_Click"/>
         <Button x:Name="btAddStation" Content="הוספת תחנה" HorizontalAlignment="Left" Margin="72,19.4,0,0" VerticalAlignment="Top" Width="123" Click="btAddStation_Click" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
         <Button x:Name="btTimes" Content="לוחות זמנים" HorizontalAlignment="Left" Margin="13.2,17,0,0" VerticalAlignment="Top" Width="110" Click="btTimes_Click" Grid.Column="1" />
 

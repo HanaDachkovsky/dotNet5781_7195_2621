@@ -2,6 +2,7 @@
 using DO;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DS
@@ -502,6 +503,27 @@ namespace DS
                 TimeSpan timeFromPrevStat = new TimeSpan(0, (int)(distanceFromPrevStat * 60 / 50), 0);//the time is calculated as distance* 60 /50 Kmh
                 ListAdjacentStations.Add(new DO.AdjacentStations { Station1 = ListStation[i].Code, Station2 = ListStation[i + 1].Code, Distance = distanceFromPrevStat, Time = timeFromPrevStat });
 
+            }
+            for(int i=0;i<50;i++)
+            {
+                int prev, next;
+                if(i==0)
+                {
+                    prev = 0;
+                }
+                else
+                {
+                    prev = ListStation[i - 1].Code;
+                }
+                if(i==ListStation.Count()-1)
+                {
+                    next = 0;
+                }
+                else
+                {
+                    next = ListStation[i + 1].Code;
+                }
+                ListLineStation.Add(new DO.LineStation { LineId = 10, LineStationIndex = i + 1, Station = ListStation[i].Code, PrevStation = prev, NextStation = next });
             }
             for (int i = 0; i < 20; i++)
             {

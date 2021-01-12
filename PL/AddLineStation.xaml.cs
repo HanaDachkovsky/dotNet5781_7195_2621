@@ -1,6 +1,7 @@
 ﻿using BLAPI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,18 @@ namespace PL
     /// </summary>
     public partial class AddLineStation : Window
     {
+        IBL bl;
         public AddLineStation(IBL bl2,BO.Line line)
         {
             InitializeComponent();
-        } 
+            bl = bl2;
+            DataContext = line;
+            cbAddedStation.ItemsSource=new ObservableCollection<>
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

@@ -33,13 +33,14 @@ namespace PL
         
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
-            new AddLineStation(bl,DataContext as BO.Line);
+            new AddLineStation(bl, DataContext as BO.Line).ShowDialog() ;
+            //?
          
         }
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-            new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
+            //new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
             refresh();
         }
         private void refresh()
@@ -50,6 +51,20 @@ namespace PL
         private void btTimes_Click(object sender, RoutedEventArgs e)
         {
             new TimesWindow(bl, DataContext as BO.Line).ShowDialog();
+        }
+
+        private void btDelete_Click(object sender, RoutedEventArgs e)
+        {
+            int code = (((sender as Button).Parent as Grid).DataContext as BO.LineStation).Code;
+            int lineId = (DataContext as BO.Line).Id;
+            bl.DeleteStationInLine(code, lineId);
+            //refresh();
+            //refreshStations();
+        }
+
+        private void refreshStations()
+        {
+            lbStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);
         }
     }
 }
