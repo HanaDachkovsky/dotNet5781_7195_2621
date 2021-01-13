@@ -84,13 +84,13 @@ namespace DO
 
     //trip
 
-    public class BadUderUserNameException : Exception
+    public class BadUserUserNameException : Exception
     {
         public string UserName;
-        public BadUderUserNameException(string userName) : base() => UserName = userName;
-        public BadUderUserNameException(string userName, string message) :
+        public BadUserUserNameException(string userName) : base() => UserName = userName;
+        public BadUserUserNameException(string userName, string message) :
             base(message) => UserName = userName;
-        public BadUderUserNameException(string userName, string message, Exception innerException) :
+        public BadUserUserNameException(string userName, string message, Exception innerException) :
             base(message, innerException) => UserName = userName;
 
         public override string ToString() => base.ToString() + $", bad user user name: {UserName}";

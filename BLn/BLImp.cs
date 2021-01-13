@@ -76,7 +76,7 @@ namespace BL
                 DO.Station station2 = dl.GetStation(code2);
                 GeoCoordinate coor1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
                 GeoCoordinate coor2 = new GeoCoordinate(station2.Latitude, station2.Longitude);
-                return coor1.GetDistanceTo(coor2) * 1.5;
+                return coor1.GetDistanceTo(coor2) * 1.5/1000;
 
             }
             catch (Exception ex)
@@ -180,7 +180,7 @@ namespace BL
                        Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                   let name = dl.GetStation(station.Station).Name
                                   //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
-                                  where (station.LineStationIndex != 1)
+                                  //where (station.LineStationIndex != 1)
                                   let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
                                   let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
                                   select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
@@ -355,7 +355,7 @@ namespace BL
                 {
                     double dis = calDistance(code, next);
                     TimeSpan time = calTime(code, next);
-                    dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = code, Station2 = code, Distance = dis, Time = time });
+                    dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = code, Station2 = next, Distance = dis, Time = time });
                 }
 
             }

@@ -46,7 +46,7 @@
                 <TextBlock Text="{Binding Path=DistanceFromPrevStat}" Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
                 <TextBlock Text="{Binding Path=TimeFromPrevStat}" Grid.Column="3" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
                 <TextBlock Grid.Column="4" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="5" VerticalAlignment="Top" Width="170" Height="44" Click="btUpdate_Click"   />
+                <Button x:Name="btUpdateStation" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="5" VerticalAlignment="Top" Width="170" Height="44" Click="btUpdateStation_Click"   />
                 <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="6" VerticalAlignment="Top" Width="170" Height="44" Click="btDelete_Click"   />
             </Grid>
         </DataTemplate>

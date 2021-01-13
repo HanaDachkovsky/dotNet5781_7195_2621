@@ -63,7 +63,6 @@ namespace DL
 
         public int AddLine(Line line)
         {
-            //חריגות אם תחנות לא קיימות? 
             line.Id = ++Counter.LineNum;
             DataSource.ListLine.Add(line.Clone());
             return line.Id;
@@ -103,7 +102,7 @@ namespace DL
         {
             if (DataSource.ListStation.FirstOrDefault(s => s.Code == station.Code) != null)
             {
-                //throw new
+                throw new DO.BadStationCodeException(station.Code, "כי היא כבר קיימת {linestation}לא ניתן להוסיף את התחנה ");
             }
             DataSource.ListStation.Add(station.Clone());
         }
@@ -128,7 +127,7 @@ namespace DL
         {
             if (DataSource.ListUser.FirstOrDefault(u => u.UserName == user.UserName) != null)
             {
-                //throw new
+                throw new BadUserUserNameException(user.UserName, "כבר קיים נא לבחור שם משתמש אחר{user.UserName} שם המשתמש");
             }
             DataSource.ListUser.Add(user.Clone());
         }
@@ -143,7 +142,7 @@ namespace DL
             DO.Bus bus = DataSource.ListBus.Find(b => b.LicenseNum == licenseNum);
             if (bus == null)
             {
-                //throw new
+                //throw new()
             }
             DataSource.ListBus.Remove(bus);
         }
@@ -163,7 +162,7 @@ namespace DL
             DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
             if (line == null)
             {
-                //throw new
+                throw new BadLineIdException(id, "כי הוא לא קיים {id}לא ניתן למחוק את הקו ");
             }
             DataSource.ListLine.Remove(line);
         }
@@ -173,7 +172,7 @@ namespace DL
             DO.LineStation lineStation = DataSource.ListLineStation.Find(l => l.LineId == lineId && l.Station == station);
             if (lineStation == null)
             {
-                //throw new
+                throw new BadLineStationIdException(lineId, station, "{lineId} כי היא לא קיימת בקו {station}לא ניתן למחוק את התחנה ");
             }
             DataSource.ListLineStation.Remove(lineStation);
         }
@@ -183,7 +182,7 @@ namespace DL
             DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(l => l.Id == id);
             if (lineTrip == null)
             {
-                //throw new
+                throw new BadLineTripIdException(id, "כי היא לא קיימת בקו לא ניתן למחוק את התחנה ");
             }
             DataSource.ListLineTrip.Remove(lineTrip);
         }

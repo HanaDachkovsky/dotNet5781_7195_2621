@@ -41,13 +41,9 @@ namespace PL
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-            //new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
-            //refresh();
-            var lineStation = ((sender as Button).Parent as Grid).DataContext as BO.LineStation;
-            int lineId = (DataContext as BO.Line).Id;
-            new UpdateLineStationWindow(bl, lineStation, lineId).ShowDialog();
-            //refresh
-            //!!!!!!!!!!!!!!!!!
+            new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
+            refresh();
+            
         }
         private void refresh()
         {
@@ -65,12 +61,23 @@ namespace PL
             int lineId = (DataContext as BO.Line).Id;
             bl.DeleteStationInLine(code, lineId);
             //refresh();
-            //refreshStations();
+            refreshStations();
         }
 
         private void refreshStations()
         {
             lbStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);
+        }
+
+        private void btUpdateStation_Click(object sender, RoutedEventArgs e)
+        {
+            //new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
+            //refresh();
+            var lineStation = ((sender as Button).Parent as Grid).DataContext as BO.LineStation;
+            int lineId = (DataContext as BO.Line).Id;
+            new UpdateLineStationWindow(bl, lineStation, lineId).ShowDialog();
+            refreshStations();
+            //!!!!!!!!!!!!!!!!!
         }
     }
 }

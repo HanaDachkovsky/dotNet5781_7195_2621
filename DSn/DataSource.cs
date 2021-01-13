@@ -485,11 +485,11 @@ namespace DS
                 //ListLine.Add(line);
                 line.FirstStation = ListStation[5 * i].Code;
                 line.LastStation = ListStation[5 * i + 9].Code;
-                ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[5 * i].Code, PrevStation = 0, NextStation = ListStation[5 * i + 1].Code });
-                ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[5 * i + 9].Code, PrevStation = ListStation[5 * i + 8].Code, NextStation = 0 });
-                for (int j = 5 * i + 1; j < 5 * i + 9; j++)
+                ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[5 * i].Code, PrevStation = 0, NextStation = ListStation[5 * i + 1].Code,LineStationIndex=1 });
+                ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[5 * i + 9].Code, PrevStation = ListStation[5 * i + 8].Code, NextStation = 0 ,LineStationIndex=10});
+                for (int j = 5 * i + 1, stationIndex=2; j < 5 * i + 9; j++,stationIndex++)
                 {
-                    ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[j].Code, PrevStation = ListStation[j - 1].Code, NextStation = ListStation[j + 1].Code });
+                    ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[j].Code, PrevStation = ListStation[j - 1].Code, NextStation = ListStation[j + 1].Code, LineStationIndex=stationIndex });
                 }
                 ListLine.Add(line);
                 ListLineTrip.Add(new DO.LineTrip { Id = ++DO.Counter.LineTripNum, LineId = line.Id, StartAt = new TimeSpan(6,0,0), Frequency = new TimeSpan(0, 10, 0), FinishAt = new TimeSpan(23,0,0) });
@@ -523,7 +523,7 @@ namespace DS
                 {
                     next = ListStation[i + 1].Code;
                 }
-                ListLineStation.Add(new DO.LineStation { LineId = 10, LineStationIndex = i + 1, Station = ListStation[i].Code, PrevStation = prev, NextStation = next });
+                ListLineStation.Add(new DO.LineStation { LineId = 10, LineStationIndex = i + 1, Station = ListStation[i].Code, PrevStation = prev, NextStation = next}); 
             }
             for (int i = 0; i < 20; i++)
             {
