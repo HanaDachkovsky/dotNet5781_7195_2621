@@ -71,10 +71,16 @@ namespace PL
 
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)
         {
+            
             //new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
             //refresh();
             var lineStation = ((sender as Button).Parent as Grid).DataContext as BO.LineStation;
             int lineId = (DataContext as BO.Line).Id;
+            if((DataContext as BO.Line).Stations.ElementAt(0).Code==lineStation.Code)
+            {
+                MessageBox.Show("לא ניתן לעדכן מרחק מתחנה קודמת עבור תחנה ראשונה", "שגיאה");
+                return;
+            }
             new UpdateLineStationWindow(bl, lineStation, lineId).ShowDialog();
             refreshStations();
             //!!!!!!!!!!!!!!!!!

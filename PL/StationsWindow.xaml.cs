@@ -45,7 +45,7 @@ namespace PL
             //למחוק מהרשימה עצמה
             bl.DeleteStation((((sender as Button).Parent as Grid).DataContext as BO.Station).Code);
             refresh();
-            lbStations.SelectedItems.Remove((((sender as Button).Parent as Grid).DataContext as BO.Station));
+            //lbStations.SelectedItems.Remove((((sender as Button).Parent as Grid).DataContext as BO.Station));
             ///////???
             
 

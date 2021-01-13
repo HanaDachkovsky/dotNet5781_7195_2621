@@ -42,7 +42,7 @@
                 </Grid.ColumnDefinitions >
                 <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
                 <TextBlock Name="tbNumber" Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <TextBlock Name="tbLastStation" Text="{Binding Path=LastStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
+                <TextBlock Name="tbLastStation" Text="{Binding Path=NameLastStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
             </Grid>
         </DataTemplate>
     </Window.Resources>

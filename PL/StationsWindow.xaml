@@ -37,8 +37,8 @@
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition />                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions >
-                <TextBlock Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  Foreground="#FF00539C" FontWeight="Bold"><Run FlowDirection="RightToLeft" /></TextBlock>
-                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Click="btDelete_Click"/>
+                <TextBlock Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  ><Run FlowDirection="RightToLeft" /></TextBlock>
+                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44"  FontWeight="Bold" Click="btDelete_Click"/>
                 <!--Button x:Name="btUpdate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" Click="btDelete_Click"/-->
             </Grid>
         </DataTemplate>

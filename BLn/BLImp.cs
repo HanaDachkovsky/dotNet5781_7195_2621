@@ -155,6 +155,7 @@ namespace BL
                 dl.DeleteStation(num);
                 dl.GetAllLineStationBy(ls => ls.Station == num).ToList().ForEach(ls => DeleteStationInLine(num, ls.LineId));
                 //תחנות עוקבות?
+                dl.GetAllAdjacentStationsBy(a => a.Station1 == num || a.Station2 == num).ToList().ForEach(a => dl.DeleteAdjacentStations(a.Station1, a.Station2));
             }
             catch (Exception ex)
             {
@@ -201,20 +202,22 @@ namespace BL
                        Latitude = station.Latitude,
                        Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
                                let line = dl.GetLine(lineSt.LineId)
-                               let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
+                               //let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
                                select new BO.StationLine
                                {
                                    Id = line.Id,
                                    Code = line.Code,
                                    LastStation = line.LastStation,
+                                   NameLastStation=dl.GetStation(line.LastStation).Name
                                    // ArrivalTimes = arrivalTimes
                                }
                    };
         }
-        private IEnumerable<DateTime> ExceptedArrivalTimes(int lineId, int code)
-        {
-            throw new NotImplementedException();
-        }
+        //private IEnumerable<DateTime> ExceptedArrivalTimes(int lineId, int code)
+        //{
+        //    throw new NotImplementedException();
+
+        //}
 
         public bool IsAdminAndExists(string userName, string password)
         {
@@ -430,12 +433,13 @@ namespace BL
                     Latitude = station.Latitude,
                     Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
                             let line = dl.GetLine(lineSt.LineId)
-                            let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
+                            //let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
                             select new BO.StationLine
                             {
                                 Id = line.Id,
                                 Code = line.Code,
                                 LastStation = line.LastStation,
+                                NameLastStation=dl.GetStation(line.LastStation).Name
                                 // ArrivalTimes = arrivalTimes
 
                             }

@@ -134,7 +134,12 @@ namespace DL
 
         public void DeleteAdjacentStations(int station1, int station2)
         {
-            throw new NotImplementedException();
+            DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a => a.Station1 == station1 && a.Station2 == station2);
+            if (adj==null)
+            {
+                throw new BadAdjacentStationsCodesException(station1, station2, "לא ניתן למחוק את התחנה");
+            }
+            DataSource.ListAdjacentStations.Remove(adj);
         }
 
         public void DeleteBus(int licenseNum)
@@ -192,7 +197,7 @@ namespace DL
             DO.Station station = DataSource.ListStation.Find(s => s.Code == code);
             if (station == null)
             {
-                //throw new
+                throw new BadStationCodeException(code, "");
             }
             DataSource.ListStation.Remove(station);
         }
@@ -358,6 +363,7 @@ namespace DL
             return from lineStation in DataSource.ListLineStation
                    where predicate(lineStation)
                    select lineStation.Clone();
+            
         }
 
         public LineTrip GetLineTrip(int id)
