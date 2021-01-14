@@ -32,6 +32,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B264779C-C573-451F-98AD-E73727842B5B}"
 	ProjectSection(SolutionItems) = preProject
 		bin\config.xml = bin\config.xml
+		..\..\..\OneDrive\Desktop\בונוסים בשלב א.docx = ..\..\..\OneDrive\Desktop\בונוסים בשלב א.docx
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLObject", "DLObject\DLObject.csproj", "{A85BE788-9BDC-4733-A487-8EF859CCB2F8}"
