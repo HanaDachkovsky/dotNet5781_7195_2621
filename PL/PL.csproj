@@ -222,6 +222,11 @@
       <Name>BLn</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="line.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="station.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
