@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="BusesWindow" Height="450" Width="800">
+        Title="אוטובוסים" Height="450" Width="800" Background="AliceBlue">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  
@@ -48,8 +48,8 @@
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>            <RowDefinition Height="80*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
         <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
-            <Button x:Name="addButton"  Content="Add a bus" RenderTransformOrigin="9.116,1.755"  Margin="0.8,0,-0.4,-0.4"  Grid.Column="1" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Height="70" VerticalAlignment="Bottom" Click="addButton_Click"/>
+            <Button x:Name="addButton" Content="הוספת אוטובוס" RenderTransformOrigin="9.116,1.755"  Margin="0.8,0,-0.4,-0.4"  Grid.Column="1" Background="#FF9BD0FF" Foreground="#FF00539C" FontWeight="Bold" FontSize="22" Height="70" VerticalAlignment="Bottom" Click="addButton_Click"/>
         </Grid>
-        <ListBox x:Name="busList" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate }"  />
+        <ListBox x:Name="lbBuses" HorizontalAlignment="Left" Grid.Row="1" Width="792" Margin="0,2,0,-2" ItemsSource="{Binding}" ItemTemplate="{StaticResource BusTemplate }"  />
     </Grid>
 </Window>

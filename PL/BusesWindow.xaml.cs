@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BLAPI;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +21,19 @@ namespace PL
     /// </summary>
     public partial class BusesWindow : Window
     {
-        public BusesWindow()
+        IBL bl;
+        public BusesWindow(IBL bl2)
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+                bl = bl2;
+                lbBuses.ItemsSource = new ObservableCollection<BO.Bus>(bl.GetAllBuses());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
