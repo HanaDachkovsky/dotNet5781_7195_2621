@@ -25,10 +25,17 @@ namespace PL
         IBL bl;
         public StationsWindow(IBL bl2)
         {
-            InitializeComponent();
-            bl = bl2;
-            lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
-           
+            try
+            {
+                InitializeComponent();
+                bl = bl2;
+                lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
+
             //list=new obs
             //itemsource=list
             //
@@ -37,25 +44,46 @@ namespace PL
         }
         private void refresh()
         {
-            lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+            try
+            {
+                lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             //lbStations.ItemsSource
             //למחוק מהרשימה עצמה
-            bl.DeleteStation((((sender as Button).Parent as Grid).DataContext as BO.Station).Code);
-            refresh();
+            try
+            {
+                bl.DeleteStation((((sender as Button).Parent as Grid).DataContext as BO.Station).Code);
+                refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
             //lbStations.SelectedItems.Remove((((sender as Button).Parent as Grid).DataContext as BO.Station));
             ///////???
-            
+
 
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            //AddStationWindow addStationWindow = new AddStationWindow(bl);
-            new AddStationWindow(bl).ShowDialog();
-            lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+            try
+            {
+                //AddStationWindow addStationWindow = new AddStationWindow(bl);
+                new AddStationWindow(bl).ShowDialog();
+                lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void lbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)

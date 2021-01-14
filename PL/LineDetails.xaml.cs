@@ -47,7 +47,14 @@ namespace PL
         }
         private void refresh()
         {
-            DataContext = bl.GetLine((DataContext as BO.Line).Id);
+            try
+            {
+                DataContext = bl.GetLine((DataContext as BO.Line).Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void btTimes_Click(object sender, RoutedEventArgs e)
@@ -66,7 +73,7 @@ namespace PL
 
         private void refreshStations()
         {
-            lbStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);
+            lbStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);//?
         }
 
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)

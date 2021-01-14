@@ -34,6 +34,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             if(cbAddedStation.SelectedItem==null)
             {
                 MessageBox.Show("יש להכניס תחנה להוספה", "שגיאה");
@@ -51,8 +52,16 @@ namespace PL
                 statBefore = 0;
             else
                 statBefore = (cbStationBefore.SelectedItem as BO.LineStation).Code;
-            bl.AddStationToLine(code, lineId, statBefore);
-            Close();
+            try
+            {
+                bl.AddStationToLine(code, lineId, statBefore);
+                Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
+            
         }
 
         private void chIsFirst_Click(object sender, RoutedEventArgs e)

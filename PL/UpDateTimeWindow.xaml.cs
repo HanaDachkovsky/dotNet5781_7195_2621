@@ -73,8 +73,15 @@ namespace PL
             TimeSpan startAt = new TimeSpan(int.Parse(tbStartH.Text), int.Parse(tbStartM.Text), 0);
             TimeSpan finishAt = new TimeSpan(int.Parse(tbFinishH.Text), int.Parse(tbFinishM.Text), 0);
             TimeSpan freq = new TimeSpan(0, int.Parse(tbfreuquency.Text), 0);
-            bl.UpdateLineTrip(DataContext as BO.LineTrip,startAt, finishAt, freq);
-            Close();
+            try
+            {
+                bl.UpdateLineTrip(DataContext as BO.LineTrip, startAt, finishAt, freq);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         

@@ -67,12 +67,12 @@ namespace PL
                     }
                     else
                     {
-
+                        
                     }
                 }
-                catch (Exception exp)
+                catch (Exception ex)
                 {
-                    MessageBox.Show(exp.Message);
+                    MessageBox.Show(ex.Message, "שגיאה");
                 }
 
             }

@@ -54,8 +54,15 @@ namespace PL
                 MessageBox.Show("יש להכניס קו רוחב", "שגיאה");
                 return;
             }
-            bl.AddStation(int.Parse(tbCode.Text), tbName.Text, tbAddress.Text, double.Parse(tbLat.Text), double.Parse(tbLong.Text));
-            this.Close();
+            try
+            {
+                bl.AddStation(int.Parse(tbCode.Text), tbName.Text, tbAddress.Text, double.Parse(tbLat.Text), double.Parse(tbLong.Text));
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void tbCode_PreviewKeyDown(object sender, KeyEventArgs e)

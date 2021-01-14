@@ -22,16 +22,23 @@ namespace PL
     public partial class TimesWindow : Window
     {
         IBL bl;
-        
+
         public TimesWindow(IBL bl2, BO.Line line)
         {
-            InitializeComponent();
-            bl = bl2;
-            DataContext = line;
-            lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips(line.Id));
+            try
+            {
+                InitializeComponent();
+                bl = bl2;
+                DataContext = line;
+                lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips(line.Id));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
-      
+
         private void btAddTime_Click(object sender, RoutedEventArgs e)
         {
             new AddTimeWindow(bl, DataContext as BO.Line).ShowDialog();
@@ -40,14 +47,28 @@ namespace PL
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            int id = (((sender as Button).Parent as Grid).DataContext as BO.LineTrip).Id;
-            bl.DeleteLineTrip(id);
-            refresh();
+            try
+            {
+                int id = (((sender as Button).Parent as Grid).DataContext as BO.LineTrip).Id;
+                bl.DeleteLineTrip(id);
+                refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void refresh()
         {
-            lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips((DataContext as BO.Line).Id));
+            try
+            {
+                lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips((DataContext as BO.Line).Id));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void btUpDate_Click(object sender, RoutedEventArgs e)

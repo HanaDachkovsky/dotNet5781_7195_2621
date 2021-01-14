@@ -43,8 +43,15 @@ namespace PL
                 tbName.Text = (DataContext as BO.Station).Name;
                 return;
             }
-            bl.UpdateStation((DataContext as BO.Station).Code, tbName.Text, tbAddress.Text);
-            Close();
+            try
+            {
+                bl.UpdateStation((DataContext as BO.Station).Code, tbName.Text, tbAddress.Text);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
     }
 }

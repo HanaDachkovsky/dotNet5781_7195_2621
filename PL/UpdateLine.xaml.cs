@@ -46,8 +46,15 @@ namespace PL
                 cbArea.SelectedItem = (DataContext as BO.Line).Arae;
                 return;
             }
-            bl.UpdateLine((DataContext as BO.Line).Id, int.Parse(tbCode.Text), (BO.Enums.Areas)cbArea.SelectedItem);
-            Close();
+            try
+            {
+                bl.UpdateLine((DataContext as BO.Line).Id, int.Parse(tbCode.Text), (BO.Enums.Areas)cbArea.SelectedItem);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
 
         }
 

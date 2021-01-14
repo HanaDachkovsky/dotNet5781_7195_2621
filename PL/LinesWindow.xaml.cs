@@ -24,26 +24,54 @@ namespace PL
         IBL bl;
         public LinesWindow(IBL bl2)
         {
-            InitializeComponent();
-            bl = bl2;
-            lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+            try
+            {
+                InitializeComponent();
+                bl = bl2;
+                lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            new AddWindowLine(bl).ShowDialog();
-            lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+            try
+            {
+                new AddWindowLine(bl).ShowDialog();
+                lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
             int id = ((((sender as Button).Parent as Grid).DataContext as BO.Line)).Id;///בעיית מחיקה
-            bl.DeleteLine(id);
-            refresh();
+            try
+            {
+                bl.DeleteLine(id);
+                refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
         private void refresh()
         {
-            lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+            try
+            {
+                lbLines.ItemsSource = new ObservableCollection<BO.Line>(bl.GetAllLines());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
         private void lbLines_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {

@@ -32,8 +32,15 @@ namespace PL
 
         private void btUpdate_Click(object sender, RoutedEventArgs e)
         {
-            new UpDateStation(bl, DataContext as BO.Station).ShowDialog();
-            DataContext = bl.getStation((DataContext as BO.Station).Code);
+            try
+            {
+                new UpDateStation(bl, DataContext as BO.Station).ShowDialog();
+                DataContext = bl.getStation((DataContext as BO.Station).Code);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
         private void lbLines_SelectionChanged(object sender, SelectionChangedEventArgs e)

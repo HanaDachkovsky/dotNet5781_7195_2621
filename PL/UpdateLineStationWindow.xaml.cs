@@ -22,7 +22,7 @@ namespace PL
     {
         IBL bl;
         int lineId;
-        public UpdateLineStationWindow(IBL bl2,BO.LineStation lineStation , int lineID)
+        public UpdateLineStationWindow(IBL bl2, BO.LineStation lineStation, int lineID)
         {
             InitializeComponent();
             bl = bl2;
@@ -41,7 +41,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(tbHours.Text==string.Empty||tbMinutes.Text==string.Empty)
+            if (tbHours.Text == string.Empty || tbMinutes.Text == string.Empty)
             {
                 MessageBox.Show("יש להכניס זמן", "שגיאה");
                 init();
@@ -53,8 +53,15 @@ namespace PL
                 init();
                 return;
             }
-            bl.UpdateTimeOrDistance((DataContext as BO.LineStation).Code, lineId, new TimeSpan(int.Parse(tbHours.Text),int.Parse(tbMinutes.Text),0), double.Parse(tbDistance.Text));
-            Close();
+            try
+            {
+                bl.UpdateTimeOrDistance((DataContext as BO.LineStation).Code, lineId, new TimeSpan(int.Parse(tbHours.Text), int.Parse(tbMinutes.Text), 0), double.Parse(tbDistance.Text));
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
     }
 }

@@ -93,8 +93,15 @@ namespace PL
                 MessageBox.Show("יש לבחור תחנה אחרונה", "שגיאה");
                 return;
             }
-            bl.AddLine(int.Parse(tbNumber.Text), (BO.Enums.Areas)cbArea.SelectedItem, (BO.Station)cbFirst.SelectedItem, (BO.Station)cbLast.SelectedItem);
-            Close();
+            try
+            {
+                bl.AddLine(int.Parse(tbNumber.Text), (BO.Enums.Areas)cbArea.SelectedItem, (BO.Station)cbFirst.SelectedItem, (BO.Station)cbLast.SelectedItem);
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
     }
 }
