@@ -26,11 +26,11 @@ namespace DL
             if (DataSource.ListStation.FirstOrDefault(s => s.Code == adjacentStations.Station1) == null)
             {//2 exs??
 
-                throw new DO.BadStationCodeException(adjacentStations.Station1, $", bad station code: {adjacentStations.Station1}");
+                throw new DO.BadStationCodeException(adjacentStations.Station1, $" bad station code: {adjacentStations.Station1}");
             }
             if (DataSource.ListStation.FirstOrDefault(s => s.Code == adjacentStations.Station2) == null)
             {
-                throw new DO.BadStationCodeException(adjacentStations.Station2, $", bad station code: {adjacentStations.Station2}");
+                throw new DO.BadStationCodeException(adjacentStations.Station2, $" bad station code: {adjacentStations.Station2}");
             }
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
         }
@@ -78,11 +78,11 @@ namespace DL
             }
             if (DataSource.ListStation.FirstOrDefault(s => s.Code == lineStation.Station) == null)
             {
-                throw new DO.BadStationCodeException(lineStation.Station, $", bad station code: {lineStation.Station}");
+                throw new DO.BadStationCodeException(lineStation.Station, $"bad station code: {lineStation.Station}");
             }
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineStation.LineId) == null)
             {
-                throw new DO.BadLineIdException(lineStation.LineId, ", bad line id: {lineStation.LineId}");
+                throw new DO.BadLineIdException(lineStation.LineId, $"bad line id: {lineStation.LineId}");
             }
             DataSource.ListLineStation.Add(lineStation.Clone());
         }
@@ -91,7 +91,7 @@ namespace DL
         {
             if (DataSource.ListLine.FirstOrDefault(l => l.Id == lineTrip.LineId) == null)
             {
-                throw new DO.BadLineIdException(lineTrip.LineId, ", bad line id: {lineTrip.LineId}");
+                throw new DO.BadLineIdException(lineTrip.LineId, $"bad line id: {lineTrip.LineId}");
             }
             lineTrip.Id = ++Counter.LineTripNum;
             DataSource.ListLineTrip.Add(lineTrip.Clone());
@@ -102,7 +102,7 @@ namespace DL
         {
             if (DataSource.ListStation.FirstOrDefault(s => s.Code == station.Code) != null)
             {
-                throw new DO.BadStationCodeException(station.Code, "כי היא כבר קיימת {linestation}לא ניתן להוסיף את התחנה ");
+                throw new DO.BadStationCodeException(station.Code, "Duplicate stations");
             }
             DataSource.ListStation.Add(station.Clone());
         }
@@ -127,7 +127,7 @@ namespace DL
         {
             if (DataSource.ListUser.FirstOrDefault(u => u.UserName == user.UserName) != null)
             {
-                throw new BadUserUserNameException(user.UserName, "כבר קיים נא לבחור שם משתמש אחר{user.UserName} שם המשתמש");
+                throw new BadUserUserNameException(user.UserName, "Duplicate users");
             }
             DataSource.ListUser.Add(user.Clone());
         }
@@ -137,7 +137,7 @@ namespace DL
             DO.AdjacentStations adj = DataSource.ListAdjacentStations.Find(a => a.Station1 == station1 && a.Station2 == station2);
             if (adj==null)
             {
-                throw new BadAdjacentStationsCodesException(station1, station2, "לא ניתן למחוק את התחנה");
+                throw new BadAdjacentStationsCodesException(station1, station2, $"bad adjecent stations codes: { station1 } and {station2} ");
             }
             DataSource.ListAdjacentStations.Remove(adj);
         }
@@ -167,7 +167,7 @@ namespace DL
             DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
             if (line == null)
             {
-                throw new BadLineIdException(id, "כי הוא לא קיים {id}לא ניתן למחוק את הקו ");
+                throw new BadLineIdException(id, $"bad line id: {line.Id}");
             }
             DataSource.ListLine.Remove(line);
         }
@@ -177,7 +177,7 @@ namespace DL
             DO.LineStation lineStation = DataSource.ListLineStation.Find(l => l.LineId == lineId && l.Station == station);
             if (lineStation == null)
             {
-                throw new BadLineStationIdException(lineId, station, "{lineId} כי היא לא קיימת בקו {station}לא ניתן למחוק את התחנה ");
+                throw new BadLineStationIdException(lineId, station, $"bad station code: {station} in line {lineId}");
             }
             DataSource.ListLineStation.Remove(lineStation);
         }
@@ -187,7 +187,7 @@ namespace DL
             DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(l => l.Id == id);
             if (lineTrip == null)
             {
-                throw new BadLineTripIdException(id, "כי היא לא קיימת בקו לא ניתן למחוק את התחנה ");
+                throw new BadLineTripIdException(id, $"bad line id: {lineTrip.LineId}");
             }
             DataSource.ListLineTrip.Remove(lineTrip);
         }
@@ -197,7 +197,7 @@ namespace DL
             DO.Station station = DataSource.ListStation.Find(s => s.Code == code);
             if (station == null)
             {
-                throw new BadStationCodeException(code, "");
+                throw new BadStationCodeException(code, $"bad station code: {code}");
             }
             DataSource.ListStation.Remove(station);
         }
@@ -217,7 +217,7 @@ namespace DL
             DO.User user = DataSource.ListUser.Find(u => u.UserName == userName);
             if (user == null)
             {
-                //throw new
+                throw new BadUserUserNameException(userName, $"bad user name: {userName}");
             }
             DataSource.ListUser.Remove(user);
         }
@@ -231,7 +231,7 @@ namespace DL
             DO.AdjacentStations adjacentStations = DataSource.ListAdjacentStations.Find(a => a.Station1 == station1 && a.Station2 == station2);
             if (adjacentStations == null)
             {
-                //throw new
+                throw new BadAdjacentStationsCodesException(station1, station2, $"bad stations codes: {station1} and {station2}");
             }
             return adjacentStations.Clone();
         }
@@ -336,7 +336,7 @@ namespace DL
             DO.Line line = DataSource.ListLine.Find(l => l.Id == id);
             if (line == null)
             {
-                //throw new
+                throw new BadLineIdException(id, $"bad line id: {id}");
             }
             return line.Clone();
         }
@@ -353,7 +353,7 @@ namespace DL
             DO.LineStation lineStation = DataSource.ListLineStation.Find(ls => ls.LineId == lineId && ls.Station == station);
             if (lineStation == null)
             {
-                //throw new
+                throw new BadLineStationIdException(lineId, station, $"bad station code: {station} in line {lineId}");
             }
             return lineStation.Clone();
         }
@@ -371,7 +371,7 @@ namespace DL
             DO.LineTrip lineTrip = DataSource.ListLineTrip.Find(lt => lt.Id == id);
             if (lineTrip == null)
             {
-                //throw new
+                throw new BadLineTripIdException(id, $"bad line trip id: {id}");
             }
             return lineTrip.Clone();
         }
@@ -388,7 +388,7 @@ namespace DL
             DO.Station station = DataSource.ListStation.Find(s => s.Code == code);
             if (station == null)
             {
-                //throw
+                throw new BadStationCodeException(code, $"bad station code: {code}");
             }
             return station.Clone();
         }
@@ -422,7 +422,7 @@ namespace DL
             DO.User user = DataSource.ListUser.Find(u => u.UserName == userName);
             if (user == null)
             {
-                //throw new
+                throw new BadUserUserNameException(userName, $"bad user name: {userName}");
             }
             return user.Clone();
         }
@@ -440,7 +440,7 @@ namespace DL
 
             if (adj == null)
             {
-                //throw new
+                throw new BadAdjacentStationsCodesException(adjacentStations.Station1,adjacentStations.Station2, $"bad stations codes: {adjacentStations.Station1} and {adjacentStations.Station2}");
             }
             DataSource.ListAdjacentStations.Remove(adj);
             DataSource.ListAdjacentStations.Add(adjacentStations.Clone());
@@ -453,7 +453,7 @@ namespace DL
 
             if (adj == null)
             {
-                //throw new
+                throw new BadAdjacentStationsCodesException(station1, station2, $"bad stations codes: {station1} and {station2}");
             }
             update(adj);
 
@@ -465,7 +465,7 @@ namespace DL
 
             if (bu == null)
             {
-                //throw new
+               //throw new
             }
             DataSource.ListBus.Remove(bu);
             DataSource.ListBus.Add(bus.Clone());
@@ -511,7 +511,7 @@ namespace DL
 
             if (lin == null)
             {
-                //throw new
+                throw new BadLineIdException(line.Id, $"bad line id: {line.Id} ");
             }
             DataSource.ListLine.Remove(lin);
             DataSource.ListLine.Add(line.Clone());
@@ -523,7 +523,7 @@ namespace DL
 
             if (lin == null)
             {
-                //throw new
+                throw new BadLineIdException(id, $"bad line id: {id} ");
             }
             update(lin);
         }
@@ -534,7 +534,7 @@ namespace DL
 
             if (lineS == null)
             {
-                //throw new
+                throw new BadLineStationIdException(lineStation.Station,lineStation.LineId, $"bad station code : {lineStation.Station} in line {lineStation.LineId} ");
             }
             DataSource.ListLineStation.Remove(lineS);
             DataSource.ListLineStation.Add(lineStation.Clone());
@@ -546,7 +546,7 @@ namespace DL
 
             if (lineS == null)
             {
-                //throw new
+                throw new BadLineStationIdException(station,lineId, $"bad station code : {station} in line {lineId} ");
             }
             update(lineS);
         }
@@ -569,7 +569,7 @@ namespace DL
 
             if (lineT == null)
             {
-                //throw new
+                throw new BadLineTripIdException(id, $"bad line trip id:{id}");
             }
             update(lineT);
         }
@@ -580,7 +580,7 @@ namespace DL
 
             if (stat == null)
             {
-                //throw new
+                throw new BadStationCodeException(station.Code, $"bad station code:{station.Code}");
             }
             DataSource.ListStation.Remove(stat);
             DataSource.ListStation.Add(station.Clone());
@@ -592,7 +592,7 @@ namespace DL
 
             if (stat == null)
             {
-                //throw new
+                throw new BadStationCodeException(code, $"bad station code:{code}");
             }
             update(stat);
         }
@@ -626,7 +626,7 @@ namespace DL
 
             if (use == null)
             {
-                //throw new
+                throw new BadUserUserNameException(user.UserName,  $"bad user name:{user.UserName}");
             }
             DataSource.ListUser.Remove(use);
             DataSource.ListUser.Add(user.Clone());
@@ -638,7 +638,7 @@ namespace DL
 
             if (use == null)
             {
-                //throw new
+                throw new BadUserUserNameException(userName, $"bad user name:{userName}");
             }
             update(use);
         }

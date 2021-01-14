@@ -41,7 +41,7 @@ namespace BL
                 dl.GetStation(station2.Code);
                 if (station1.Code == station2.Code)
                 {
-                    //thow 2 תחנות שוות
+                    throw new BO.BadStationCodeException(station1.Code, "לא ניתן להוסיף קו עם תחנות זהות");
                 }
 
                 int lineID = dl.AddLine(new DO.Line { Code = code, Arae = (DO.Enums.Areas)area, FirstStation = station1.Code, LastStation = station2.Code });
@@ -55,10 +55,27 @@ namespace BL
                 }
 
             }
-            catch (Exception ex)
+
+            catch (DO.BadStationCodeException ex)
             {
 
-                //throw;
+                throw new BO.BadStationCodeException("לא ניתן להוסיף את הקו כיון שהתחנות לא קיימות", ex);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+
+                throw new BO.BadLineIdException("לא ניתן להוסיף את הקו", ex);//?
+            }
+            catch (DO.BadLineStationIdException ex)
+            {
+
+                throw new BO.BadLineStationIdException("לא ניתן להוסיף קו עם תחנות אלו כיון שהן כבר לא קיימות בקו", ex);//?
+            }
+
+            catch (DO.BadAdjacentStationsCodesException ex)
+            {
+
+                throw new BO.BadAdjacentStationsCodesException("לא ניתן להוסיף את הקו כיון שהתחנות לא קיימות", ex);//?
             }
 
         }
@@ -76,13 +93,13 @@ namespace BL
                 DO.Station station2 = dl.GetStation(code2);
                 GeoCoordinate coor1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
                 GeoCoordinate coor2 = new GeoCoordinate(station2.Latitude, station2.Longitude);
-                return coor1.GetDistanceTo(coor2) * 1.5/1000;
+                return coor1.GetDistanceTo(coor2) * 1.5 / 1000;
 
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
 
-                throw;
+                throw new BO.BadStationCodeException("לא ניתן לחשב מרחק בין התחנות כיון שהתחנות לא קיימות", ex);
             }
         }
 
@@ -92,21 +109,20 @@ namespace BL
             {
                 //Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3, Lattitude = rand.NextDouble() * (33.3 - 31) + 31
                 if (longitude < 34.3 || longitude > 35.5 || latitude < 31 || latitude > 33.3)
-                    //throw new 
-                    ;
+                    throw new ArgumentOutOfRangeException("לא ניתן להוסיף תחנה שקווי האורך או הרוחב שלה מחוץ לישראל");
             }
             catch (Exception ex)
             {
 
-                //throw
+                throw ex;
             }
             try
             {
                 dl.AddStation(new DO.Station { Code = code, Address = address, Latitude = latitude, Longitude = longitude, Name = name });
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
-                //throw
+                throw new BO.BadStationCodeException("לא ניתן להוסיף תחנה שכבר קיימת", ex);
             }
         }
 
@@ -141,10 +157,19 @@ namespace BL
 
             }
 
-            catch (Exception ex)
+            catch (DO.BadLineIdException ex)
             {
 
-                //throw;
+                throw new BO.BadLineIdException("לא ניתן למחוק את הקו כיון שהוא לא קיים", ex);
+            }
+            catch (DO.BadLineStationIdException ex)
+            {
+
+                throw new BO.BadLineIdException("לא ניתן למחוק את תחנות קו שאינן קיימות", ex);//?
+            }
+            catch (DO.BadLineTripIdException ex)
+            {
+                throw new BO.BadLineTripIdException("לא ניתן למחוק את לוחות הזמנים של הקו כיון שהם לא קיימים", ex);//?
             }
         }
 
@@ -152,15 +177,23 @@ namespace BL
         {
             try
             {
-                dl.DeleteStation(num);
                 dl.GetAllLineStationBy(ls => ls.Station == num).ToList().ForEach(ls => DeleteStationInLine(num, ls.LineId));
                 //תחנות עוקבות?
                 dl.GetAllAdjacentStationsBy(a => a.Station1 == num || a.Station2 == num).ToList().ForEach(a => dl.DeleteAdjacentStations(a.Station1, a.Station2));
+                dl.DeleteStation(num);
             }
-            catch (Exception ex)
+            catch (DO.BadLineStationIdException ex)
             {
 
-                //throw;
+                throw new BO.BadLineIdException("לא ניתן למחוק את תחנות קו שאינן קיימות", ex);//?
+            }
+            catch (DO.BadAdjacentStationsCodesException ex)
+            {
+                throw new BO.BadAdjacentStationsCodesException("לא ניתן למחוק תחנות שלא קיימות", ex);
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException("לא ניתן למחוק תחנה שלא קיימת", ex);
             }
         }
 
@@ -172,46 +205,70 @@ namespace BL
 
         public IEnumerable<Line> GetAllLines()
         {
-            return from line in dl.GetAllLine()
-                   select new BO.Line//
-                   {
-                       Id = line.Id,
-                       Code = line.Code,
-                       Arae = (Enums.Areas)line.Arae,
-                       Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
-                                  let name = dl.GetStation(station.Station).Name
-                                  //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
-                                  //where (station.LineStationIndex != 1)
-                                  let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
-                                  let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
-                                  select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
 
-                   };
+            try
+            {
+                return from line in dl.GetAllLine()
+                       select new BO.Line//
+                       {
+                           Id = line.Id,
+                           Code = line.Code,
+                           Arae = (Enums.Areas)line.Arae,
+                           Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
+                                      let name = dl.GetStation(station.Station).Name
+                                      //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
+                                      //where (station.LineStationIndex != 1)
+                                      let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
+                                      let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
+                                      select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
+
+                       };
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException("שגיאה:תחנה לא קיימת", ex);
+            }
+            catch (DO.BadAdjacentStationsCodesException ex)
+            {
+                throw new BO.BadAdjacentStationsCodesException("שגיאה: תחנה לא קיימת", ex);
+            }
 
         }
 
         public IEnumerable<Station> GetAllStations()
         {
-            return from station in dl.GetAllStation()
-                   select new BO.Station
-                   {
-                       Code = station.Code,
-                       Name = station.Name,
-                       Address = station.Address,
-                       Longitude = station.Longitude,
-                       Latitude = station.Latitude,
-                       Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
-                               let line = dl.GetLine(lineSt.LineId)
-                               //let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
-                               select new BO.StationLine
-                               {
-                                   Id = line.Id,
-                                   Code = line.Code,
-                                   LastStation = line.LastStation,
-                                   NameLastStation=dl.GetStation(line.LastStation).Name
-                                   // ArrivalTimes = arrivalTimes
-                               }
-                   };
+            try
+            {
+                return from station in dl.GetAllStation()
+                       select new BO.Station
+                       {
+                           Code = station.Code,
+                           Name = station.Name,
+                           Address = station.Address,
+                           Longitude = station.Longitude,
+                           Latitude = station.Latitude,
+                           Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
+                                   let line = dl.GetLine(lineSt.LineId)
+                                   //let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
+                                   select new BO.StationLine
+                                   {
+                                       Id = line.Id,
+                                       Code = line.Code,
+                                       LastStation = line.LastStation,
+                                       NameLastStation = dl.GetStation(line.LastStation).Name
+                                       // ArrivalTimes = arrivalTimes
+                                   }
+                       };
+            }
+            catch (DO.BadStationCodeException ex)
+            {
+                throw new BO.BadStationCodeException("שגיאה:תחנה לא קיימת", ex);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException("שגיאה:הקו לא קיים", ex);
+            }
+
         }
         //private IEnumerable<DateTime> ExceptedArrivalTimes(int lineId, int code)
         //{
@@ -225,13 +282,13 @@ namespace BL
             {
                 DO.User user = dl.GetUser(userName);
                 if (user.Password != password)
-                    throw new Exception();
+                    throw new BO.BadUserUserNameException(userName, "שם המשתמש או הסיסמא שגויים");
                 return user.Admin;
             }
-            catch (Exception ex)
+            catch (DO.BadUserUserNameException ex)
             {
 
-                throw new Exception();
+                throw new BO.BadUserUserNameException("שם המשתמש או הסיסמא שגויים", ex);
             }
 
         }
@@ -261,8 +318,16 @@ namespace BL
 
         public void UpdateLine(int id, int code, Enums.Areas area)
         {
-            dl.UpdateLine(id, l => l.Code = code);
-            dl.UpdateLine(id, l => l.Arae = (DO.Enums.Areas)area);
+            try
+            {
+                dl.UpdateLine(id, l => l.Code = code);
+                dl.UpdateLine(id, l => l.Arae = (DO.Enums.Areas)area);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException("לא ניתן לעדכן קו שלא קיים", ex);
+            }
+
         }
         public BO.Line GetLine(int id)
         {
@@ -277,16 +342,20 @@ namespace BL
                     Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                let name = dl.GetStation(station.Station).Name
                                //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
-                               where (station.LineStationIndex != 1)
+                               //where (station.LineStationIndex != 1)
                                let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
                                let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
                                select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
 
                 };
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
-                throw new Exception();
+                throw new BO.BadStationCodeException("שגיאה:תחנה לא קיימת", ex);
+            }
+            catch (DO.BadAdjacentStationsCodesException ex)
+            {
+                throw new BO.BadAdjacentStationsCodesException("שגיאה: תחנה לא קיימת", ex);
             }
         }
 
@@ -298,10 +367,10 @@ namespace BL
                 dl.UpdateStation(code, s => s.Address = address);
 
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
 
-                //throw;
+                throw new BO.BadStationCodeException("לא ניתן לעדכן תחנה שלא קיימת", ex);
             }
         }
         public void AddStationToLine(int code, int lineId, int stationBefore)
@@ -362,10 +431,22 @@ namespace BL
                 }
 
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
 
-                //throw;
+                throw new BadStationCodeException("לא ניתן להוסיף תחנה שלא קיימת", ex);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BadLineIdException("לא ניתן להוסיף תחנה לקו שלא קיים", ex);
+            }
+            catch (DO.BadLineStationIdException ex)
+            {
+                throw new BadLineStationIdException("לא ניתן להוסיף את התחנה כיון שהיא כבר קיימת בקו או שהתחנה לפניה או אחריה לא קיימות בקו", ex);
+            }
+            catch (DO.BadAdjacentStationsCodesException ex)
+            {
+                throw new BadAdjacentStationsCodesException("לא ניתן להוסיף מרחק ומן בין תחנות כיון שהמרחק והזמן ביניהן כבר קיימים ", ex);
             }
         }
         public void DeleteStationInLine(int code, int lineId)
@@ -374,7 +455,7 @@ namespace BL
             {
                 if (dl.GetLineStation(lineId, dl.GetLine(lineId).LastStation).LineStationIndex <= 2)
                 {
-                    // throw new less than 2 stations in the line
+                    throw new BO.BadLineIdException(lineId, "לא ניתן למחוק את התחנה כיון שקימות בקו 2 תחנות");
                 }
                 int index;
                 dl.GetStation(code);
@@ -385,13 +466,17 @@ namespace BL
 
                     int first = dl.GetLineStation(lineId, next).Station;////?
                     dl.UpdateLine(lineId, l => l.FirstStation = first);
+                    dl.UpdateLineStation(lineId, next, ls => ls.PrevStation = prev);
                 }
                 else if (dl.GetLine(lineId).LastStation == code)
                 {
                     dl.UpdateLine(lineId, l => l.LastStation = prev);
+                    dl.UpdateLineStation(lineId, prev, ls => ls.NextStation = next);
                 }
                 else
                 {
+                    dl.UpdateLineStation(lineId, next, ls => ls.PrevStation = prev);
+                    dl.UpdateLineStation(lineId, prev, ls => ls.NextStation = next);
                     if (dl.GetAllAdjacentStationsBy(a => a.Station1 == prev && a.Station2 == next).Count() < 1)
                     {
                         double dis = calDistance(prev, next);
@@ -400,15 +485,27 @@ namespace BL
                     }
                 }
                 index = dl.GetLineStation(lineId, code).LineStationIndex;
-                dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
+                dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex--));
                 dl.DeleteLineStation(lineId, code);
                 //תחנות עוקבות?
 
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
 
-                //throw;
+                throw new BadStationCodeException("לא ניתן למחוק תחנה שלא קיימת", ex);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BadLineIdException("לא ניתן למחוק תחנה מקו שלא קיים", ex);
+            }
+            catch (DO.BadLineStationIdException ex)
+            {
+                throw new BadLineStationIdException("לא ניתן למחוק את התחנה כיון שהיא לא קיימת בקו או שהתחנה לפניה או אחריה לא קיימות בקו", ex);
+            }
+            catch (DO.BadAdjacentStationsCodesException ex)
+            {
+                throw new BadAdjacentStationsCodesException("לא ניתן להוסיף מרחק וזמן בין תחנות כיון שהמרחק והזמן ביניהן כבר קיימים ", ex);
             }
         }
         public void UpdateLineStation(BO.LineStation lineStation, int lineId)
@@ -439,15 +536,19 @@ namespace BL
                                 Id = line.Id,
                                 Code = line.Code,
                                 LastStation = line.LastStation,
-                                NameLastStation=dl.GetStation(line.LastStation).Name
+                                NameLastStation = dl.GetStation(line.LastStation).Name
                                 // ArrivalTimes = arrivalTimes
 
                             }
                 };
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
-                throw new Exception();
+                throw new BO.BadStationCodeException("שגיאה:תחנה לא קיימת", ex);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException("שגיאה:הקו לא קיים", ex);
             }
         }
         public void AddLineTrip(int lineId, TimeSpan startAt, TimeSpan finishAt, TimeSpan freq)
@@ -457,41 +558,39 @@ namespace BL
                 //if (dl.GetAllLineTripBy(lt => lt.LineId == lineId).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
                 if (dl.GetAllLineTripBy(lt => lt.LineId == lineId && ((lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt))).Count() > 0)
                 {
-                    //trow
-                    //delete else
+                    throw new ArgumentOutOfRangeException("לא ניתן להוסיף תדירות שחופפת לתדירות אחרת בקו");
+
                 }
-                else
-                    dl.AddLineTrip(new DO.LineTrip { LineId = lineId, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
+                dl.AddLineTrip(new DO.LineTrip { LineId = lineId, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
             }
-            catch (Exception ex)
+            catch (DO.BadLineIdException ex)
             {
 
-                throw;
+                throw new BO.BadLineIdException("לא ניתן להוסיף לוח זמנים לקו שלא קיים", ex);
             }
         }
         public IEnumerable<BO.LineTrip> getLineTrips(int id)
         {
-            try
-            {
-                return (from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
-                        select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency, Id = item.Id, LineId = item.LineId }).OrderBy(x => x.StartAt);
-            }
-            catch (Exception ex)
-            {
 
-                throw;
-            }
+            return (from item in dl.GetAllLineTripBy(lt => lt.LineId == id)
+                    select new BO.LineTrip { StartAt = item.StartAt, FinishAt = item.FinishAt, Frequency = item.Frequency, Id = item.Id, LineId = item.LineId }).OrderBy(x => x.StartAt);
+
         }
         public void DeleteLineTrip(int id)
         {
             try
             {
+                dl.GetLine((dl.GetLineTrip(id)).LineId);
                 dl.DeleteLineTrip(id);
             }
-            catch (Exception ex)
+            catch (DO.BadLineTripIdException ex)
             {
 
-                throw;
+                throw new BO.BadLineTripIdException("לא ניתן למחוק תדירות שלא קיימת", ex);
+            }
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException("לא ניתן למחוק תדירות מקו שלא קיים", ex);
             }
         }
 
@@ -499,16 +598,21 @@ namespace BL
         {
             try
             {
+                dl.GetLine(lineTrip.LineId);
                 if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
                 {
-                    //trow
+                    throw new ArgumentOutOfRangeException("לא ניתן לעדכן תדירות כך שתהיה חופפת לתדירות אחרת בלוח הזמנים של הקו");
                 }
                 dl.UpdateLineTrip(new DO.LineTrip { LineId = lineTrip.LineId, Id = lineTrip.Id, StartAt = startAt, FinishAt = finishAt, Frequency = freq });
             }
-            catch (Exception ex)
+            catch (DO.BadLineIdException ex)
+            {
+                throw new BO.BadLineIdException("לא ניתן לעדכן תדירות בקו שלא קיים", ex);
+            }
+            catch (DO.BadLineTripIdException ex)
             {
 
-                throw;
+                throw new BO.BadLineTripIdException("לא ניתן לעדכן תדירות שלא קיימת", ex);
             }
         }
         public void UpdateTimeOrDistance(int code, int lineId, TimeSpan time, double distance)
@@ -517,21 +621,22 @@ namespace BL
             {
                 dl.GetStation(code);
                 var prev = dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.NextStation == code).FirstOrDefault();
-                if(prev==null)
+                if (prev == null)
                 {
-                    //throw;
-                    //delete else!
+                    throw new BO.BadLineStationIdException(lineId, code, "לא ניתן לעדכן זמן ומחרחק מתחנה קודמת כיון שהתחנה הקודמת לא קיימת");
+
                 }
-                else
-                {
-                    dl.UpdateAdjacentStations(new DO.AdjacentStations { Station1 = prev.Station, Station2 = code, Distance = distance, Time = time });
-                }
+                dl.UpdateAdjacentStations(new DO.AdjacentStations { Station1 = prev.Station, Station2 = code, Distance = distance, Time = time });
 
             }
-            catch (Exception ex)
+            catch (DO.BadStationCodeException ex)
             {
 
-                throw;
+                throw new BO.BadStationCodeException("לא ניתן לעדכן זמן ומרחק כיון שהתחנה לא קיימת",ex);
+            }
+            catch(DO.BadAdjacentStationsCodesException ex)
+            {
+                throw new BO.BadAdjacentStationsCodesException("לא ניתן לעדכן זמן ומרחק מהתחנה הקודמת כיון שהתחנה או התחנה הקודמת לא קיימות",ex);
             }
         }
 
