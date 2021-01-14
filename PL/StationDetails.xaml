@@ -67,7 +67,7 @@
         <ListBox x:Name="lbLines" HorizontalAlignment="Left" Height="280" Margin="0,0,-0.4,0" Grid.Row="2" VerticalAlignment="Top" Width="794" ItemTemplate="{StaticResource LineInStationTemplate }" SelectionChanged="lbLines_SelectionChanged" Grid.ColumnSpan="6"  />
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="35.2,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"><Run FlowDirection="RightToLeft" Text="כתובת:" Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
         <Button x:Name="btUpdate" Content="עדכון פרטים" HorizontalAlignment="Left" Margin="0,21.4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="131" Click="btUpdate_Click" Height="39"/>
-        <TextBlock Name="tbNumberStation" HorizontalAlignment="Left" Margin="32.4,15,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="4" RenderTransformOrigin="0.5,0.5" Height="24" Width="78">
+        <TextBlock Name="tbNumberStation" HorizontalAlignment="Left" Margin="72.4,13,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="4" RenderTransformOrigin="0.5,0.5" Height="24" Width="56">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -77,7 +77,7 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock Name="tbName" HorizontalAlignment="Left" Margin="11.4,10,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.5,0.5" Height="52" Width="103">
+        <TextBlock Name="tbName" HorizontalAlignment="Left" Margin="4.4,5,0,0" TextWrapping="Wrap" Text="{Binding Path=Name}" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.5,0.5" Height="62" Width="121">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -87,7 +87,7 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <TextBlock Name="tbAddress" HorizontalAlignment="Left" Margin="21,12,0,0" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top" RenderTransformOrigin="0.539,0.798" Height="47" Width="90">
+        <TextBlock Name="tbAddress" HorizontalAlignment="Left" Margin="4,5,0,0" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top" RenderTransformOrigin="0.539,0.798" Height="61" Width="123">
             <TextBlock.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

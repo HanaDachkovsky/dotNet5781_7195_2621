@@ -32,7 +32,7 @@ namespace PL
         {
 
             TextBox text = sender as TextBox;
-            if (text == null) return;
+            if (sender as PasswordBox == null && text == null) return ;
             if (e == null) return;
 
             //allow get out of the text box

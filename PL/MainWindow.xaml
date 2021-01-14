@@ -45,9 +45,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Text="שם משתמש:" /></TextBlock>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Text="סיסמה:" /></TextBlock>
-        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Margin="155,27,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Height="24" Width="261"/>
+        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Margin="155,27,0,0" Grid.Row="2" Grid.Column="0" VerticalAlignment="Top" Height="24" Width="261" PreviewKeyDown="tb_PreviewKeyDown" />
         <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="23" Margin="155,27,0,0" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261" PreviewKeyDown="tb_PreviewKeyDown" TextChanged="tbUserName_TextChanged"/>
-        <Button x:Name="btSignIn" Content="התחברות" HorizontalAlignment="Left" Margin="305,16,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" Width="170" Height="44" PreviewKeyDown="tb_PreviewKeyDown" Click="btSignIn_Click"/>
-        <Button x:Name="btSignUp" Content="לא רשום? הרשם כאן" HorizontalAlignment="Left" Margin="305,20,0,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" Width="170" Height="40" Click="btSignUp_Click"  FontSize="16"/>
+        <Button x:Name="btSignIn" Content="התחברות" HorizontalAlignment="Left" Margin="297,15.8,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" Width="169" Height="44"  Click="btSignIn_Click"/>
+        <Button x:Name="btSignUp" Content="לא רשום? הרשם כאן" HorizontalAlignment="Left" Margin="297,20.2,0,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" Width="171" Height="40" Click="btSignUp_Click"  FontSize="16"/>
     </Grid>
 </Window>

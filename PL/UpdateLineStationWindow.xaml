@@ -41,9 +41,9 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="105,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="זמן מתחנה קודמת"/></TextBlock>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="59,90,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="221"><Span FlowDirection="RightToLeft"><Run Text="מרחק מתחנה קודמת"/><Run Text="(ק&quot;מ)"/></Span></TextBlock>
-        <TextBox Name="tbHours" HorizontalAlignment="Left" Height="23" Margin="113,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33"/>
-        <TextBox Name="tbMinutes" HorizontalAlignment="Left" Height="23" Margin="166,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34"/>
-        <TextBox Name="tbDistance" HorizontalAlignment="Left" Height="23" Margin="128,90,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="tbHours" HorizontalAlignment="Left" Height="23" Margin="113,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="33" PreviewKeyDown="tb_PreviewKeyDown"/>
+        <TextBox Name="tbMinutes" HorizontalAlignment="Left" Height="23" Margin="166,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" PreviewKeyDown="tb_PreviewKeyDown"/>
+        <TextBox Name="tbDistance" HorizontalAlignment="Left" Height="23" Margin="128,90,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbDistance_PreviewKeyDown" />
         <Button Content="עדכון" HorizontalAlignment="Left" Margin="78,148,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="152,104,0,0" TextWrapping="Wrap" Text=":" VerticalAlignment="Top"/>
     </Grid>
