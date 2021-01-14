@@ -464,7 +464,8 @@ namespace DS
                 //line.LastStation = lastStation;
                 line.Code = i + 1;
                 line.Id = ++DO.Counter.LineNum;
-                line.Arae = DO.Enums.Areas.Jerusalem;
+                //line.Arae = DO.Enums.Areas.Jerusalem;
+                line.Arae = DO.Enums.Areas.ירושלים;
                 //for (int j = firstStation; j <= lastStation; j++)
                 //{
                 //    int index = j % 10;
