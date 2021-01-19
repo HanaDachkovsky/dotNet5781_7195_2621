@@ -4,6 +4,27 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Button">
+            <Setter Property="FontSize"  
+                    Value="18" />
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="Background"
+                            Value="#FF9BD0FF"/>
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="FontSize"  
+                    Value="16" />
+        </Style>
     </Application.Resources>
 </Application>

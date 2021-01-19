@@ -28,6 +28,7 @@ namespace DL
         string TripPath = @"TripXml.xml"; //XMLSerializer
         string UserPath = @"UserXml.xml"; //XMLSerializer
         string StationPath = @"StationXml.xml"; //XElement
+        string counterXML = @"CounterXml.xml"; 
         #endregion
         #region AdjacentStations
         public void AddAdjacentStations(AdjacentStations adjacentStations)
@@ -419,10 +420,13 @@ namespace DL
         public int AddLine(Line line)
         {
             List<Line> ListLine = XMLTools.LoadListFromXMLSerializer<Line>(LinePath);
-            line.Id = ++Counter.LineNum;
+            XElement countersRootElem = XMLTools.LoadListFromXMLElement(counterXML);
+            int id=int.Parse(countersRootElem.Elements().First().Element("lineIdCounter").Value);
+            countersRootElem.Elements().First().Element("lineIdCounter").Value = (id + 1).ToString();
+            line.Id = id;
            ListLine.Add(line);
             XMLTools.SaveListToXMLSerializer<Line>(ListLine, LinePath);
-            return line.Id;
+            return id;
         }
         public void DeleteLine(int id)
         {
@@ -578,14 +582,17 @@ namespace DL
         public int AddLineTrip(LineTrip lineTrip)
         {
             List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
+            XElement countersRootElem = XMLTools.LoadListFromXMLElement(counterXML);
+            int id = int.Parse(countersRootElem.Elements().First().Element("lineTripIdCounter").Value);
+            countersRootElem.Elements().First().Element("lineTripIdCounter").Value = (id + 1).ToString();
             if (ListLineTrip.FirstOrDefault(l => l.Id == lineTrip.LineId) == null)
             {
                 throw new DO.BadLineIdException(lineTrip.LineId, $"bad line id: {lineTrip.LineId}");
             }
-            lineTrip.Id = ++Counter.LineTripNum;
+            lineTrip.Id = id;
             ListLineTrip.Add(lineTrip);
             XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
-            return lineTrip.Id;
+            return id;
         }
         public void DeleteLineTrip(int id)
         {

@@ -22,7 +22,7 @@ namespace BLAPI
 
         #region Line
         BO.Line GetLine(int id);
-        IEnumerable<BO.Line> GetAllLines();
+        IEnumerable<BO.Line> GetAllLines();  
         void DeleteLine(int num);
         void UpdateLine(int id, int code, Enums.Areas area);
         void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2);
@@ -50,6 +50,9 @@ namespace BLAPI
         void UpdateTimeOrDistance(int code, int lineId, TimeSpan time, double distance);
 
         #endregion
+
+
+        void todelete();
     }
 }
 

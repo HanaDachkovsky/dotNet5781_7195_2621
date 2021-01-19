@@ -9,8 +9,15 @@ using BO;
 using DLAPI;
 namespace BL
 {
-    class BLImp : IBL
+    sealed class BLImp : IBL
     {
+
+        #region singelton
+        static readonly BLImp instance = new BLImp();
+        static BLImp() { }// static ctor to ensure instance init is done just before first usage
+        BLImp() { } // default => private
+        public static BLImp Instance { get => instance; }// The public Instance property to use
+        #endregion
         IDAL dl = DLFactory.GetDL();
         public void AddBus(int licenseNum, DateTime fromDate, double totalTrip, double fuelRemain, Enums.BusStatus status)
         {
@@ -646,6 +653,13 @@ namespace BL
             {
                 throw new BO.BadAdjacentStationsCodesException("לא ניתן לעדכן זמן ומרחק מהתחנה הקודמת כיון שהתחנה או התחנה הקודמת לא קיימות",ex);
             }
+        }
+        public void todelete()
+        {
+            //dl.AddUser(new DO.User { UserName = "AvrahamCohen", Password = "Ac123!", Admin = true });
+            //dl.AddUser(new DO.User { UserName = "m", Password = "m", Admin = true });
+            dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
+            dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
         }
 
     }

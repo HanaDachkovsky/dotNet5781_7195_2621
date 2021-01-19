@@ -25,6 +25,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            bl.todelete();
             
         }
 
