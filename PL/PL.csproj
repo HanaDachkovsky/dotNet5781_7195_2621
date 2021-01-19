@@ -79,6 +79,9 @@
       <DependentUpon>NewBus.xaml</DependentUpon>
     </Compile>
     <Compile Include="PO\NotBooleanToVisibilityConverter.cs" />
+    <Compile Include="SimulationWindow.xaml.cs">
+      <DependentUpon>SimulationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StationDetails.xaml.cs">
       <DependentUpon>StationDetails.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NewBus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimulationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

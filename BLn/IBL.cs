@@ -51,7 +51,7 @@ namespace BLAPI
 
         #endregion
 
-
+        IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station,TimeSpan time);
         void todelete();
     }
 }

@@ -661,7 +661,27 @@ namespace BL
             dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
             dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
         }
+        public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
+        {
+            //IEnumerable<StationLine> lines = station.Lines;
 
+            from line in station.Lines
+            let duration = duration(line.Id, station.Code)
+
+
+           
+           
+        }
+
+        private TimeSpan duration(int id, int code)
+        {
+            int index = dl.GetLineStation(id, code).LineStationIndex;
+            List <DO.LineStation> stationsInLine= dl.GetAllLineStationBy(ls => ls.LineId == id && ls.LineStationIndex<=index).OrderBy(ls=>ls.LineStationIndex).ToList();
+            TimeSpan sum=new TimeSpan(0,0,0);
+            stationsInLine.Where(ls => ls.LineStationIndex != index).ToList().ForEach(ls => sum+=dl.GetAdjacentStations(ls.Station, stationsInLine[ls.LineStationIndex].Station).Time);
+            return sum;
+        }
     }
+
 }
 

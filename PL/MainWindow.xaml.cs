@@ -1,4 +1,5 @@
 ﻿using BLAPI;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,13 @@ namespace PL
         private void btSignUp_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            List<BO.StationLine> Lines1 = new List<StationLine>() { new BO.StationLine { Code = 1, Id = 9, NameLastStation = "last", LastStation = 23 } };
+            new SimulationWindow(bl, new BO.Station { Code = 1, Address = "Hello", Latitude = 33, Longitude = 31, Name = "Hi", Lines = Lines1 }).Show();
         }
     }
 }
