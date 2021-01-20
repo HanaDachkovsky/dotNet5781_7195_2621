@@ -47,10 +47,10 @@
         <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="49,11,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="תחנה ראשונה"/></TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="49,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run FlowDirection="RightToLeft" Text="תחנה אחרונה"/></TextBlock>
         <TextBox Name="tbNumber" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Height="23" Margin="48,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" PreviewKeyDown="tbNumber_PreviewKeyDown" TextChanged="tbNumber_TextChanged"/>
-        <ComboBox Name="cbArea" Grid.Column="0" HorizontalAlignment="Left" Margin="48,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="cbFirst" Grid.Column="0" HorizontalAlignment="Left" Margin="48,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120" DisplayMemberPath="Name"/>
+        <ComboBox Name="cbArea" Grid.Column="0" HorizontalAlignment="Left" Margin="48,9.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" IsTextSearchEnabled="True" IsEditable="True"/>
+        <ComboBox Name="cbFirst" Grid.Column="0" HorizontalAlignment="Left" Margin="48,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="120" DisplayMemberPath="Name" IsTextSearchEnabled="True"/>
         <Button Name="btAdd" Grid.Column="0" Content="הוספה" HorizontalAlignment="Left" Margin="67,10.2,0,0" Grid.Row="7" VerticalAlignment="Top" Width="75" Click="btAdd_Click" />
-        <ComboBox Name="cbLast" Grid.Column="0" HorizontalAlignment="Left" Margin="48,9.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" DisplayMemberPath="Name"/>
+        <ComboBox Name="cbLast" Grid.Column="0" HorizontalAlignment="Left" Margin="48,9.4,0,0" Grid.Row="3" VerticalAlignment="Top" Width="120" DisplayMemberPath="Name" IsTextSearchEnabled="True"/>
         
     </Grid>
 </Window>

@@ -659,7 +659,7 @@ namespace BL
             //dl.AddUser(new DO.User { UserName = "AvrahamCohen", Password = "Ac123!", Admin = true });
             //dl.AddUser(new DO.User { UserName = "m", Password = "m", Admin = true });
             //dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
-            dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
+            //dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
         }
         public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
         {
@@ -668,7 +668,7 @@ namespace BL
                    let duration = duration(line.Id, station.Code)
                    let start = startTime(line.Id, duration, time)
                    where start != null
-                   select new BO.LineArrivalTime { StartTime = (TimeSpan)start, LineCode = line.Code, LastStation = line.NameLastStation, Arrive = arrive(duration, start, time) }).OrderBy(t=>t.Arrive);
+                   select new BO.LineArrivalTime { StartTime = (TimeSpan)start, LineCode = line.Code, LastStation = line.NameLastStation, Arrive = arrive(duration, start, time), ArriveTime= (TimeSpan)start + duration - time }).OrderBy(t=>t.ArriveTime);
 
 
         }
@@ -683,7 +683,7 @@ namespace BL
             if (sec >= 1 && sec <= 5)
                 return "נכנס לתחנה";
             TimeSpan time1 = ((TimeSpan)start + duration - time);
-            return time1.Hours+":"+time1.Minutes+":"+time1.Seconds;
+            return time1.ToString().Substring(0,8);
             
         }
 

@@ -10,6 +10,7 @@ namespace BO
     {
         public TimeSpan StartTime { get ; set; }
         public string Arrive { get; set; }
+        public TimeSpan ArriveTime { get; set; }
         public int LineCode { get; set ; }
         public string LastStation { get ; set; }
 

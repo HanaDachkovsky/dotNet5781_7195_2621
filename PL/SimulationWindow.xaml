@@ -5,17 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SimulationWindow" Height="450" Width="800" Closing="Window_Closing">
+        Title="SimulationWindow" Height="450" Width="800" Closing="Window_Closing" Background="AliceBlue">
     <Grid>
-        <TextBlock Name="tbHour" HorizontalAlignment="Left" Height="62" Margin="180,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57"/>
-        <TextBlock Name="tbMinuts" HorizontalAlignment="Left" Height="67" Margin="291,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68"/>
-        <TextBlock Name="tbSeconds"  HorizontalAlignment="Left" Height="53" Margin="401,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
-        <DataGrid x:Name="dgTime" HorizontalAlignment="Left" Height="297" Margin="10,113,0,0" VerticalAlignment="Top" Width="767"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5">
+        <TextBlock Name="tbTime" HorizontalAlignment="Left" Height="62" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
+        <DataGrid x:Name="dgTime" HorizontalAlignment="Left" Height="297" Margin="10,113,0,0" VerticalAlignment="Top" Width="767"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" AlternatingRowBackground="AliceBlue">
             <DataGrid.Columns >
-                <DataGridTextColumn Header="זמן הגעה לתחנה" Binding="{Binding Path=Arrive}"/>
-                <DataGridTextColumn Header="זמן יציאה מהתחנה הראשית" Binding="{Binding Path=StartTime}"/>
-                <DataGridTextColumn Header="תחנה סופית" Binding="{Binding Path=LastStation}"/>
-                <DataGridTextColumn Header="מספר קו" Binding="{Binding Path=LineCode}"/>
+                <DataGridTextColumn Header="זמן הגעה לתחנה" Binding="{Binding Path=Arrive}" Width="*"/>
+                <DataGridTextColumn Header="זמן יציאה מהתחנה הראשונה" Binding="{Binding Path=StartTime}" Width="2*"/>
+                <DataGridTextColumn Header="תחנה סופית" Binding="{Binding Path=LastStation}" Width="*"/>
+                <DataGridTextColumn Header="מספר קו" Binding="{Binding Path=LineCode}" Width="*"/>
             </DataGrid.Columns>
             <DataGrid.RenderTransform>
                 <TransformGroup>
@@ -26,6 +25,7 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
         </DataGrid>
+        <TextBlock x:Name="tbStation" HorizontalAlignment="Left" Margin="331,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
