@@ -45,6 +45,7 @@ namespace PL
             tbSeconds.Text = start.Seconds.ToString();
             stopwatch.Restart();
             isWorking = true;
+            dgTime.ItemsSource = bl.GetArrivalTimes(DataContext as BO.Station, DateTime.Now.TimeOfDay);
             worker.RunWorkerAsync();
 
         }
@@ -56,6 +57,7 @@ namespace PL
             tbHour.Text = now.Hours.ToString();
             tbMinuts.Text = now.Minutes.ToString();
             tbSeconds.Text = now.Seconds.ToString();
+            dgTime.ItemsSource = bl.GetArrivalTimes(DataContext as BO.Station, now);
 
         }
 

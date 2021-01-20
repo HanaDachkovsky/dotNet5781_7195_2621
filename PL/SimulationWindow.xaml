@@ -6,30 +6,17 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="SimulationWindow" Height="450" Width="800" Closing="Window_Closing">
-    <Window.Resources>
-
-        <DataTemplate x:Key="LineInStationTemplate" DataType="local:BO.StationLine">
-            <Grid x:Name="DataTemplateGrid" Background="AliceBlue" >
-                <Grid.RowDefinitions  >
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition />                    <ColumnDefinition/>                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions >
-                <TextBlock Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <TextBlock Name="tbNumber" Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-                <TextBlock Name="tbLastStation" Text="{Binding Path=NameLastStation}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
-            </Grid>
-        </DataTemplate>
-    </Window.Resources>
     <Grid>
         <TextBlock Name="tbHour" HorizontalAlignment="Left" Height="62" Margin="180,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="57"/>
         <TextBlock Name="tbMinuts" HorizontalAlignment="Left" Height="67" Margin="291,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68"/>
         <TextBlock Name="tbSeconds"  HorizontalAlignment="Left" Height="53" Margin="401,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="83"/>
-        <DataGrid HorizontalAlignment="Left" Height="297" Margin="10,113,0,0" VerticalAlignment="Top" Width="767" ItemTemplate="{StaticResource LineInStationTemplate }"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5">
+        <DataGrid x:Name="dgTime" HorizontalAlignment="Left" Height="297" Margin="10,113,0,0" VerticalAlignment="Top" Width="767"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="זמן הגעה לתחנה" Binding="{Binding Path=Arrive}"/>
+                <DataGridTextColumn Header="זמן יציאה מהתחנה הראשית" Binding="{Binding Path=StartTime}"/>
+                <DataGridTextColumn Header="תחנה סופית" Binding="{Binding Path=LastStation}"/>
+                <DataGridTextColumn Header="מספר קו" Binding="{Binding Path=LineCode}"/>
+            </DataGrid.Columns>
             <DataGrid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

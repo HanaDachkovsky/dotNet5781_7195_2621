@@ -9,7 +9,7 @@ namespace BO
     public class LineArrivalTime
     {
         public TimeSpan StartTime { get ; set; }
-        public TimeSpan Arrive { get; set; }
+        public string Arrive { get; set; }
         public int LineCode { get; set ; }
         public string LastStation { get ; set; }
 

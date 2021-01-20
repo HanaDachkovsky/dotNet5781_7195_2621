@@ -658,22 +658,34 @@ namespace BL
         {
             //dl.AddUser(new DO.User { UserName = "AvrahamCohen", Password = "Ac123!", Admin = true });
             //dl.AddUser(new DO.User { UserName = "m", Password = "m", Admin = true });
-            dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
+            //dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
             dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
         }
-        //public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
-        //{
-        //    //IEnumerable<StationLine> lines = station.Lines;
-
-        //    //from line in station.Lines
-        //    //let duration = duration(line.Id, station.Code)
-        //    return ;
-
-
-
+        public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
+        {
+            //IEnumerable<StationLine> lines = station.Lines;
+            return( from line in station.Lines
+                   let duration = duration(line.Id, station.Code)
+                   let start = startTime(line.Id, duration, time)
+                   where start != null
+                   select new BO.LineArrivalTime { StartTime = (TimeSpan)start, LineCode = line.Code, LastStation = line.NameLastStation, Arrive = arrive(duration, start, time) }).OrderBy(t=>t.Arrive);
 
 
-        //}
+        }
+
+        private string arrive(TimeSpan duration, TimeSpan? start, TimeSpan time)
+        {
+            int sec = (int)((TimeSpan)start + duration - time).TotalSeconds;
+            if (sec < -5)
+                return "";
+            if (sec >= -5 && sec <= 0)
+                return "בתחנה";
+            if (sec >= 1 && sec <= 5)
+                return "נכנס לתחנה";
+            TimeSpan time1 = ((TimeSpan)start + duration - time);
+            return time1.Hours+":"+time1.Minutes+":"+time1.Seconds;
+            
+        }
 
         private TimeSpan duration(int id, int code)
         {
@@ -682,6 +694,27 @@ namespace BL
             TimeSpan sum=new TimeSpan(0,0,0);
             stationsInLine.Where(ls => ls.LineStationIndex != index).ToList().ForEach(ls => sum+=dl.GetAdjacentStations(ls.Station, stationsInLine[ls.LineStationIndex].Station).Time);
             return sum;
+        }
+        private TimeSpan? startTime(int lineId,TimeSpan duration,TimeSpan time)
+        {
+            foreach (var lineTrip in  dl.GetAllLineTripBy(lt => lt.LineId == lineId).OrderBy(lt=>lt.StartAt).ToList())
+            {
+                if(lineTrip.Frequency.TotalSeconds==0)
+                {
+                    if ((lineTrip.StartAt + duration - time).TotalSeconds > -6)
+                        return lineTrip.StartAt;
+                }
+                else
+                {
+                    for(TimeSpan t=lineTrip.StartAt;t<=lineTrip.FinishAt;t+=lineTrip.Frequency)
+                    {
+                        if ((t+ duration - time).TotalSeconds > -6)
+                            return t;
+                    }
+                }  
+            }
+            return null;
+
         }
     }
 
