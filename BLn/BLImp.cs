@@ -661,17 +661,19 @@ namespace BL
             dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
             dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
         }
-        public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
-        {
-            //IEnumerable<StationLine> lines = station.Lines;
+        //public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
+        //{
+        //    //IEnumerable<StationLine> lines = station.Lines;
 
-            from line in station.Lines
-            let duration = duration(line.Id, station.Code)
+        //    //from line in station.Lines
+        //    //let duration = duration(line.Id, station.Code)
+        //    return ;
 
 
-           
-           
-        }
+
+
+
+        //}
 
         private TimeSpan duration(int id, int code)
         {
