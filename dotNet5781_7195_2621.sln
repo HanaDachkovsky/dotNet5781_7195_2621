@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		bin\config.xml = bin\config.xml
 		bin\xml\counterXML.xml = bin\xml\counterXML.xml
+		bin\xml\StationXml.xml = bin\xml\StationXml.xml
+		bin\xml\UserXml.xml = bin\xml\UserXml.xml
 		..\..\..\OneDrive\Desktop\בונוסים בשלב א.docx = ..\..\..\OneDrive\Desktop\בונוסים בשלב א.docx
 	EndProjectSection
 EndProject
