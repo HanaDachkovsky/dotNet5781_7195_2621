@@ -614,7 +614,7 @@ namespace BL
                 //{
                 //    throw new ArgumentOutOfRangeException("לא ניתן לעדכן תדירות כך שתהיה חופפת לתדירות אחרת בלוח הזמנים של הקו");
                 //}
-                if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).FirstOrDefault(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt))!= null)
+                if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).FirstOrDefault(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)) != null)
                 {
                     throw new ArgumentOutOfRangeException("לא ניתן לעדכן תדירות כך שתהיה חופפת לתדירות אחרת בלוח הזמנים של הקו");
                 }
@@ -647,11 +647,11 @@ namespace BL
             catch (DO.BadStationCodeException ex)
             {
 
-                throw new BO.BadStationCodeException("לא ניתן לעדכן זמן ומרחק כיון שהתחנה לא קיימת",ex);
+                throw new BO.BadStationCodeException("לא ניתן לעדכן זמן ומרחק כיון שהתחנה לא קיימת", ex);
             }
-            catch(DO.BadAdjacentStationsCodesException ex)
+            catch (DO.BadAdjacentStationsCodesException ex)
             {
-                throw new BO.BadAdjacentStationsCodesException("לא ניתן לעדכן זמן ומרחק מהתחנה הקודמת כיון שהתחנה או התחנה הקודמת לא קיימות",ex);
+                throw new BO.BadAdjacentStationsCodesException("לא ניתן לעדכן זמן ומרחק מהתחנה הקודמת כיון שהתחנה או התחנה הקודמת לא קיימות", ex);
             }
         }
         public void todelete()
@@ -660,15 +660,21 @@ namespace BL
             //dl.AddUser(new DO.User { UserName = "m", Password = "m", Admin = true });
             //dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
             //dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
+            //dl.AddLine(new DO.Line { Code = 200, FirstStation = 41677, LastStation = 42452, Arae = DO.Enums.Areas.צפון });
+            //dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = 41677, Station2 = 42452, Distance = 1.1, Time = new TimeSpan(0, 4, 0) });
+            //dl.AddLineStation(new DO.LineStation { LineStationIndex = 1, LineId = 1, PrevStation = 0, NextStation = 1, Station = 4 });
+
+            dl.AddLineTrip(new DO.LineTrip { Id = 1, LineId = 1, FinishAt = DateTime.Now.TimeOfDay, Frequency = new TimeSpan(1, 0, 0), StartAt = DateTime.Now.TimeOfDay });
+
         }
         public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
         {
             //IEnumerable<StationLine> lines = station.Lines;
-            return( from line in station.Lines
-                   let duration = duration(line.Id, station.Code)
-                   let start = startTime(line.Id, duration, time)
-                   where start != null
-                   select new BO.LineArrivalTime { StartTime = (TimeSpan)start, LineCode = line.Code, LastStation = line.NameLastStation, Arrive = arrive(duration, start, time), ArriveTime= (TimeSpan)start + duration - time }).OrderBy(t=>t.ArriveTime);
+            return (from line in station.Lines
+                    let duration = duration(line.Id, station.Code)
+                    let start = startTime(line.Id, duration, time)
+                    where start != null
+                    select new BO.LineArrivalTime { StartTime = (TimeSpan)start, LineCode = line.Code, LastStation = line.NameLastStation, Arrive = arrive(duration, start, time), ArriveTime = (TimeSpan)start + duration - time }).OrderBy(t => t.ArriveTime);
 
 
         }
@@ -683,35 +689,35 @@ namespace BL
             if (sec >= 1 && sec <= 5)
                 return "נכנס לתחנה";
             TimeSpan time1 = ((TimeSpan)start + duration - time);
-            return time1.ToString().Substring(0,8);
-            
+            return time1.ToString().Substring(0, 8);
+
         }
 
         private TimeSpan duration(int id, int code)
         {
             int index = dl.GetLineStation(id, code).LineStationIndex;
-            List <DO.LineStation> stationsInLine= dl.GetAllLineStationBy(ls => ls.LineId == id && ls.LineStationIndex<=index).OrderBy(ls=>ls.LineStationIndex).ToList();
-            TimeSpan sum=new TimeSpan(0,0,0);
-            stationsInLine.Where(ls => ls.LineStationIndex != index).ToList().ForEach(ls => sum+=dl.GetAdjacentStations(ls.Station, stationsInLine[ls.LineStationIndex].Station).Time);
+            List<DO.LineStation> stationsInLine = dl.GetAllLineStationBy(ls => ls.LineId == id && ls.LineStationIndex <= index).OrderBy(ls => ls.LineStationIndex).ToList();
+            TimeSpan sum = new TimeSpan(0, 0, 0);
+            stationsInLine.Where(ls => ls.LineStationIndex != index).ToList().ForEach(ls => sum += dl.GetAdjacentStations(ls.Station, stationsInLine[ls.LineStationIndex].Station).Time);
             return sum;
         }
-        private TimeSpan? startTime(int lineId,TimeSpan duration,TimeSpan time)
+        private TimeSpan? startTime(int lineId, TimeSpan duration, TimeSpan time)
         {
-            foreach (var lineTrip in  dl.GetAllLineTripBy(lt => lt.LineId == lineId).OrderBy(lt=>lt.StartAt).ToList())
+            foreach (var lineTrip in dl.GetAllLineTripBy(lt => lt.LineId == lineId).OrderBy(lt => lt.StartAt).ToList())
             {
-                if(lineTrip.Frequency.TotalSeconds==0)
+                if (lineTrip.Frequency.TotalSeconds == 0)
                 {
                     if ((lineTrip.StartAt + duration - time).TotalSeconds > -6)
                         return lineTrip.StartAt;
                 }
                 else
                 {
-                    for(TimeSpan t=lineTrip.StartAt;t<=lineTrip.FinishAt;t+=lineTrip.Frequency)
+                    for (TimeSpan t = lineTrip.StartAt; t <= lineTrip.FinishAt; t += lineTrip.Frequency)
                     {
-                        if ((t+ duration - time).TotalSeconds > -6)
+                        if ((t + duration - time).TotalSeconds > -6)
                             return t;
                     }
-                }  
+                }
             }
             return null;
 
