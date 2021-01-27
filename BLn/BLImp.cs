@@ -221,6 +221,7 @@ namespace BL
                            Id = line.Id,
                            Code = line.Code,
                            Arae = (Enums.Areas)line.Arae,
+                           LastStationName = dl.GetStation(line.LastStation).Name,
                            Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                       let name = dl.GetStation(station.Station).Name
                                       //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
@@ -346,6 +347,7 @@ namespace BL
                     Id = line.Id,
                     Code = line.Code,
                     Arae = (Enums.Areas)line.Arae,
+                    LastStationName=dl.GetStation(line.LastStation).Name,
                     Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                let name = dl.GetStation(station.Station).Name
                                //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
@@ -661,10 +663,10 @@ namespace BL
             //dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
             //dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
             //dl.AddLine(new DO.Line { Code = 200, FirstStation = 41677, LastStation = 42452, Arae = DO.Enums.Areas.צפון });
-            //dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = 41677, Station2 = 42452, Distance = 1.1, Time = new TimeSpan(0, 4, 0) });
+            // dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = 41677, Station2 = 42452, Distance = 1.1, Time = new TimeSpan(0, 4, 0) });
             //dl.AddLineStation(new DO.LineStation { LineStationIndex = 1, LineId = 1, PrevStation = 0, NextStation = 1, Station = 4 });
 
-            dl.AddLineTrip(new DO.LineTrip { Id = 1, LineId = 1, FinishAt = DateTime.Now.TimeOfDay, Frequency = new TimeSpan(1, 0, 0), StartAt = DateTime.Now.TimeOfDay });
+            //dl.AddLineTrip(new DO.LineTrip { Id = 1, LineId = 1, FinishAt = DateTime.Now.TimeOfDay, Frequency = new TimeSpan(1, 0, 0), StartAt = DateTime.Now.TimeOfDay });
 
         }
         public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)

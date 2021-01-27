@@ -27,7 +27,7 @@ namespace PL
             InitializeComponent();
             bl = bl2;
             DataContext = line;
-            lbStations.ItemsSource = new ObservableCollection<BO.LineStation>(line.Stations);////ex
+            dgStations.ItemsSource = new ObservableCollection<BO.LineStation>(line.Stations);////ex
         }
 
         
@@ -73,7 +73,7 @@ namespace PL
 
         private void refreshStations()
         {
-            lbStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);//?
+            dgStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);//?
         }
 
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)

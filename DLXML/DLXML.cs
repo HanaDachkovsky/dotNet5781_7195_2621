@@ -54,7 +54,7 @@ namespace DL
             //xelement
 
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
-            XElement stationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
+            XElement stationsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
 
             XElement stat2 = (from s in stationsRootElem.Elements()
                               where int.Parse(s.Element("Code").Value) == adjacentStations.Station1

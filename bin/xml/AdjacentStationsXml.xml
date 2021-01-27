@@ -1,2 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<AdjacentStationsXml.xml />
+<AdjacentStationsXml.xml>
+  <AdjacentStations>
+    <Station1>41677</Station1>
+    <Station2>42452</Station2>
+    <Distance>1.1</Distance>
+    <Time>PT4M</Time>
+  </AdjacentStations>
+</AdjacentStationsXml.xml>

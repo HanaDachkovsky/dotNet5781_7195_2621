@@ -76,6 +76,7 @@ namespace PL
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             stopwatch.Stop();
+            isWorking = false;
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
