@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Line>
+    <Id>1</Id>
+    <Code>200</Code>
+    <Arae>צפון</Arae>
+    <FirstStation>41677</FirstStation>
+    <LastStation>42452</LastStation>
+  </Line>
+</ArrayOfLine>
