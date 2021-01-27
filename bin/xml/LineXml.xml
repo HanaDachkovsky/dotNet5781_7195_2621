@@ -2,16 +2,16 @@
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
     <Id>1</Id>
-    <Code>5</Code>
+    <Code>56</Code>
     <Arae>ארצי</Arae>
-    <FirstStation>11989</FirstStation>
-    <LastStation>47582</LastStation>
+    <FirstStation>60186</FirstStation>
+    <LastStation>11990</LastStation>
   </Line>
   <Line>
     <Id>1</Id>
-    <Code>12</Code>
-    <Arae>צפון</Arae>
+    <Code>77</Code>
+    <Arae>ארצי</Arae>
     <FirstStation>11989</FirstStation>
-    <LastStation>11994</LastStation>
+    <LastStation>19634</LastStation>
   </Line>
 </ArrayOfLine>
