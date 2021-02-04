@@ -34,7 +34,8 @@ namespace PL
         private void btAddStation_Click(object sender, RoutedEventArgs e)
         {
             new AddLineStation(bl, DataContext as BO.Line).ShowDialog() ;
-            refreshStations();
+            refresh();
+            //refreshStations();
             //?
          
         }
@@ -50,6 +51,7 @@ namespace PL
             try
             {
                 DataContext = bl.GetLine((DataContext as BO.Line).Id);
+                dgStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);
             }
             catch (Exception ex)
             {
@@ -64,24 +66,31 @@ namespace PL
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            int code = (((sender as Button).Parent as Grid).DataContext as BO.LineStation).Code;
-            int lineId = (DataContext as BO.Line).Id;
-            bl.DeleteStationInLine(code, lineId);
-            //refresh();
-            refreshStations();
+            try
+            {
+                int code = ((sender as Button).DataContext as BO.LineStation).Code;
+                int lineId = (DataContext as BO.Line).Id;
+                bl.DeleteStationInLine(code, lineId);
+                refresh();
+                //refreshStations();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "שגיאה");
+            }
         }
 
-        private void refreshStations()
-        {
-            dgStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);//?
-        }
+        //private void refreshStations()
+        //{
+        //    dgStations.ItemsSource = new ObservableCollection<BO.LineStation>((DataContext as BO.Line).Stations);//?
+        //}
 
         private void btUpdateStation_Click(object sender, RoutedEventArgs e)
         {
             
             //new UpdateLine(bl, DataContext as BO.Line).ShowDialog();
             //refresh();
-            var lineStation = ((sender as Button).Parent as Grid).DataContext as BO.LineStation;
+            var lineStation = ((sender as Button).DataContext as BO.LineStation);
             int lineId = (DataContext as BO.Line).Id;
             if((DataContext as BO.Line).Stations.ElementAt(0).Code==lineStation.Code)
             {
@@ -89,7 +98,8 @@ namespace PL
                 return;
             }
             new UpdateLineStationWindow(bl, lineStation, lineId).ShowDialog();
-            refreshStations();
+            refresh();
+            //refreshStations();
             //!!!!!!!!!!!!!!!!!
         }
     }

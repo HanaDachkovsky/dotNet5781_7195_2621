@@ -1,2 +1,31 @@
 <?xml version="1.0"?>
-<ArrayOfLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfLineStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>19475</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>19638</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineId>4</LineId>
+    <Station>19638</Station>
+    <LineStationIndex>2</LineStationIndex>
+    <PrevStation>19475</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineId>5</LineId>
+    <Station>19630</Station>
+    <LineStationIndex>1</LineStationIndex>
+    <PrevStation>0</PrevStation>
+    <NextStation>19633</NextStation>
+  </LineStation>
+  <LineStation>
+    <LineId>5</LineId>
+    <Station>19633</Station>
+    <LineStationIndex>2</LineStationIndex>
+    <PrevStation>19630</PrevStation>
+    <NextStation>0</NextStation>
+  </LineStation>
+</ArrayOfLineStation>

@@ -93,7 +93,7 @@
                 </DataGridTemplateColumn>
                 <DataGridTextColumn Header="זמן מתחנה קודמת" Binding="{Binding Path=TimeFromPrevStat}" Width="*"/>
                 <DataGridTextColumn Header="מרחק מתחנה קודמת" Binding="{Binding Path=DistanceFromPrevStat}" Width="2*"/>
-                <DataGridTextColumn Header="שם תחנה" Binding="{Binding Path=LastStation}" Width="*"/>
+                <DataGridTextColumn Header="שם תחנה" Binding="{Binding Path=Name}" Width="*"/>
                 <DataGridTextColumn Header="מספר תחנה" Binding="{Binding Path=Code}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

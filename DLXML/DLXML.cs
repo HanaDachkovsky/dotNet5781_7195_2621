@@ -31,7 +31,7 @@ namespace DL
         string counterXML = @"CounterXml.xml"; 
         #endregion
         #region AdjacentStations
-        public void AddAdjacentStations(AdjacentStations adjacentStations)
+        public void  AddAdjacentStations(AdjacentStations adjacentStations)
         {
             //List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
             //List<Station> ListStation = XMLTools.LoadListFromXMLSerializer<Station>(StationPath);
@@ -230,7 +230,7 @@ namespace DL
             {
                 stat1.Element("Time").Value = XmlConvert.ToString(adjacentStations.Time);
                 stat1.Element("Distance").Value = adjacentStations.Distance.ToString();
-                XMLTools.SaveListToXMLElement(adjacentStationsRootElem, StationPath);
+                XMLTools.SaveListToXMLElement(adjacentStationsRootElem, AdjacentStationsPath);
             }
             else
                 throw new BadAdjacentStationsCodesException(adjacentStations.Station1, adjacentStations.Station2, $"bad stations codes: {adjacentStations.Station1} and {adjacentStations.Station2}");
@@ -423,6 +423,7 @@ namespace DL
             XElement countersRootElem = XMLTools.LoadListFromXMLElement(counterXML);
             int id=int.Parse(countersRootElem.Elements().First().Element("lineIdCounter").Value);
             countersRootElem.Elements().First().Element("lineIdCounter").Value = (id + 1).ToString();
+            XMLTools.SaveListToXMLElement(countersRootElem, counterXML);
             line.Id = id;
            ListLine.Add(line);
             XMLTools.SaveListToXMLSerializer<Line>(ListLine, LinePath);

@@ -7,15 +7,63 @@
     <Time>PT4M</Time>
   </AdjacentStations>
   <AdjacentStations>
-    <Station1>11994</Station1>
-    <Station2>19592</Station2>
-    <Distance>1.20326022345254</Distance>
+    <Station1>11989</Station1>
+    <Station2>19475</Station2>
+    <Distance>1.70928388035838</Distance>
+    <Time>PT3M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>60183</Station1>
+    <Station2>19637</Station2>
+    <Distance>360.399284263903</Distance>
+    <Time>PT12H</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19475</Station1>
+    <Station2>19633</Station2>
+    <Distance>1.60218577428942</Distance>
+    <Time>PT3M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19760</Station1>
+    <Station2>19638</Station2>
+    <Distance>0.565375170031119</Distance>
+    <Time>PT1M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19475</Station1>
+    <Station2>19638</Station2>
+    <Distance>0.414582318826998</Distance>
+    <Time>PT0S</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19630</Station1>
+    <Station2>19633</Station2>
+    <Distance>0.51336425645742</Distance>
+    <Time>PT1M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19638</Station1>
+    <Station2>11990</Station2>
+    <Distance>1.59769604285635</Distance>
+    <Time>PT3M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>11990</Station1>
+    <Station2>19654</Station2>
+    <Distance>1.19795713037455</Distance>
     <Time>PT2M</Time>
   </AdjacentStations>
   <AdjacentStations>
-    <Station1>11991</Station1>
-    <Station2>19634</Station2>
-    <Distance>0.940562090104988</Distance>
-    <Time>PT1M</Time>
+    <Station1>19638</Station1>
+    <Station2>61300</Station2>
+    <Distance>360.026984143056</Distance>
+    <Time>PT12H</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19638</Station1>
+    <Station2>60066</Station2>
+    <Distance>360.257968891623</Distance>
+    <Time>PT12H</Time>
   </AdjacentStations>
 </AdjacentStationsXml.xml>

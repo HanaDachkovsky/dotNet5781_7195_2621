@@ -1,2 +1,17 @@
 <?xml version="1.0"?>
-<ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Line>
+    <Id>4</Id>
+    <Code>55</Code>
+    <Arae>דרום</Arae>
+    <FirstStation>19475</FirstStation>
+    <LastStation>19638</LastStation>
+  </Line>
+  <Line>
+    <Id>5</Id>
+    <Code>89</Code>
+    <Arae>ארצי</Arae>
+    <FirstStation>19630</FirstStation>
+    <LastStation>19633</LastStation>
+  </Line>
+</ArrayOfLine>
