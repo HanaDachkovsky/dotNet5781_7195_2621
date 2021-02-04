@@ -728,38 +728,38 @@ namespace DL
 
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
 
-            XElement lt = (from l in lineTripRootElem.Elements()//up to here
-                            where int.Parse(p.Element("Id").Value) == lineTrip.id
-                            select p).FirstOrDefault();
+            XElement lt = (from l in lineTripRootElem.Elements()
+                            where int.Parse(l.Element("Id").Value) == lineTrip.Id
+                            select l).FirstOrDefault();
 
-            if (per != null)
+            if (lt != null)
             {
-                per.Element("ID").Value = person.ID.ToString();
-                per.Element("Name").Value = person.Name;
-                per.Element("Street").Value = person.Street;
-                per.Element("HouseNumber").Value = person.HouseNumber.ToString();
-                per.Element("City").Value = person.City;
-                per.Element("BirthDate").Value = person.BirthDate.ToString();
-                per.Element("PersonalStatus").Value = person.PersonalStatus.ToString();
-                per.Element("Duration").Value = person.Duration.ToString();
-
-                XMLTools.SaveListToXMLElement(personsRootElem, personsPath);
+                lt.Element("Id").Value = lineTrip.Id.ToString();
+                lt.Element("LineId").Value = lineTrip.LineId.ToString();
+                lt.Element("StartAt").Value = XmlConvert.ToString(lineTrip.StartAt);
+                lt.Element("Frequency").Value = XmlConvert.ToString(lineTrip.Frequency);
+                lt.Element("FinishAt").Value = XmlConvert.ToString(lineTrip.FinishAt);
+                XMLTools.SaveListToXMLElement(lineTripRootElem, LineTripPath);
             }
             else
-                throw new DO.BadPersonIdException(person.ID, $"bad person id: {person.ID}");
+                throw new DO.BadLineTripIdException(lineTrip.Id, $"bad line trip id: {lineTrip.Id}");
         }
 
         public void UpdateLineTrip(int id, Action<LineTrip> update)
         {
-            List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            DO.LineTrip lineT = ListLineTrip.Find(lt => lt.Id == id);
+            //List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
+            //DO.LineTrip lineT = ListLineTrip.Find(lt => lt.Id == id);
 
-            if (lineT == null)
-            {
-                throw new BadLineTripIdException(id, $"bad line trip id:{id}");
-            }
-            update(lineT);
-            XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
+            //if (lineT == null)
+            //{
+            //    throw new BadLineTripIdException(id, $"bad line trip id:{id}");
+            //}
+            //update(lineT);
+            //XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
+
+            DO.LineTrip lineTrip = GetLineTrip(id);
+            update(lineTrip);
+            UpdateLineTrip(lineTrip);
         }
 
         #endregion
