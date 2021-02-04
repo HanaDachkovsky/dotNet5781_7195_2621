@@ -289,7 +289,7 @@ namespace BL
             try
             {
                 DO.User user = dl.GetUser(userName);
-                if (user.Password != password)
+                if ( decrypt(user.Password) != password)
                     throw new BO.BadUserUserNameException(userName, "שם המשתמש או הסיסמא שגויים");
                 return user.Admin;
             }
@@ -667,6 +667,7 @@ namespace BL
             //dl.AddLineStation(new DO.LineStation { LineStationIndex = 1, LineId = 1, PrevStation = 0, NextStation = 1, Station = 4 });
 
             //dl.AddLineTrip(new DO.LineTrip { Id = 1, LineId = 1, FinishAt = DateTime.Now.TimeOfDay, Frequency = new TimeSpan(1, 0, 0), StartAt = DateTime.Now.TimeOfDay });
+            //dl.AddUser(new DO.User { Admin = false, UserName = "s", Password = encrypt("s") });
 
         }
         public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
@@ -724,7 +725,18 @@ namespace BL
             return null;
 
         }
+        private string encrypt(string value)
+        {
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes(value));
+        }
+
+        private string decrypt(string value)
+        {
+            return Encoding.UTF8.GetString(Convert.FromBase64String(value));
+        }
+
     }
+
 
 }
 

@@ -103,6 +103,21 @@
     <Compile Include="UpDateTimeWindow.xaml.cs">
       <DependentUpon>UpDateTimeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserLineDetails.xaml.cs">
+      <DependentUpon>UserLineDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserLineWindow.xaml.cs">
+      <DependentUpon>UserLineWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserTimesWindow.xaml.cs">
+      <DependentUpon>UserTimesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserWindow.xaml.cs">
+      <DependentUpon>UserWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserStationsWindow.xaml.cs">
+      <DependentUpon>UserStationsWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="AddLineStation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +205,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpDateTimeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserLineDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserLineWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserTimesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserStationsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

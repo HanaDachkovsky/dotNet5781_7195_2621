@@ -6,13 +6,18 @@
     <Admin>true</Admin>
   </User>
   <User>
-    <UserName>m</UserName>
-    <Password>m</Password>
-    <Admin>true</Admin>
-  </User>
-  <User>
     <UserName>mn</UserName>
     <Password>mn</Password>
     <Admin>true</Admin>
+  </User>
+  <User>
+    <UserName>m</UserName>
+    <Password>bQ==</Password>
+    <Admin>true</Admin>
+  </User>
+  <User>
+    <UserName>s</UserName>
+    <Password>cw==</Password>
+    <Admin>false</Admin>
   </User>
 </ArrayOfUser>

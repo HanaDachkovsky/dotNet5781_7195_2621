@@ -1,0 +1,50 @@
+﻿<Window x:Class="PL.UserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="חלון משתמש" Height="450" Width="800" Background="AliceBlue" >
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize"  
+                    Value="18" />
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="Background"
+                            Value="#FF9BD0FF"/>
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="FontSize"  
+                    Value="16" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Button x:Name="btBusesView" Content="תצוגת אוטובוסים"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btBusesView_Click" />
+        <Button x:Name="btLinesView" Content="קווים" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btLinesView_Click" />
+        <Button x:Name="btStationsView" Content="תחנות" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="372" Height="64" Margin="10,10,0,0" Click="btStationsView_Click" />
+    </Grid>
+</Window>

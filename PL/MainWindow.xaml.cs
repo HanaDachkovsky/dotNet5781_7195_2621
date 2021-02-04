@@ -99,7 +99,9 @@ namespace PL
                 }
                 else
                 {
-
+                    UserWindow userWindow = new UserWindow(bl);
+                    userWindow.Show();
+                    Close();
                 }
             }
             catch(Exception exp)

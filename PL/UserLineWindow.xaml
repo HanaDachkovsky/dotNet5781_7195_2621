@@ -1,0 +1,54 @@
+﻿<Window x:Class="PL.UserLineWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+         Title="קוים" Height="450" Width="800" Background="AliceBlue">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize"  
+                    Value="18" />
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="Background"
+                            Value="#FF9BD0FF"/>
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground"
+                    Value="#FF00539C"/>
+            <Setter Property="FontFamily" 
+                    Value="Consolas" />
+            <Setter Property="FontWeight" 
+                    Value="Bold"/>
+            <Setter Property="FontSize"  
+                    Value="16" />
+        </Style>
+        <DataTemplate x:Key="LineTemplate" DataType="local:BO.Line">
+            <Grid x:Name="DataTemplateGrid" Background="AliceBlue">
+                <Grid.RowDefinitions  >
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition />                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions >
+                <TextBlock x:Name="tbCode" Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
+                <TextBlock x:Name="tbLastStation" Text="{Binding Path=LastStationName}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
+                <Button x:Name="btTime" Content="לוחות זמנים" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Click="btTime_Click"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Name="MainGrid">
+        <Grid.RowDefinitions>            <RowDefinition Height="80*"/>            <RowDefinition Height="400*"/>        </Grid.RowDefinitions>
+        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0" VerticalAlignment="Stretch" Width="auto">            <Grid.ColumnDefinitions>                <ColumnDefinition Width="3*"/>                <ColumnDefinition Width="*"/>            </Grid.ColumnDefinitions >
+          
+            <Image HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="245" Margin="0,0,0,-0.4" Source="line.gif"/>
+        </Grid>
+        <ListBox x:Name="lbLines" HorizontalAlignment="Left" Grid.Row="1" Width="785" Margin="7,2,0,-2" ItemTemplate="{StaticResource LineTemplate }" SelectionChanged="lbLines_SelectionChanged" MouseDoubleClick="lbLines_MouseDoubleClick"/>
+    </Grid>
+</Window>
