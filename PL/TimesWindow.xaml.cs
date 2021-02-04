@@ -30,7 +30,8 @@ namespace PL
                 InitializeComponent();
                 bl = bl2;
                 DataContext = line;
-                lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips(line.Id));
+                dgTime.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips(line.Id));
+
             }
             catch (Exception ex)
             {
@@ -49,7 +50,7 @@ namespace PL
         {
             try
             {
-                int id = (((sender as Button).Parent as Grid).DataContext as BO.LineTrip).Id;
+                int id = ((sender as Button).DataContext as BO.LineTrip).Id;
                 bl.DeleteLineTrip(id);
                 refresh();
             }
@@ -63,7 +64,7 @@ namespace PL
         {
             try
             {
-                lbTrips.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips((DataContext as BO.Line).Id));
+                dgTime.ItemsSource = new ObservableCollection<BO.LineTrip>(bl.getLineTrips((DataContext as BO.Line).Id));
             }
             catch (Exception ex)
             {
@@ -73,8 +74,18 @@ namespace PL
 
         private void btUpDate_Click(object sender, RoutedEventArgs e)
         {
-            new UpDateTimeWindow(bl, ((sender as Button).Parent as Grid).DataContext as BO.LineTrip).ShowDialog();
+            new UpDateTimeWindow(bl, (sender as Button).DataContext as BO.LineTrip).ShowDialog();
             refresh();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

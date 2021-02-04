@@ -29,7 +29,8 @@
             <Setter Property="FontSize"  
                     Value="16" />
         </Style>
-        <DataTemplate x:Key="TimesTemplate">
+
+        <!--<DataTemplate x:Key="TimesTemplate">
             <Grid x:Name="DataTemplateGrid" Background="AliceBlue" >
                 <Grid.RowDefinitions  >
                     <RowDefinition />
@@ -42,13 +43,45 @@
                 <TextBlock Text="{Binding Path=StartAt}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" /></TextBlock>
                 <TextBlock Text="{Binding Path=FinishAt}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" /></TextBlock>
                 <TextBlock Text="{Binding Path=Frequency}" Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft" /></TextBlock>
-                <Button x:Name="btUpDate" Content="עדכון" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="3" VerticalAlignment="Top" Width="170" Height="44"  Click="btUpDate_Click" />
-                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="4" VerticalAlignment="Top" Width="170" Height="44" Click="btDelete_Click" />
+                <Button x:Name="btUpDate" Content="עדכון" HorizontalAlignment="Left" Margin="30,16,0,0"  Grid.Column="3" VerticalAlignment="Top" Width="170" Height="44"  Click="btUpDate_Click" />
+                <Button x:Name="btDelete" Content="מחיקה" HorizontalAlignment="Left" Margin="30,16,0,0"  Grid.Column="4" VerticalAlignment="Top" Width="170" Height="44" Click="btDelete_Click" />
             </Grid>
-        </DataTemplate>
+        </DataTemplate>-->
+
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="lbTrips" HorizontalAlignment="Left" Height="362" Margin="0,58,-0.4,0" VerticalAlignment="Top" Width="494" ItemTemplate="{StaticResource TimesTemplate}"/>
+        <!--<ListBox x:Name="lbTrips" HorizontalAlignment="Left" Height="362" Margin="0,58,-0.4,0" VerticalAlignment="Top" Width="494" ItemTemplate="{StaticResource TimesTemplate}"/>-->
+        <DataGrid x:Name="dgTime" HorizontalAlignment="Left" Height="335" Margin="10,75,0,0" VerticalAlignment="Top" Width="477"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue">
+            <DataGrid.Columns >
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate >
+                        <DataTemplate>
+                            <Button Click="btDelete_Click">מחיקה</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn >
+                        <DataGridTemplateColumn.CellTemplate >
+                            <DataTemplate>
+                                <Button Click="btUpDate_Click">עדכון</Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="תדירות בדקות" Binding="{Binding Path=Frequency}" Width="*"/>
+                <DataGridTextColumn Header="זמן סיום" Binding="{Binding Path=FinishAt}" Width="*"/>
+                <DataGridTextColumn Header="זמן התחלה" Binding="{Binding Path=StartAt}" Width="*"/>
+            </DataGrid.Columns>
+            <DataGrid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.102"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DataGrid.RenderTransform>
+        </DataGrid>
         <Button Content="הוסף תדירות" Name="btAddTime" HorizontalAlignment="Left" Height="58" Margin="353,0,-0.4,0" VerticalAlignment="Top" Width="141" Click="btAddTime_Click" />
 
     </Grid>

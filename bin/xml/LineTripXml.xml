@@ -1,17 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RootLineTrips>
   <LineTrip>
-    <Id>1</Id>
-    <LineId>4</LineId>
-    <StartAt>PT7H</StartAt>
-    <Frequency>PT10M</Frequency>
-    <FinishAt>PT10H</FinishAt>
-  </LineTrip>
-  <LineTrip>
     <Id>3</Id>
     <LineId>4</LineId>
-    <StartAt>PT19H</StartAt>
+    <StartAt>PT5H</StartAt>
     <Frequency>PT10M</Frequency>
-    <FinishAt>PT22H</FinishAt>
+    <FinishAt>PT5H30M</FinishAt>
   </LineTrip>
 </RootLineTrips>
