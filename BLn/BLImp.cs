@@ -72,7 +72,12 @@ namespace BL
 
         private TimeSpan calTime(int code1, int code2)
         {
-            return new TimeSpan(0, (int)(60 * calDistance(code1, code2) / 30), 0);
+            TimeSpan time= new TimeSpan(0, (int)(60 * calDistance(code1, code2) / 30), 0);
+            if(time.TotalSeconds==0)
+            {
+                return new TimeSpan(0, 1, 0);
+            }
+            return time;
         }
 
         private double calDistance(int code1, int code2)
@@ -83,7 +88,7 @@ namespace BL
                 DO.Station station2 = dl.GetStation(code2);
                 GeoCoordinate coor1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
                 GeoCoordinate coor2 = new GeoCoordinate(station2.Latitude, station2.Longitude);
-                return coor1.GetDistanceTo(coor2) * 1.5 / 1000;
+                return Math.Round((coor1.GetDistanceTo(coor2) * 1.5 / 1000),2);
 
             }
             catch (DO.BadStationCodeException ex)

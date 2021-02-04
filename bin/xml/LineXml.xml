@@ -1,17 +1,66 @@
 <?xml version="1.0"?>
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
-    <Id>4</Id>
-    <Code>54</Code>
+    <Id>1</Id>
+    <Code>10</Code>
     <Arae>דרום</Arae>
-    <FirstStation>19592</FirstStation>
-    <LastStation>19638</LastStation>
+    <FirstStation>11989</FirstStation>
+    <LastStation>19475</LastStation>
+  </Line>
+  <Line>
+    <Id>2</Id>
+    <Code>20</Code>
+    <Arae>דרום</Arae>
+    <FirstStation>19594</FirstStation>
+    <LastStation>13944</LastStation>
+  </Line>
+  <Line>
+    <Id>3</Id>
+    <Code>30</Code>
+    <Arae>ירושלים</Arae>
+    <FirstStation>63885</FirstStation>
+    <LastStation>60184</LastStation>
+  </Line>
+  <Line>
+    <Id>4</Id>
+    <Code>40</Code>
+    <Arae>ירושלים</Arae>
+    <FirstStation>1136</FirstStation>
+    <LastStation>9820</LastStation>
   </Line>
   <Line>
     <Id>5</Id>
-    <Code>89</Code>
+    <Code>50</Code>
+    <Arae>מרכז</Arae>
+    <FirstStation>36230</FirstStation>
+    <LastStation>35246</LastStation>
+  </Line>
+  <Line>
+    <Id>6</Id>
+    <Code>60</Code>
+    <Arae>מרכז</Arae>
+    <FirstStation>21639</FirstStation>
+    <LastStation>31746</LastStation>
+  </Line>
+  <Line>
+    <Id>7</Id>
+    <Code>70</Code>
+    <Arae>צפון</Arae>
+    <FirstStation>46203</FirstStation>
+    <LastStation>40293</LastStation>
+  </Line>
+  <Line>
+    <Id>8</Id>
+    <Code>80</Code>
+    <Arae>צפון</Arae>
+    <FirstStation>47582</FirstStation>
+    <LastStation>42452</LastStation>
+  </Line>
+  <Line>
+    <Id>9</Id>
+    <Code>90</Code>
     <Arae>ארצי</Arae>
-    <FirstStation>19630</FirstStation>
-    <LastStation>19633</LastStation>
+    <FirstStation>46203</FirstStation>
+    <LastStation>19760</LastStation>
   </Line>
 </ArrayOfLine>

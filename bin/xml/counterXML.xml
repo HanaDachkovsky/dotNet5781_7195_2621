@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RootCounters xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Counters>
-    <lineIdCounter>6</lineIdCounter>
-    <lineTripIdCounter>4</lineTripIdCounter>
+    <lineIdCounter>10</lineIdCounter>
+    <lineTripIdCounter>1</lineTripIdCounter>
   </Counters>
 </RootCounters>
