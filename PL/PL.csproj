@@ -69,9 +69,6 @@
     <Compile Include="AddWindowLine.xaml.cs">
       <DependentUpon>AddWindowLine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="BusDetails.xaml.cs">
-      <DependentUpon>BusDetails.xaml</DependentUpon>
-    </Compile>
     <Compile Include="LineDetails.xaml.cs">
       <DependentUpon>LineDetails.xaml</DependentUpon>
     </Compile>
@@ -134,14 +131,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="BusDetails.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="BusesWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="LineDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,9 +146,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="BusesWindow.xaml.cs">
-      <DependentUpon>BusesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="LinesWindow.xaml.cs">
       <DependentUpon>LinesWindow.xaml</DependentUpon>

@@ -40,9 +40,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions >
                 <TextBlock Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  ><Run FlowDirection="RightToLeft" /></TextBlock>
-                <TextBlock Text="{Binding Path=Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  ><Run FlowDirection="RightToLeft" /></TextBlock>
-                <TextBlock Text="{Binding Path=Address}" Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"  ><Run FlowDirection="RightToLeft" /></TextBlock>
-                <Button Content="לוח אלקטרוני" Grid.Column="3" Click="Button_Click"/>
+                <TextBlock Text="{Binding Path=Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="40,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="170" FontSize="16"  ><Run FlowDirection="RightToLeft" /></TextBlock>
+                <TextBlock Text="{Binding Path=Address}" Grid.Column="2" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="180" FontSize="16"  ><Run FlowDirection="RightToLeft" /></TextBlock>
+                <Button Content="לוח אלקטרוני" Grid.Column="3" Click="Button_Click" Margin="60,27,0,0"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>

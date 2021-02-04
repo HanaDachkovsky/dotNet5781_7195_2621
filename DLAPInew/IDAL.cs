@@ -19,25 +19,6 @@ namespace DLAPI
 
         #endregion
 
-        #region Bus
-        void AddBus(DO.Bus bus);
-        DO.Bus GetBus(int licenseNum);
-        IEnumerable<DO.Bus> GetAllBus();
-        IEnumerable<DO.Bus> GetAllBusBy(Predicate<DO.Bus> predicate);
-        void UpdateBus(DO.Bus bus);//?
-        void UpdateBus(int licenseNum, Action<DO.Bus> update);
-        void DeleteBus(int licenseNum);
-        #endregion
-
-        #region BusOnTrip
-        int AddBusOnTrip(DO.BusOnTrip busOnTrip);
-        DO.BusOnTrip GetBusOnTrip(int id);
-        IEnumerable<DO.BusOnTrip> GetAllBusOnTrip();
-        IEnumerable<DO.BusOnTrip> GetAllBusOnTripBy(Predicate<DO.BusOnTrip> predicate);
-        void UpdateBusOnTrip(DO.BusOnTrip busOnTrip);//?
-        void UpdateBusOnTrip(int id, Action<DO.BusOnTrip> update);
-        void DeleteBusOnTrip(int id);
-        #endregion
 
         #region Line
         int AddLine(DO.Line line);
@@ -79,15 +60,6 @@ namespace DLAPI
         void DeleteStation(int code);
         #endregion
 
-        #region Trip
-        int AddTrip(DO.Trip trip);
-        DO.Trip GetTrip(int id);
-        IEnumerable<DO.Trip> GetAllTrip();
-        IEnumerable<DO.Trip> GetAllTripBy(Predicate<DO.Trip> predicate);
-        void UpdateTrip(DO.Trip trip);//?
-        void UpdateTrip(int id, Action<DO.Trip> update);
-        void DeleteTrip(int id);
-        #endregion
 
         #region User
         void AddUser(DO.User user);

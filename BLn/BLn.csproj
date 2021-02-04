@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="BLFactory.cs" />
     <Compile Include="BLImp.cs" />
-    <Compile Include="BO\Bus.cs" />
     <Compile Include="BO\Enums.cs" />
     <Compile Include="BO\Exceptions.cs" />
     <Compile Include="BO\Line.cs" />

@@ -11,8 +11,7 @@ namespace DS
     {
 
         public static List<DO.AdjacentStations> ListAdjacentStations;
-        public static List<DO.Bus> ListBus;
-        public static List<DO.BusOnTrip> ListBusOnTrip;
+   
         public static List<DO.Line> ListLine;
         public static List<DO.LineStation> ListLineStation;
         public static List<DO.LineTrip> ListLineTrip;
@@ -29,8 +28,6 @@ namespace DS
         static void InitAllList()
         {
             ListAdjacentStations = new List<DO.AdjacentStations>();
-            ListBus = new List<DO.Bus>();
-            ListBusOnTrip = new List<DO.BusOnTrip>();
             ListLine = new List<DO.Line>();
             ListLineStation = new List<DO.LineStation>();
             ListLineTrip = new List<DO.LineTrip>();
@@ -525,11 +522,6 @@ namespace DS
                     next = ListStation[i + 1].Code;
                 }
                 ListLineStation.Add(new DO.LineStation { LineId = 10, LineStationIndex = i + 1, Station = ListStation[i].Code, PrevStation = prev, NextStation = next}); 
-            }
-            for (int i = 0; i < 20; i++)
-            {
-
-                ListBus.Add(new DO.Bus { Status = DO.Enums.BusStatus.Ready, LicenseNum = 10000000 + i * 100, TotalTrip = 0, FuelRemain = 0, FromDate = DateTime.Now });
             }
             ListUser = new List<User>
             {

@@ -19,24 +19,7 @@ namespace BL
         public static BLImp Instance { get => instance; }// The public Instance property to use
         #endregion
         IDAL dl = DLFactory.GetDL();
-        public void AddBus(int licenseNum, DateTime fromDate, double totalTrip, double fuelRemain, Enums.BusStatus status)
-        {
-            try
-            {
-                DO.Bus bus = new DO.Bus();
-                bus.LicenseNum = licenseNum;
-                bus.FromDate = fromDate;
-                bus.TotalTrip = totalTrip;
-                bus.FuelRemain = fuelRemain;
-                bus.Status = (DO.Enums.BusStatus)status;
-                dl.AddBus(bus);
-            }
-            catch (Exception ex)
-            {
-
-
-            }
-        }
+      
 
         public void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2)
 
@@ -133,25 +116,7 @@ namespace BL
             }
         }
 
-        public void CareBus(int num)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteBus(int num)
-        {//bus on trip
-
-            try
-            {
-                dl.DeleteBus(num);
-            }
-            catch (Exception ex)
-            {
-                //throw
-            }
-
-
-        }
+      
 
         public void DeleteLine(int num)
         {//bus on trip,trip
@@ -204,11 +169,7 @@ namespace BL
             }
         }
 
-        public IEnumerable<Bus> GetAllBuses()
-        {
-            return from item in dl.GetAllBus()
-                   select new BO.Bus { LicenseNum = item.LicenseNum, FromDate = item.FromDate, FuelRemain = item.FuelRemain, TotalTrip = item.TotalTrip, Status = (Enums.BusStatus)item.Status };
-        }
+     
 
         public IEnumerable<Line> GetAllLines()
         {
@@ -299,29 +260,6 @@ namespace BL
                 throw new BO.BadUserUserNameException("שם המשתמש או הסיסמא שגויים", ex);
             }
 
-        }
-
-        public void RefuelBus(int num)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateBus(Bus bus)
-        {//
-            try
-            {
-                DO.Bus busToUpdate = new DO.Bus();
-                busToUpdate.LicenseNum = bus.LicenseNum;
-                busToUpdate.FromDate = bus.FromDate;
-                busToUpdate.TotalTrip = bus.TotalTrip;
-                busToUpdate.FuelRemain = bus.FuelRemain;
-                busToUpdate.Status = (DO.Enums.BusStatus)bus.Status;
-                dl.UpdateBus(busToUpdate);
-            }
-            catch (Exception ex)
-            {
-                //throw
-            }
         }
 
         public void UpdateLine(int id, int code, Enums.Areas area)

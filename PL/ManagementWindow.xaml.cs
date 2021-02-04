@@ -27,10 +27,7 @@ namespace PL
             bl = bl2;
         }
 
-        private void btBusesView_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
 
         private void btLinesView_Click(object sender, RoutedEventArgs e)
         {

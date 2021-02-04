@@ -11,14 +11,7 @@ namespace BLAPI
         bool IsAdminAndExists(string userName, string password);
         #endregion
 
-        #region Bus
-        IEnumerable<BO.Bus> GetAllBuses();
-        void DeleteBus(int num);
-        void RefuelBus(int num);
-        void CareBus(int num);
-        void UpdateBus(BO.Bus bus);
-        void AddBus(int licenseNum, DateTime fromDate, double totalTrip, double fuelRemain, Enums.BusStatus status);
-        #endregion
+        
 
         #region Line
         BO.Line GetLine(int id);
