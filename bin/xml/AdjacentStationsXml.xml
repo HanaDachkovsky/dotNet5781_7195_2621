@@ -6,4 +6,16 @@
     <Distance>1.1</Distance>
     <Time>PT4M</Time>
   </AdjacentStations>
+  <AdjacentStations>
+    <Station1>11994</Station1>
+    <Station2>19592</Station2>
+    <Distance>1.20326022345254</Distance>
+    <Time>PT2M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>11991</Station1>
+    <Station2>19634</Station2>
+    <Distance>0.940562090104988</Distance>
+    <Time>PT1M</Time>
+  </AdjacentStations>
 </AdjacentStationsXml.xml>

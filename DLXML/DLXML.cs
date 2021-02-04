@@ -602,6 +602,7 @@ namespace DL
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
             int id = int.Parse(countersRootElem.Elements().First().Element("lineTripIdCounter").Value);
             countersRootElem.Elements().First().Element("lineTripIdCounter").Value = (id + 1).ToString();
+            XMLTools.SaveListToXMLElement(countersRootElem, counterXML);
             XElement lineTripElem = new XElement("LineTrip", new XElement("Id", id.ToString()),
                                   new XElement("LineId", lineTrip.LineId.ToString()),
                                   new XElement("StartAt", XmlConvert.ToString(lineTrip.StartAt)),
