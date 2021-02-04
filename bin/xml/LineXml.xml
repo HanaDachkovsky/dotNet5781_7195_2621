@@ -2,9 +2,9 @@
 <ArrayOfLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Line>
     <Id>4</Id>
-    <Code>55</Code>
+    <Code>54</Code>
     <Arae>דרום</Arae>
-    <FirstStation>19475</FirstStation>
+    <FirstStation>19592</FirstStation>
     <LastStation>19638</LastStation>
   </Line>
   <Line>

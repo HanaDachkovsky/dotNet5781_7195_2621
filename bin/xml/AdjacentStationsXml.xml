@@ -34,13 +34,13 @@
     <Station1>19475</Station1>
     <Station2>19638</Station2>
     <Distance>0.414582318826998</Distance>
-    <Time>PT0S</Time>
+    <Time>PT4M</Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>19630</Station1>
     <Station2>19633</Station2>
     <Distance>0.51336425645742</Distance>
-    <Time>PT1M</Time>
+    <Time>PT2M</Time>
   </AdjacentStations>
   <AdjacentStations>
     <Station1>19638</Station1>
@@ -65,5 +65,47 @@
     <Station2>60066</Station2>
     <Distance>360.257968891623</Distance>
     <Time>PT12H</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19475</Station1>
+    <Station2>19654</Station2>
+    <Distance>1.45199309925442</Distance>
+    <Time>PT2M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19654</Station1>
+    <Station2>19638</Station2>
+    <Distance>1.05760151072277</Distance>
+    <Time>PT2M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19475</Station1>
+    <Station2>19634</Station2>
+    <Distance>1.48863015585617</Distance>
+    <Time>PT2M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19634</Station1>
+    <Station2>19638</Station2>
+    <Distance>1.0967477013296</Distance>
+    <Time>PT2M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19634</Station1>
+    <Station2>19476</Station2>
+    <Distance>1.42894622670085</Distance>
+    <Time>PT2M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19476</Station1>
+    <Station2>19638</Station2>
+    <Distance>0.503689452507905</Distance>
+    <Time>PT1M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>19592</Station1>
+    <Station2>19475</Station2>
+    <Distance>0.959183675593495</Distance>
+    <Time>PT1M</Time>
   </AdjacentStations>
 </AdjacentStationsXml.xml>

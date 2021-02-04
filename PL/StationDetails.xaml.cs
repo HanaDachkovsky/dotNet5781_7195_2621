@@ -47,5 +47,10 @@ namespace PL
         {
 
         }
+
+        private void btElectronicBoard_Click(object sender, RoutedEventArgs e)
+        {
+            new SimulationWindow(bl, DataContext as BO.Station).Show();
+        }
     }
 }

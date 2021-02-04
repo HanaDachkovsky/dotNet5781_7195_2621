@@ -35,7 +35,9 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition />                    <ColumnDefinition/>                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -97,5 +99,6 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
+        <Button x:Name="btElectronicBoard" Content="לוח אלקטרוני" Grid.Column="5" HorizontalAlignment="Left" Height="38" Margin="0.4,22.4,-0.4,0" Grid.Row="1" VerticalAlignment="Top" Width="132" Click="btElectronicBoard_Click" />
     </Grid>
 </Window>

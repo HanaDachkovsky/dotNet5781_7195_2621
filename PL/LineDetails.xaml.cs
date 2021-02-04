@@ -28,6 +28,7 @@ namespace PL
             bl = bl2;
             DataContext = line;
             dgStations.ItemsSource = new ObservableCollection<BO.LineStation>(line.Stations);////ex
+            
         }
 
         
