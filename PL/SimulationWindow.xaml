@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SimulationWindow" Height="450" Width="800" Closing="Window_Closing" Background="AliceBlue">
+        Title="לוח אלקטרוני" Height="450" Width="800" Closing="Window_Closing" Background="AliceBlue">
     <Grid>
         <TextBlock Name="tbTime" HorizontalAlignment="Left" Height="62" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
         <DataGrid x:Name="dgTime" HorizontalAlignment="Left" Height="297" Margin="10,113,0,0" VerticalAlignment="Top" Width="767"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False"

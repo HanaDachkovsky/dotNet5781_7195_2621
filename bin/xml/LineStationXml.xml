@@ -19,54 +19,47 @@
     <Station>11991</Station>
     <LineStationIndex>3</LineStationIndex>
     <PrevStation>11990</PrevStation>
-    <NextStation>11994</NextStation>
-  </LineStation>
-  <LineStation>
-    <LineId>1</LineId>
-    <Station>11994</Station>
-    <LineStationIndex>4</LineStationIndex>
-    <PrevStation>11991</PrevStation>
     <NextStation>19760</NextStation>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <Station>19760</Station>
-    <LineStationIndex>5</LineStationIndex>
-    <PrevStation>11994</PrevStation>
+    <LineStationIndex>4</LineStationIndex>
+    <PrevStation>11991</PrevStation>
     <NextStation>19476</NextStation>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <Station>19476</Station>
-    <LineStationIndex>6</LineStationIndex>
+    <LineStationIndex>5</LineStationIndex>
     <PrevStation>19760</PrevStation>
     <NextStation>19637</NextStation>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <Station>19637</Station>
-    <LineStationIndex>7</LineStationIndex>
+    <LineStationIndex>6</LineStationIndex>
     <PrevStation>19476</PrevStation>
     <NextStation>19592</NextStation>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <Station>19592</Station>
-    <LineStationIndex>8</LineStationIndex>
+    <LineStationIndex>7</LineStationIndex>
     <PrevStation>19637</PrevStation>
     <NextStation>19634</NextStation>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <Station>19634</Station>
-    <LineStationIndex>9</LineStationIndex>
+    <LineStationIndex>8</LineStationIndex>
     <PrevStation>19592</PrevStation>
     <NextStation>19475</NextStation>
   </LineStation>
   <LineStation>
     <LineId>1</LineId>
     <Station>19475</Station>
-    <LineStationIndex>10</LineStationIndex>
+    <LineStationIndex>9</LineStationIndex>
     <PrevStation>19634</PrevStation>
     <NextStation>0</NextStation>
   </LineStation>
@@ -548,16 +541,9 @@
   </LineStation>
   <LineStation>
     <LineId>9</LineId>
-    <Station>11994</Station>
+    <Station>19760</Station>
     <LineStationIndex>9</LineStationIndex>
     <PrevStation>11991</PrevStation>
-    <NextStation>19760</NextStation>
-  </LineStation>
-  <LineStation>
-    <LineId>9</LineId>
-    <Station>19760</Station>
-    <LineStationIndex>10</LineStationIndex>
-    <PrevStation>11994</PrevStation>
     <NextStation>0</NextStation>
   </LineStation>
   <LineStation>
@@ -565,7 +551,7 @@
     <Station>11991</Station>
     <LineStationIndex>8</LineStationIndex>
     <PrevStation>11990</PrevStation>
-    <NextStation>11994</NextStation>
+    <NextStation>19760</NextStation>
   </LineStation>
   <LineStation>
     <LineId>9</LineId>

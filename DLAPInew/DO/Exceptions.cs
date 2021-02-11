@@ -32,8 +32,7 @@ namespace DO
         public override string ToString() => base.ToString() + $", bad bus license number: {LicenseNum}";
     }
 
-    //bus on trip
-
+    
     public class BadLineIdException : Exception
     {
         public int ID;
@@ -95,6 +94,8 @@ namespace DO
 
         public override string ToString() => base.ToString() + $", bad user user name: {UserName}";
     }
+
+
     public class XMLFileLoadCreateException : Exception
     {
         public string xmlFilePath;

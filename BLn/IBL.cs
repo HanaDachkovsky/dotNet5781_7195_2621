@@ -9,6 +9,7 @@ namespace BLAPI
     {
         #region User
         bool IsAdminAndExists(string userName, string password);
+        void CreateUser(string userName, string password, bool isAdmin, string manPassword);
         #endregion
 
         
@@ -45,7 +46,7 @@ namespace BLAPI
         #endregion
 
         IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station,TimeSpan time);
-        void todelete();
+        
     }
 }
 

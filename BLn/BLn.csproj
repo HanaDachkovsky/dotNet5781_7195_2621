@@ -52,7 +52,6 @@
     <Compile Include="BO\LineTrip.cs" />
     <Compile Include="BO\Station.cs" />
     <Compile Include="BO\StationLine.cs" />
-    <Compile Include="BO\User.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

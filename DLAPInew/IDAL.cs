@@ -66,9 +66,10 @@ namespace DLAPI
         DO.User GetUser(string userName);
         IEnumerable<DO.User> GetAllUser();
         IEnumerable<DO.User> GetAllUserBy(Predicate<DO.User> predicate);
-        void UpdateUser(DO.User user);//?
+        void UpdateUser(DO.User user);
         void UpdateUser(string userName, Action<DO.User> update);
         void DeleteUser(string userName);
+        string GetManagementPassword();
         #endregion
     }
 }

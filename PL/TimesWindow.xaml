@@ -69,7 +69,7 @@
                         </DataGridTemplateColumn.CellTemplate>
 
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="תדירות בדקות" Binding="{Binding Path=Frequency}" Width="*"/>
+                    <DataGridTextColumn Header="תדירות" Binding="{Binding Path=Frequency}" Width="*"/>
                 <DataGridTextColumn Header="זמן סיום" Binding="{Binding Path=FinishAt}" Width="*"/>
                 <DataGridTextColumn Header="זמן התחלה" Binding="{Binding Path=StartAt}" Width="*"/>
             </DataGrid.Columns>

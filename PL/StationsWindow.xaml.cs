@@ -36,11 +36,7 @@ namespace PL
                 MessageBox.Show(ex.Message, "שגיאה");
             }
 
-            //list=new obs
-            //itemsource=list
-            //
-            //remove->נמחק מליסט
-            //refresh
+            
         }
         private void refresh()
         {
@@ -55,8 +51,7 @@ namespace PL
         }
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            //lbStations.ItemsSource
-            //למחוק מהרשימה עצמה
+          
             try
             {
                 bl.DeleteStation((((sender as Button).Parent as Grid).DataContext as BO.Station).Code);
@@ -66,9 +61,7 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "שגיאה");
             }
-            //lbStations.SelectedItems.Remove((((sender as Button).Parent as Grid).DataContext as BO.Station));
-            ///////???
-
+            
 
         }
 
@@ -76,7 +69,7 @@ namespace PL
         {
             try
             {
-                //AddStationWindow addStationWindow = new AddStationWindow(bl);
+                
                 new AddStationWindow(bl).ShowDialog();
                 lbStations.ItemsSource = new ObservableCollection<BO.Station>(bl.GetAllStations());
             }

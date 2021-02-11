@@ -51,7 +51,7 @@ namespace PL
 
         private void btDelete_Click(object sender, RoutedEventArgs e)
         {
-            int id = ((((sender as Button).Parent as Grid).DataContext as BO.Line)).Id;///בעיית מחיקה
+            int id = ((((sender as Button).Parent as Grid).DataContext as BO.Line)).Id;
             try
             {
                 bl.DeleteLine(id);

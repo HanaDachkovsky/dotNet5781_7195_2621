@@ -78,17 +78,17 @@ namespace PL
                 MessageBox.Show("יש להכניס מספר קו","שגיאה");
                 return;
             }
-            if(cbArea.SelectedItem==null)//?
+            if(cbArea.SelectedItem==null)
             {
                 MessageBox.Show("יש לבחור איזור", "שגיאה");
                 return;
             }
-            if (cbFirst.SelectedItem == null)//?
+            if (cbFirst.SelectedItem == null)
             {
                 MessageBox.Show("יש לבחור תחנה ראשונה", "שגיאה");
                 return;
             }
-            if (cbLast.SelectedItem == null)//?
+            if (cbLast.SelectedItem == null)
             {
                 MessageBox.Show("יש לבחור תחנה אחרונה", "שגיאה");
                 return;

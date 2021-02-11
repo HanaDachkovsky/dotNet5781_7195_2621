@@ -27,6 +27,5 @@
         <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Height="23" Margin="155,27,0,0" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261" PreviewKeyDown="tb_PreviewKeyDown" TextChanged="tbUserName_TextChanged"/>
         <Button x:Name="btSignIn" Content="התחברות" HorizontalAlignment="Left" Margin="297,15.8,0,0" Grid.Row="3" Grid.Column="0" VerticalAlignment="Top" Width="169" Height="44"  Click="btSignIn_Click"/>
         <Button x:Name="btSignUp" Content="לא רשום? הרשם כאן" HorizontalAlignment="Left" Margin="297,20.2,0,0" Grid.Row="4" Grid.Column="0" VerticalAlignment="Top" Width="171" Height="40" Click="btSignUp_Click"  FontSize="16"/>
-        <!--Button Content="Button" HorizontalAlignment="Left" Height="33" Margin="182,10,0,0" VerticalAlignment="Top" Width="122" Click="Button_Click"/-->
-    </Grid>
+        </Grid>
 </Window>

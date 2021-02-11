@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
 using System.Text;
-//using System.Device.Location;
 using BLAPI;
 using BO;
 using DLAPI;
@@ -19,12 +18,12 @@ namespace BL
         public static BLImp Instance { get => instance; }// The public Instance property to use
         #endregion
         IDAL dl = DLFactory.GetDL();
-      
+
 
         public void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2)
 
         {
-            //line trip??
+
             try
             {
                 dl.GetStation(station1.Code);
@@ -72,8 +71,8 @@ namespace BL
 
         private TimeSpan calTime(int code1, int code2)
         {
-            TimeSpan time= new TimeSpan(0, (int)(60 * calDistance(code1, code2) / 30), 0);
-            if(time.TotalSeconds==0)
+            TimeSpan time = new TimeSpan(0, (int)(60 * calDistance(code1, code2) / 30), 0);
+            if (time.TotalSeconds == 0)
             {
                 return new TimeSpan(0, 1, 0);
             }
@@ -88,7 +87,7 @@ namespace BL
                 DO.Station station2 = dl.GetStation(code2);
                 GeoCoordinate coor1 = new GeoCoordinate(station1.Latitude, station1.Longitude);
                 GeoCoordinate coor2 = new GeoCoordinate(station2.Latitude, station2.Longitude);
-                return Math.Round((coor1.GetDistanceTo(coor2) * 1.5 / 1000),2);
+                return Math.Round((coor1.GetDistanceTo(coor2) * 1.5 / 1000), 2);
 
             }
             catch (DO.BadStationCodeException ex)
@@ -102,7 +101,6 @@ namespace BL
         {
             try
             {
-                //Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3, Lattitude = rand.NextDouble() * (33.3 - 31) + 31
                 if (longitude < 34.3 || longitude > 35.5 || latitude < 31 || latitude > 33.3)
                     throw new ArgumentOutOfRangeException("לא ניתן להוסיף תחנה שקווי האורך או הרוחב שלה מחוץ לישראל");
             }
@@ -121,10 +119,10 @@ namespace BL
             }
         }
 
-      
+
 
         public void DeleteLine(int num)
-        {//bus on trip,trip
+        {
 
             try
             {
@@ -155,7 +153,6 @@ namespace BL
             try
             {
                 dl.GetAllLineStationBy(ls => ls.Station == num).ToList().ForEach(ls => DeleteStationInLine(num, ls.LineId));
-                //תחנות עוקבות?
                 dl.GetAllAdjacentStationsBy(a => a.Station1 == num || a.Station2 == num).ToList().ForEach(a => dl.DeleteAdjacentStations(a.Station1, a.Station2));
                 dl.DeleteStation(num);
             }
@@ -174,7 +171,7 @@ namespace BL
             }
         }
 
-     
+
 
         public IEnumerable<Line> GetAllLines()
         {
@@ -190,8 +187,6 @@ namespace BL
                            LastStationName = dl.GetStation(line.LastStation).Name,
                            Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                       let name = dl.GetStation(station.Station).Name
-                                      //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
-                                      //where (station.LineStationIndex != 1)
                                       let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
                                       let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
                                       select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
@@ -223,14 +218,12 @@ namespace BL
                            Latitude = station.Latitude,
                            Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
                                    let line = dl.GetLine(lineSt.LineId)
-                                   //let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
                                    select new BO.StationLine
                                    {
                                        Id = line.Id,
                                        Code = line.Code,
                                        LastStation = line.LastStation,
                                        NameLastStation = dl.GetStation(line.LastStation).Name
-                                       // ArrivalTimes = arrivalTimes
                                    }
                        };
             }
@@ -244,18 +237,13 @@ namespace BL
             }
 
         }
-        //private IEnumerable<DateTime> ExceptedArrivalTimes(int lineId, int code)
-        //{
-        //    throw new NotImplementedException();
-
-        //}
 
         public bool IsAdminAndExists(string userName, string password)
         {
             try
             {
                 DO.User user = dl.GetUser(userName);
-                if ( decrypt(user.Password) != password)
+                if (decrypt(user.Password) != password)
                     throw new BO.BadUserUserNameException(userName, "שם המשתמש או הסיסמא שגויים");
                 return user.Admin;
             }
@@ -290,11 +278,9 @@ namespace BL
                     Id = line.Id,
                     Code = line.Code,
                     Arae = (Enums.Areas)line.Arae,
-                    LastStationName=dl.GetStation(line.LastStation).Name,
+                    LastStationName = dl.GetStation(line.LastStation).Name,
                     Stations = from station in dl.GetAllLineStationBy(ls => ls.LineId == line.Id).OrderBy(s => s.LineStationIndex)
                                let name = dl.GetStation(station.Station).Name
-                               //let prev=dl.GetAllLineStationBy(ls=>ls.LineId==line.Id&&ls.LineStationIndex==station.LineStationIndex-1).First().
-                               //where (station.LineStationIndex != 1)
                                let time = dl.GetAdjacentStations(station.PrevStation, station.Station).Time
                                let dis = dl.GetAdjacentStations(station.PrevStation, station.Station).Distance
                                select new BO.LineStation { Code = station.Station, Name = name, DistanceFromPrevStat = dis, TimeFromPrevStat = time }
@@ -348,7 +334,6 @@ namespace BL
                     dl.GetLineStation(lineId, stationBefore);
                     index = dl.GetLineStation(lineId, stationBefore).LineStationIndex + 1;
                     next = dl.GetLineStation(lineId, stationBefore).NextStation;
-                    //dl.GetLineStation(lineId, stationBefore).NextStation = code;
                     dl.UpdateLineStation(lineId, stationBefore, ls => ls.NextStation = code);
 
                 }
@@ -359,15 +344,13 @@ namespace BL
                 }
                 else
                 {
-                    //dl.GetLineStation(lineId, next).PrevStation = code;
                     dl.UpdateLineStation(lineId, next, ls => ls.PrevStation = code);
                 }
 
-                //dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => x.LineStationIndex++);
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex++));
                 dl.AddLineStation(new DO.LineStation { Station = code, LineId = lineId, LineStationIndex = index, PrevStation = stationBefore, NextStation = next });
 
-                //תחנות עוקבות
+
 
                 if (first == false && dl.GetAllAdjacentStationsBy(a => a.Station1 == stationBefore && a.Station2 == code).Count() < 1)
                 {
@@ -416,7 +399,7 @@ namespace BL
                 if (dl.GetLine(lineId).FirstStation == code)
                 {
 
-                    int first = dl.GetLineStation(lineId, next).Station;////?
+                    int first = dl.GetLineStation(lineId, next).Station;
                     dl.UpdateLine(lineId, l => l.FirstStation = first);
                     dl.UpdateLineStation(lineId, next, ls => ls.PrevStation = prev);
                 }
@@ -439,7 +422,7 @@ namespace BL
                 index = dl.GetLineStation(lineId, code).LineStationIndex;
                 dl.GetAllLineStationBy(ls => ls.LineId == lineId && ls.LineStationIndex >= index).ToList().ForEach(x => dl.UpdateLineStation(lineId, x.Station, ls => ls.LineStationIndex--));
                 dl.DeleteLineStation(lineId, code);
-                //תחנות עוקבות?
+
 
             }
             catch (DO.BadStationCodeException ex)
@@ -482,15 +465,12 @@ namespace BL
                     Latitude = station.Latitude,
                     Lines = from lineSt in dl.GetAllLineStationBy(ls => ls.Station == station.Code)
                             let line = dl.GetLine(lineSt.LineId)
-                            //let arrivalTimes = ExceptedArrivalTimes(line.Id, station.Code)
                             select new BO.StationLine
                             {
                                 Id = line.Id,
                                 Code = line.Code,
                                 LastStation = line.LastStation,
                                 NameLastStation = dl.GetStation(line.LastStation).Name
-                                // ArrivalTimes = arrivalTimes
-
                             }
                 };
             }
@@ -507,7 +487,6 @@ namespace BL
         {
             try
             {
-                //if (dl.GetAllLineTripBy(lt => lt.LineId == lineId).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
                 if (dl.GetAllLineTripBy(lt => lt.LineId == lineId && ((lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt))).Count() > 0)
                 {
                     throw new ArgumentOutOfRangeException("לא ניתן להוסיף תדירות שחופפת לתדירות אחרת בקו");
@@ -551,14 +530,6 @@ namespace BL
             try
             {
                 dl.GetLine(lineTrip.LineId);
-                //var x = dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).ToList();
-                //var y = x.Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).ToList();
-                //var z = y.Count();
-                //var w = x.FirstOrDefault(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt));
-                //if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).Select(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)).Count() > 0)
-                //{
-                //    throw new ArgumentOutOfRangeException("לא ניתן לעדכן תדירות כך שתהיה חופפת לתדירות אחרת בלוח הזמנים של הקו");
-                //}
                 if (dl.GetAllLineTripBy(lt => lt.LineId == lineTrip.LineId && lt.Id != lineTrip.Id).FirstOrDefault(lt => (lt.StartAt == startAt) || (lt.StartAt > startAt && lt.StartAt < finishAt) || (lt.StartAt < startAt && lt.FinishAt > startAt)) != null)
                 {
                     throw new ArgumentOutOfRangeException("לא ניתן לעדכן תדירות כך שתהיה חופפת לתדירות אחרת בלוח הזמנים של הקו");
@@ -599,23 +570,9 @@ namespace BL
                 throw new BO.BadAdjacentStationsCodesException("לא ניתן לעדכן זמן ומרחק מהתחנה הקודמת כיון שהתחנה או התחנה הקודמת לא קיימות", ex);
             }
         }
-        public void todelete()
-        {
-            //dl.AddUser(new DO.User { UserName = "AvrahamCohen", Password = "Ac123!", Admin = true });
-            //dl.AddUser(new DO.User { UserName = "m", Password = "m", Admin = true });
-            //dl.AddUser(new DO.User { UserName = "mn", Password = "mn", Admin = true });
-            //dl.AddStation(new DO.Station { Code = 1, Address = "jhjj", Latitude = 1.1, Longitude = 2, Name = "vvv" });
-            //dl.AddLine(new DO.Line { Code = 200, FirstStation = 41677, LastStation = 42452, Arae = DO.Enums.Areas.צפון });
-            // dl.AddAdjacentStations(new DO.AdjacentStations { Station1 = 41677, Station2 = 42452, Distance = 1.1, Time = new TimeSpan(0, 4, 0) });
-            //dl.AddLineStation(new DO.LineStation { LineStationIndex = 1, LineId = 1, PrevStation = 0, NextStation = 1, Station = 4 });
-
-            //dl.AddLineTrip(new DO.LineTrip { Id = 1, LineId = 1, FinishAt = DateTime.Now.TimeOfDay, Frequency = new TimeSpan(1, 0, 0), StartAt = DateTime.Now.TimeOfDay });
-            //dl.AddUser(new DO.User { Admin = false, UserName = "s", Password = encrypt("s") });
-
-        }
+        
         public IEnumerable<BO.LineArrivalTime> GetArrivalTimes(BO.Station station, TimeSpan time)
         {
-            //IEnumerable<StationLine> lines = station.Lines;
             return (from line in station.Lines
                     let duration = duration(line.Id, station.Code)
                     let start = startTime(line.Id, duration, time)
@@ -676,6 +633,22 @@ namespace BL
         private string decrypt(string value)
         {
             return Encoding.UTF8.GetString(Convert.FromBase64String(value));
+        }
+        public void CreateUser(string userName, string password, bool isAdmin, string manPassword)
+        {
+            try
+            {
+                if (isAdmin == true && manPassword != decrypt(dl.GetManagementPassword()))
+                {
+                    throw new BO.BadManagementPasswordEception("סיסמת המנהל שגויה");
+                }
+                dl.AddUser(new DO.User { UserName = userName, Password = encrypt(password), Admin = isAdmin });
+            }
+            catch (DO.BadUserUserNameException ex)
+            {
+
+                throw new BO.BadUserUserNameException("שם המשתמש תפוס", ex);
+            }
         }
 
     }

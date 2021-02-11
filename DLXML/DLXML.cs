@@ -19,40 +19,18 @@ namespace DL
 
         #region DS XML Files
 
-        string AdjacentStationsPath = @"AdjacentStationsXml.xml"; //XMLSerializer
-        string BusOnTripPath = @"BusOnTripXml.xml"; //XMLSerializer
-        string BusPath = @"BusXml.xml"; //XMLSerializer
+        string AdjacentStationsPath = @"AdjacentStationsXml.xml"; //XElement
         string LinePath = @"LineXml.xml"; //XMLSerializer
         string LineStationPath = @"LineStationXml.xml"; //XMLSerializer
-        string LineTripPath = @"LineTripXml.xml"; //XMLSerializer
-        string TripPath = @"TripXml.xml"; //XMLSerializer
+        string LineTripPath = @"LineTripXml.xml"; //XElement
         string UserPath = @"UserXml.xml"; //XMLSerializer
         string StationPath = @"StationXml.xml"; //XElement
-        string counterXML = @"CounterXml.xml"; 
+        string counterXML = @"CounterXml.xml";
+        string passwordXML = @"Password.xml";
         #endregion
         #region AdjacentStations
         public void  AddAdjacentStations(AdjacentStations adjacentStations)
         {
-            //List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-            //List<Station> ListStation = XMLTools.LoadListFromXMLSerializer<Station>(StationPath);
-            //if (ListAdjacentStations.FirstOrDefault(adjacent => adjacent.Station1 == adjacentStations.Station1 && adjacent.Station2 == adjacentStations.Station2) != null)
-            //{
-            //    throw new DO.BadAdjacentStationsCodesException(adjacentStations.Station1, adjacentStations.Station2, "Duplicate adjacent stations");
-            //}
-            //if (ListStation.FirstOrDefault(s => s.Code == adjacentStations.Station1) == null)
-            //{//2 exs??
-
-            //    throw new DO.BadStationCodeException(adjacentStations.Station1, $" bad station code: {adjacentStations.Station1}");
-            //}
-            //if (ListStation.FirstOrDefault(s => s.Code == adjacentStations.Station2) == null)
-            //{
-            //    throw new DO.BadStationCodeException(adjacentStations.Station2, $" bad station code: {adjacentStations.Station2}");
-            //}
-            //ListAdjacentStations.Add(adjacentStations);
-            //XMLTools.SaveListToXMLSerializer<AdjacentStations>(ListAdjacentStations,AdjacentStationsPath);
-
-            //xelement
-
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
             XElement stationsRootElem = XMLTools.LoadListFromXMLElement(StationPath);
 
@@ -87,18 +65,6 @@ namespace DL
         }
         public void DeleteAdjacentStations(int station1, int station2)
         {
-            //List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-            //DO.AdjacentStations adj = ListAdjacentStations.Find(a => a.Station1 == station1 && a.Station2 == station2);
-            //if (adj == null)
-            //{
-            //    throw new BadAdjacentStationsCodesException(station1, station2, $"bad adjecent stations codes: { station1 } and {station2} ");
-            //}
-            //ListAdjacentStations.Remove(adj);
-            //XMLTools.SaveListToXMLSerializer<AdjacentStations>(ListAdjacentStations, AdjacentStationsPath);
-
-
-            //xelement
-
             XElement stationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
 
 
@@ -116,21 +82,7 @@ namespace DL
         }
 
         public AdjacentStations GetAdjacentStations(int station1, int station2)
-        {/////?
-            //List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-            //if (station1 == 0)
-            //{
-            //    return new DO.AdjacentStations { Station1 = 0, Station2 = station2, Distance = 0, Time = new TimeSpan(0, 0, 0) };
-            //}
-            //DO.AdjacentStations adjacentStations =ListAdjacentStations.Find(a => a.Station1 == station1 && a.Station2 == station2);
-            //if (adjacentStations == null)
-            //{
-            //    throw new BadAdjacentStationsCodesException(station1, station2, $"bad stations codes: {station1} and {station2}");
-            //}
-            //return adjacentStations;
-
-            //xelement
-
+        {
             if (station1 == 0)
             {
                 return new DO.AdjacentStations { Station1 = 0, Station2 = station2, Distance = 0, Time = new TimeSpan(0, 0, 0) };
@@ -158,10 +110,6 @@ namespace DL
         }
         public IEnumerable<AdjacentStations> GetAllAdjacentStationsBy(Predicate<AdjacentStations> predicate)//
         {
-            //    List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-            //    return from adjacentStations in ListAdjacentStations
-            //           where predicate(adjacentStations)
-            //           select adjacentStations;
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
 
 
@@ -183,11 +131,6 @@ namespace DL
 
         public IEnumerable<AdjacentStations> GetAllAdjacentStations()
         {
-            //List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-            //return from adjacentStations in ListAdjacentStations
-            //       select adjacentStations;
-
-            //xelement
 
             XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
 
@@ -206,18 +149,6 @@ namespace DL
         }
         public void UpdateAdjacentStations(AdjacentStations adjacentStations)//////
         {
-        //    List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-        //    DO.AdjacentStations adj = ListAdjacentStations.Find(a => a.Station1 == adjacentStations.Station1 && a.Station2 == adjacentStations.Station2);
-
-        //    if (adj == null)
-        //    {
-        //        throw new BadAdjacentStationsCodesException(adjacentStations.Station1, adjacentStations.Station2, $"bad stations codes: {adjacentStations.Station1} and {adjacentStations.Station2}");
-        //    }
-        //    ListAdjacentStations.Remove(adj);
-        //   ListAdjacentStations.Add(adjacentStations);
-        //    XMLTools.SaveListToXMLSerializer<AdjacentStations>(ListAdjacentStations, AdjacentStationsPath);
-
-        //xelement
 
         XElement adjacentStationsRootElem = XMLTools.LoadListFromXMLElement(AdjacentStationsPath);
 
@@ -240,16 +171,6 @@ namespace DL
 
         public void UpdateAdjacentStations(int station1, int station2, Action<AdjacentStations> update)
         {
-
-            //List<AdjacentStations> ListAdjacentStations = XMLTools.LoadListFromXMLSerializer<AdjacentStations>(AdjacentStationsPath);
-            //DO.AdjacentStations adj =ListAdjacentStations.Find(a => a.Station1 == station1);
-
-            //if (adj == null)
-            //{
-            //    throw new BadAdjacentStationsCodesException(station1, station2, $"bad stations codes: {station1} and {station2}");
-            //}
-            //update(adj);
-            //XMLTools.SaveListToXMLSerializer<AdjacentStations>(ListAdjacentStations, AdjacentStationsPath);
 
             DO.AdjacentStations stat = GetAdjacentStations(station1, station2);
             update(stat);
@@ -337,18 +258,10 @@ namespace DL
         {
             List<LineStation> ListLineStation = XMLTools.LoadListFromXMLSerializer<LineStation>(LineStationPath);
             List<Line> ListLine = XMLTools.LoadListFromXMLSerializer<Line>(LinePath);
-            //List<Station> ListStation = XMLTools.LoadListFromXMLSerializer<Station>(StationPath);
-
-            //חריגה עם תחנה קיימת בקו?
-            //שרהלה: אני מוסיפה
             if (ListLineStation.FirstOrDefault(ls => ls.Station == lineStation.Station && ls.LineId == lineStation.LineId) != null)
             {
                 throw new DO.BadLineStationIdException(lineStation.LineId, lineStation.Station, "Duplicate line stations");
             }
-            //if (ListStation.FirstOrDefault(s => s.Code == lineStation.Station) == null)
-            //{
-            //    throw new DO.BadStationCodeException(lineStation.Station, $"bad station code: {lineStation.Station}");
-            //}
             GetStation(lineStation.Station);
             if (ListLine.FirstOrDefault(l => l.Id == lineStation.LineId) == null)
             {
@@ -425,20 +338,6 @@ namespace DL
         #region LineTrip
         public int AddLineTrip(LineTrip lineTrip)
         {
-            //List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            //XElement countersRootElem = XMLTools.LoadListFromXMLElement(counterXML);
-            //int id = int.Parse(countersRootElem.Elements().First().Element("lineTripIdCounter").Value);
-            //countersRootElem.Elements().First().Element("lineTripIdCounter").Value = (id + 1).ToString();
-            //if (ListLineTrip.FirstOrDefault(l => l.Id == lineTrip.LineId) == null)
-            //{
-            //    throw new DO.BadLineIdException(lineTrip.LineId, $"bad line id: {lineTrip.LineId}");
-            //}
-            //lineTrip.Id = id;
-            //ListLineTrip.Add(lineTrip);
-            //XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
-            //return id;
-
-            //xelement
 
             XElement countersRootElem = XMLTools.LoadListFromXMLElement(counterXML);
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
@@ -459,16 +358,6 @@ namespace DL
         }
         public void DeleteLineTrip(int id)
         {
-            //    List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            //    DO.LineTrip lineTrip =ListLineTrip.Find(l => l.Id == id);
-            //    if (lineTrip == null)
-            //    {
-            //        throw new BadLineTripIdException(id, $"bad line id: {id}");
-            //    }
-            //   ListLineTrip.Remove(lineTrip);
-            //    XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
-
-            //x
 
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
 
@@ -488,10 +377,6 @@ namespace DL
 
         public IEnumerable<LineTrip> GetAllLineTrip()
         {
-            //List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            //return from lineTrip in ListLineTrip
-            //       select lineTrip;
-
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
 
             return (from lt in lineTripRootElem.Elements()
@@ -506,15 +391,7 @@ namespace DL
                    );
         }
         public LineTrip GetLineTrip(int id)
-        {
-            //List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            //DO.LineTrip lineTrip = ListLineTrip.Find(lt => lt.Id == id);
-            //if (lineTrip == null)
-            //{
-            //    throw new BadLineTripIdException(id, $"bad line trip id: {id}");
-            //}
-            //return lineTrip;
-
+        { 
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
 
             DO.LineTrip l = (from lt in lineTripRootElem.Elements()
@@ -537,11 +414,7 @@ namespace DL
 
         public IEnumerable<LineTrip> GetAllLineTripBy(Predicate<LineTrip> predicate)
         {
-            //List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            //return from lineTrip in ListLineTrip
-            //       where predicate(lineTrip)
-            //       select lineTrip;
-
+           
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
 
             return from lt in lineTripRootElem.Elements()
@@ -558,17 +431,7 @@ namespace DL
         }
         public void UpdateLineTrip(LineTrip lineTrip)
         {
-            // List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            // DO.LineTrip lineT = ListLineTrip.Find(lt => lt.Id == lineTrip.Id);
-
-            // if (lineT == null)
-            // {
-            //     //throw new
-            // }
-            //ListLineTrip.Remove(lineT);
-            //ListLineTrip.Add(lineTrip);
-            // XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
-
+            
             XElement lineTripRootElem = XMLTools.LoadListFromXMLElement(LineTripPath);
 
             XElement lt = (from l in lineTripRootElem.Elements()
@@ -590,15 +453,7 @@ namespace DL
 
         public void UpdateLineTrip(int id, Action<LineTrip> update)
         {
-            //List<LineTrip> ListLineTrip = XMLTools.LoadListFromXMLSerializer<LineTrip>(LineTripPath);
-            //DO.LineTrip lineT = ListLineTrip.Find(lt => lt.Id == id);
-
-            //if (lineT == null)
-            //{
-            //    throw new BadLineTripIdException(id, $"bad line trip id:{id}");
-            //}
-            //update(lineT);
-            //XMLTools.SaveListToXMLSerializer<LineTrip>(ListLineTrip, LineTripPath);
+           
 
             DO.LineTrip lineTrip = GetLineTrip(id);
             update(lineTrip);
@@ -813,6 +668,12 @@ namespace DL
             }
             update(use);
             XMLTools.SaveListToXMLSerializer<User>(ListUser, UserPath);
+        }
+
+        public string GetManagementPassword()
+        {
+            XElement passRootElem = XMLTools.LoadListFromXMLElement(passwordXML);
+            return passRootElem.Elements().First().Element("ManagementPassword").Value;
         }
     }
     #endregion

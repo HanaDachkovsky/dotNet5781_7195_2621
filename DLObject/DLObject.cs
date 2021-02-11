@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DL
 {
-    sealed class DLObject : IDAL    //internal
+    sealed class DLObject : IDAL    
     {
         #region singelton
         static readonly DLObject instance = new DLObject();
@@ -16,7 +16,7 @@ namespace DL
         DLObject() { } // default => private
         public static DLObject Instance { get => instance; }// The public Instance property to use
         #endregion
-        //לברר בקשר לבונוס של המחיקה!
+        
         #region AdjacentStations
         public void AddAdjacentStations(AdjacentStations adjacentStations)
         {
@@ -232,7 +232,7 @@ namespace DL
             update(lineS);
         }
         #endregion
-        //up to here
+        
         #region LineTrip
         public int AddLineTrip(LineTrip lineTrip)
         {
@@ -496,6 +496,10 @@ namespace DL
                 throw new BadUserUserNameException(userName, $"bad user name:{userName}");
             }
             update(use);
+        }
+        public string GetManagementPassword()
+        {
+            return "MTI2Nzk0";
         }
     }
     #endregion

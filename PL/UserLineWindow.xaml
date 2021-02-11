@@ -39,7 +39,7 @@
                 </Grid.ColumnDefinitions >
                 <TextBlock x:Name="tbCode" Text="{Binding Path=Code}" Grid.Column="0" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
                 <TextBlock x:Name="tbLastStation" Text="{Binding Path=LastStationName}" Grid.Column="1" HorizontalAlignment="Left" Margin="60,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="33" Width="138" FontSize="16"><Run FlowDirection="RightToLeft"  Foreground="#FF00539C" FontWeight="Bold" /></TextBlock>
-                <Button x:Name="btTime" Content="לוחות זמנים" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Click="btTime_Click"/>
+                <Button x:Name="btTime" Content="לוח זמנים" HorizontalAlignment="Left" Margin="305,16,0,0"  Grid.Column="1" VerticalAlignment="Top" Width="170" Height="44" Click="btTime_Click"/>
             </Grid>
         </DataTemplate>
     </Window.Resources>

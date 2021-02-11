@@ -13,18 +13,6 @@
     <Time>PT1M</Time>
   </AdjacentStations>
   <AdjacentStations>
-    <Station1>11991</Station1>
-    <Station2>11994</Station2>
-    <Distance>0.75</Distance>
-    <Time>PT1M</Time>
-  </AdjacentStations>
-  <AdjacentStations>
-    <Station1>11994</Station1>
-    <Station2>19760</Station2>
-    <Distance>1.77</Distance>
-    <Time>PT3M</Time>
-  </AdjacentStations>
-  <AdjacentStations>
     <Station1>19760</Station1>
     <Station2>19476</Station2>
     <Distance>0.18</Distance>
@@ -431,5 +419,11 @@
     <Station2>42997</Station2>
     <Distance>0.33</Distance>
     <Time>PT1M</Time>
+  </AdjacentStations>
+  <AdjacentStations>
+    <Station1>11991</Station1>
+    <Station2>19760</Station2>
+    <Distance>1.08</Distance>
+    <Time>PT2M</Time>
   </AdjacentStations>
 </AdjacentStationsXml.xml>

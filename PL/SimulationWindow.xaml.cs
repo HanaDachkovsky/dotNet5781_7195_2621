@@ -41,10 +41,7 @@ namespace PL
             worker.WorkerReportsProgress = true;
             start = DateTime.Now.TimeOfDay;
             tbTime.Text = start.ToString().Substring(0, 8);
-            tbStation.Text = station.Name;
-            //tbHour.Text = start.Hours.ToString();
-            //tbMinuts.Text = start.Minutes.ToString();
-            //tbSeconds.Text = start.Seconds.ToString();
+            tbStation.Text = station.Name; 
             stopwatch.Restart();
             isWorking = true;
             dgTime.ItemsSource = bl.GetArrivalTimes(DataContext as BO.Station, DateTime.Now.TimeOfDay);
@@ -55,11 +52,7 @@ namespace PL
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             TimeSpan now = start + stopwatch.Elapsed;
-            //TimeSpan now=DateTime.Now.TimeOfDay;
             tbTime.Text = now.ToString().Substring(0, 8);
-            //tbHour.Text = now.Hours.ToString();
-            //tbMinuts.Text = now.Minutes.ToString();
-            //tbSeconds.Text = now.Seconds.ToString();
             dgTime.ItemsSource = bl.GetArrivalTimes(DataContext as BO.Station, now);
 
         }

@@ -20,4 +20,14 @@
     <Password>cw==</Password>
     <Admin>false</Admin>
   </User>
+  <User>
+    <UserName>xyz</UserName>
+    <Password>eHl6</Password>
+    <Admin>false</Admin>
+  </User>
+  <User>
+    <UserName>hana</UserName>
+    <Password>MTIzNDU=</Password>
+    <Admin>true</Admin>
+  </User>
 </ArrayOfUser>

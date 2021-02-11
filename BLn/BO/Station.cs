@@ -4,6 +4,9 @@ using System.Text;
 
 namespace BO
 {
+    /// <summary>
+    ///  represents a station
+    /// </summary>
     public class Station
     {
 
@@ -12,7 +15,7 @@ namespace BO
         public string Address { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public IEnumerable<StationLine> Lines { get; set; }////?
+        public IEnumerable<StationLine> Lines { get; set; }
 
     }
 }

@@ -72,10 +72,9 @@
     <Compile Include="LineDetails.xaml.cs">
       <DependentUpon>LineDetails.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewBus.xaml.cs">
-      <DependentUpon>NewBus.xaml</DependentUpon>
+    <Compile Include="SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PO\NotBooleanToVisibilityConverter.cs" />
     <Compile Include="SimulationWindow.xaml.cs">
       <DependentUpon>SimulationWindow.xaml</DependentUpon>
     </Compile>
@@ -158,7 +157,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="NewBus.xaml">
+    <Page Include="SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

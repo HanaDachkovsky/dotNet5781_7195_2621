@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BO
 {
+    /// <summary>
+    /// information about a bus that arrives at the station
+    /// </summary>
     public class LineArrivalTime
     {
         public TimeSpan StartTime { get ; set; }

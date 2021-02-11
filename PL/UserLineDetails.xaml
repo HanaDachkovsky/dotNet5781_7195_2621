@@ -59,7 +59,6 @@
         <TextBlock HorizontalAlignment="Left" Height="21" Margin="10.8,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Grid.Column="3"><Run Foreground="#FF00539C" FontWeight="Bold" FlowDirection="RightToLeft" Text="מספר קו:"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="9.6,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Grid.Column="1"><Run FlowDirection="RightToLeft" Text="אזור:" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="31" Margin="132.2,29.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Grid.ColumnSpan="3" Grid.Column="1"><Run FlowDirection="RightToLeft" Text="תחנות בקו:" /></TextBlock>
-        <!--<ListBox Name="lbStations" HorizontalAlignment="Left" Height="279" Grid.Row="2" VerticalAlignment="Top" Width="792" ItemTemplate="{StaticResource LineStationTemplate }" Grid.ColumnSpan="6"/>-->
         <TextBlock HorizontalAlignment="Left" Margin="120.2,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="2" Width="68" RenderTransformOrigin="0.335,0.509"/>
         <TextBlock HorizontalAlignment="Left" Margin="86,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Arae}" VerticalAlignment="Top" Width="112"/>
         <DataGrid x:Name="dgStations" Grid.ColumnSpan="4" HorizontalAlignment="Right" Height="279" Grid.Row="2" VerticalAlignment="Top" Width="594" Grid.Column="0"

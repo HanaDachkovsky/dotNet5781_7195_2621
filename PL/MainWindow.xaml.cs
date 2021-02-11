@@ -25,8 +25,7 @@ namespace PL
         IBL bl = BLFactory.GetBL();
         public MainWindow()
         {
-            InitializeComponent();
-            bl.todelete();
+            InitializeComponent(); 
             
         }
 
@@ -113,6 +112,14 @@ namespace PL
 
         private void btSignUp_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                new SignUpWindow(bl).ShowDialog();
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message);
+            }
 
         }
 
