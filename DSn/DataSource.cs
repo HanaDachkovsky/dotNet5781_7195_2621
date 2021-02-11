@@ -16,7 +16,6 @@ namespace DS
         public static List<DO.LineStation> ListLineStation;
         public static List<DO.LineTrip> ListLineTrip;
         public static List<DO.Station> ListStation;
-        public static List<DO.Trip> ListTrip;
         public static List<DO.User> ListUser;
         private static Random rand = new Random(DateTime.Now.Millisecond);
         static DataSource()
@@ -31,9 +30,7 @@ namespace DS
             ListLine = new List<DO.Line>();
             ListLineStation = new List<DO.LineStation>();
             ListLineTrip = new List<DO.LineTrip>();
-            //ListStation = new List<DO.Station>();
-            ListTrip = new List<DO.Trip>();
-            //ListUser = new List<DO.User>();
+            
 
             ListStation = new List<Station>
             {
@@ -455,32 +452,12 @@ namespace DS
             for (int i = 0; i < 9; i++)
             {
                 DO.Line line = new DO.Line();
-                //int firstStation = 10 * i + 1;
-                //int lastStation = 10 * i + 10;
-                //line.FirstStation = firstStation;
-                //line.LastStation = lastStation;
+                
                 line.Code = i + 1;
                 line.Id = ++DO.Counter.LineNum;
-                //line.Arae = DO.Enums.Areas.Jerusalem;
+                
                 line.Arae = DO.Enums.Areas.ירושלים;
-                //for (int j = firstStation; j <= lastStation; j++)
-                //{
-                //    int index = j % 10;
-                //    if (index == 0)
-                //    {
-                //        index = 10;
-                //    }
-                //    ListStation.Add(new DO.Station { Code = j, Longitude = rand.NextDouble() * (35.5 - 34.3) + 34.3, Lattitude = rand.NextDouble() * (33.3 - 31) + 31, });
-                //    ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = j, LineStationIndex = index, PrevStation =, NextStation = });
-
-                //}
-                //for (int j = firstStation; j < lastStation; j++)
-                //{
-                //    int distanceFromPrevStat = rand.NextDouble() * (150 - 0.1) + 0.1;// random number from 0.1 to 150
-                //    int timeFromPrevStat = new TimeSpan(0, (int)(distanceFromPrevStat * 60 / 50), 0);//the time is calculated as distance* 60 /50 Kmh 
-                //    ListAdjacentStations.Add(new DO.AdjacentStations { Station1 = j, Station2 = j + 1, Distance = distanceFromPrevStat, Time = new TimeSpan(0, (int)(timeFromPrevStat * 60 / 50), 0) });
-                //}
-                //ListLine.Add(line);
+                
                 line.FirstStation = ListStation[5 * i].Code;
                 line.LastStation = ListStation[5 * i + 9].Code;
                 ListLineStation.Add(new DO.LineStation { LineId = line.Id, Station = ListStation[5 * i].Code, PrevStation = 0, NextStation = ListStation[5 * i + 1].Code,LineStationIndex=1 });

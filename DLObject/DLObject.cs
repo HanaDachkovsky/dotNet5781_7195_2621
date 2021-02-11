@@ -363,77 +363,7 @@ namespace DL
         }
 
         #endregion
-        #region Trip
-        public int AddTrip(Trip trip)
-        {
-            if (DataSource.ListLine.FirstOrDefault(l => l.Id == trip.LineId) == null)
-            {
-                //throw new
-            }
-            if (DataSource.ListUser.FirstOrDefault(u => u.UserName == trip.UserName) == null)
-            {
-                //throw new
-            }
-            //חריגות של תחנה?
-            trip.Id = ++Counter.TripNum;
-            DataSource.ListTrip.Add(trip.Clone());
-            return trip.Id;
-        }
-
-        public void DeleteTrip(int id)
-        {
-            DO.Trip trip = DataSource.ListTrip.Find(t => t.Id == id);
-            if (trip == null)
-            {
-                //throw new
-            }
-            DataSource.ListTrip.Remove(trip);
-        }
-        public IEnumerable<Trip> GetAllTrip()
-        {
-            return from trip in DataSource.ListTrip
-                   select trip.Clone();
-        }
-        public Trip GetTrip(int id)
-        {
-            DO.Trip trip = DataSource.ListTrip.Find(t => t.Id == id);
-            if (trip == null)
-            {
-                //throw new
-            }
-            return trip.Clone();
-        }
-
-        public IEnumerable<Trip> GetAllTripBy(Predicate<Trip> predicate)
-        {
-            return from trip in DataSource.ListTrip
-                   where predicate(trip)
-                   select trip.Clone();
-        }
-        public void UpdateTrip(Trip trip)
-        {
-            DO.Trip tri = DataSource.ListTrip.Find(t => t.Id == trip.Id);
-
-            if (tri == null)
-            {
-                //throw new
-            }
-            DataSource.ListTrip.Remove(tri);
-            DataSource.ListTrip.Add(trip.Clone());
-        }
-
-        public void UpdateTrip(int id, Action<Trip> update)
-        {
-            DO.Trip tri = DataSource.ListTrip.Find(t => t.Id == id);
-
-            if (tri == null)
-            {
-                //throw new
-            }
-            update(tri);
-        }
-
-        #endregion
+        
         #region User
         public void AddUser(User user)
         {

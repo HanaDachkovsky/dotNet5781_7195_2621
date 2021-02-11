@@ -22,7 +22,6 @@ namespace BLAPI
         void AddLine(int code, Enums.Areas area, BO.Station station1, BO.Station station2);
         void AddStationToLine(int code, int lineId, int stationBefore);
         void DeleteStationInLine(int code, int lineId);
-        void UpdateLineStation(BO.LineStation lineStation, int lineId);
         #endregion
 
         #region LineTrip
