@@ -255,5 +255,8 @@
   <ItemGroup>
     <Resource Include="station.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="blueBus.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

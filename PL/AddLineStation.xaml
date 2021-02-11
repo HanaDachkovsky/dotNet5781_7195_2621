@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="הוספת תחנה לקו" Height="400" Width="500" Background="AliceBlue">
+        Title="הוספת תחנה לקו" Height="400" Width="500" Background="AliceBlue" Icon="blueBus.jpg">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  

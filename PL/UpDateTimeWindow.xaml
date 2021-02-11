@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="עדכון לוח זמנים" Height="450" Width="500" Background="AliceBlue">
+        Title="עדכון לוח זמנים" Height="450" Width="500" Background="AliceBlue" Icon="blueBus.jpg">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

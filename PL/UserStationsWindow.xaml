@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-    Title="תחנות" Height="450" Width="800" Background="AliceBlue">
+    Title="תחנות" Height="450" Width="800" Background="AliceBlue" Icon="blueBus.jpg">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize"  

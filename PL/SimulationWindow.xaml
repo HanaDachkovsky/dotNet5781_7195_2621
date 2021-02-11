@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="לוח אלקטרוני" Height="450" Width="800" Closing="Window_Closing" Background="AliceBlue">
+        Title="לוח אלקטרוני" Height="450" Width="800" Closing="Window_Closing" Background="AliceBlue" Icon="blueBus.jpg">
     <Grid>
-        <TextBlock Name="tbTime" HorizontalAlignment="Left" Height="62" Margin="227,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
+        <TextBlock Name="tbTime" HorizontalAlignment="Left" Height="62" Margin="144,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="243"/>
         <DataGrid x:Name="dgTime" HorizontalAlignment="Left" Height="297" Margin="10,113,0,0" VerticalAlignment="Top" Width="767"  SelectionChanged="DataGrid_SelectionChanged" RenderTransformOrigin="0.5,0.5" AutoGenerateColumns="False"
                   CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue">
             <DataGrid.Columns >
@@ -25,7 +25,7 @@
                 </TransformGroup>
             </DataGrid.RenderTransform>
         </DataGrid>
-        <TextBlock x:Name="tbStation" HorizontalAlignment="Left" Margin="331,77,0,0" TextWrapping="Wrap"  VerticalAlignment="Top"/>
+        <TextBlock x:Name="tbStation" HorizontalAlignment="Left" Margin="392,31,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="371" Height="58"/>
 
     </Grid>
 </Window>
