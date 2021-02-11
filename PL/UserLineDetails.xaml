@@ -60,7 +60,7 @@
         <TextBlock HorizontalAlignment="Left" Height="39" Margin="9.6,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" Grid.Column="1"><Run FlowDirection="RightToLeft" Text="אזור:" Foreground="#FF00539C" FontWeight="Bold"/></TextBlock>
         <TextBlock HorizontalAlignment="Left" Height="31" Margin="132.2,29.4,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" Grid.ColumnSpan="3" Grid.Column="1"><Run FlowDirection="RightToLeft" Text="תחנות בקו:" /></TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="120.2,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Code}" VerticalAlignment="Top" Grid.Column="2" Width="68" RenderTransformOrigin="0.335,0.509"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,17,0,0" TextWrapping="Wrap" Text="{Binding Path=Arae}" VerticalAlignment="Top" Width="112"/>
+        <TextBlock HorizontalAlignment="Left" Margin="86,15,0,0" TextWrapping="Wrap" Text="{Binding Path=Arae}" VerticalAlignment="Top" Width="112" Grid.ColumnSpan="2"/>
         <DataGrid x:Name="dgStations" Grid.ColumnSpan="4" HorizontalAlignment="Right" Height="279" Grid.Row="2" VerticalAlignment="Top" Width="594" Grid.Column="0"
                   AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserSortColumns="False" CanUserResizeColumns="False" IsReadOnly="True" AlternatingRowBackground="AliceBlue">
             <DataGrid.Columns>
